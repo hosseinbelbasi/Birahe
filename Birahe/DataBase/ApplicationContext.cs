@@ -13,7 +13,7 @@ public class ApplicationContext : DbContext {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfigs).Assembly);
         modelBuilder.Entity<User>().HasData(new User {
             Id = 1,
-            UserName = "Admin",
+            Username = "Admin",
             Passwordhashed = "12345678".Hash(),
             Role = Role.Admin,
             Coin = 0

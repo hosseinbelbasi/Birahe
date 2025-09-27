@@ -6,9 +6,9 @@ namespace Birahe.EndPoint.Entities.Configs;
 
 public class UserConfigs : IEntityTypeConfiguration<User> {
     public void Configure(EntityTypeBuilder<User> builder) {
-        builder.HasIndex(x => x.UserName).IsUnique();
+        builder.HasIndex(x => x.Username).IsUnique();
 
-        builder.Property(x => x.UserName).HasMaxLength(70);
+        builder.Property(x => x.Username).HasMaxLength(70);
 
        
     }

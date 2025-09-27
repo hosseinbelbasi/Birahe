@@ -11,7 +11,7 @@ namespace Birahe.EndPoint.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "UserName",
+                name: "Username",
                 table: "Users",
                 type: "nvarchar(70)",
                 maxLength: 70,
@@ -84,7 +84,7 @@ namespace Birahe.EndPoint.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserName",
                 table: "Users",
-                column: "UserName",
+                column: "Username",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -110,7 +110,7 @@ namespace Birahe.EndPoint.Migrations
                 table: "Riddles");
 
             migrationBuilder.AlterColumn<string>(
-                name: "UserName",
+                name: "Username",
                 table: "Users",
                 type: "nvarchar(max)",
                 nullable: false,

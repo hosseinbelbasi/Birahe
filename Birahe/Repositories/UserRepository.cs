@@ -17,13 +17,13 @@ public class UserRepository {
             .Users
             .Include(u=>u.Students)
             .FirstOrDefaultAsync(
-                x => x.UserName == userName && x.Passwordhashed == hashedPassWord);
+                x => x.Username == userName && x.Passwordhashed == hashedPassWord);
 
         return user;
     }
 
     public async Task<User?> CheckExistence(string userName) {
-        var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+        User? user = await _context.Users.FirstOrDefaultAsync(x => x.Username == userName);
         return user;
     }
 
@@ -33,5 +33,16 @@ public class UserRepository {
 
     public async Task<User?> FindUser(int id) {
         return await _context.Users.FirstOrDefaultAsync(user => user.Id == id);
+    }
+
+    public async Task<bool> ChangeUsername(string oldUsername, string newUsername) {
+        User? user = await CheckExistence(oldUsername);
+        if (user == null) {
+            return false;
+        }
+
+        user.Username = newUsername;
+        user.ModificationDateTime = DateTime.Now;
+        return true;
     }
 }

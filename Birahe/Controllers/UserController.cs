@@ -10,6 +10,7 @@ using Birahe.EndPoint.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,7 +22,7 @@ public class UserController : Controller {
     private UserRepository _userRepository;
     private IMapper _mapper;
     private readonly IConfiguration _config;
-    private JwtService _jwtService;
+    private readonly JwtService _jwtService;
 
 
     public UserController(ApplicationContext context, UserRepository userRepository, IMapper mapper, IConfiguration config, JwtService jwtService) {
@@ -36,7 +37,11 @@ public class UserController : Controller {
     [AllowAnonymous]
     public async Task<IActionResult> SignUp([FromBody] SignUpDto signUpDto) {
         if (!ModelState.IsValid) {
-            return BadRequest();
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new {errors});
         }
 
         if (signUpDto.Students.Count > 3) {
@@ -45,6 +50,11 @@ public class UserController : Controller {
 
         if (signUpDto.Students.Count == 0) {
             return Ok(new { error = "حئاقل یک دانشجو باید عضو تیم باشد!"});
+        }
+
+        User? exsits = await _userRepository.CheckExistence(signUpDto.Username);
+        if (exsits!=null) {
+            return BadRequest(new { message = "این نام کاربری قبلاً استفاده شده است." });
         }
 
         var duplicateStudentNos = signUpDto.Students
@@ -67,20 +77,19 @@ public class UserController : Controller {
             return BadRequest("هر دانشجو میتواند حداکثر عضو یک تیم باشد!");
         }
 
-        if (signUpDto.Password.IsNullOrEmpty()) {
-            return BadRequest("رمز عبور نمیتواند خالی باشد!");
-        }
-
-
 
         var user = _mapper.Map<User>(signUpDto);
         user.Students = _mapper.Map<List<Student>>(signUpDto.Students);
 
         var userName =  "team"+Guid.NewGuid().ToString("N").Substring(0, 10);
-        user.UserName = userName;
+        user.Username = userName;
 
         await _userRepository.AddUser(user);
-        await _context.SaveChangesAsync();
+        var count = await _context.SaveChangesAsync();
+
+        if (count <= 0) {
+            return StatusCode(500, new { message = "ثبت نام با خطا مواجه شد!" });
+        }
 
         return Ok(new {
             message = "ثبت نام با موفقیت انجام شد!" ,
@@ -93,7 +102,11 @@ public class UserController : Controller {
     [AllowAnonymous]
     public async Task<IActionResult> LogIn([FromBody] LoginDto loginDto) {
         if (!ModelState.IsValid) {
-            return BadRequest();
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new {errors});
         }
         var user =await _userRepository.Login(loginDto.UserName, loginDto.Password);
         if (user == null) {
@@ -115,8 +128,29 @@ public class UserController : Controller {
 
     [HttpPost]
     [Authorize(Roles = "admin")]
-    public IActionResult AdminAction() {
-        return Ok(new { message = "hello fucking word" });
+    public async Task<IActionResult> EditUserName([FromBody] EditUsernameDto editUsernameDto){
+        if (!ModelState.IsValid) {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new {errors});
+        }
+
+        if (editUsernameDto.OldUsername == editUsernameDto.NewUsername) {
+            return BadRequest(new {message = "same"});
+        }
+
+        var flag = await _userRepository.ChangeUsername(editUsernameDto.OldUsername, editUsernameDto.NewUsername);
+        if (!flag) {
+            return BadRequest(new {message = "repofailed"});
+        }
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new{message = "نام کاربری با موفقیت تعویض شد!"});
+
+
     }
 
 

@@ -20,7 +20,7 @@ public class DataBaseInitializer {
             {
                 _context.Users.Add(new User()
                 {
-                    UserName = "admin",
+                    Username = "admin",
                     Passwordhashed =  "12345678".Hash(),
                     Role = Role.Admin,
 
