@@ -1,5 +1,6 @@
 using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Models;
+using Birahe.EndPoint.Models.Dto;
 using Mapster;
 
 namespace Birahe.EndPoint.Mapster;

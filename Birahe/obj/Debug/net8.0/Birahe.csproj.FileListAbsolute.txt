@@ -148,3 +148,6 @@ D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\Mapster.Core.dll
 D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\Mapster.DependencyInjection.dll
 D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\c#\Birahe\Birahe\Birahe\obj\Debug\net8.0\Birahe.sourcelink.json
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

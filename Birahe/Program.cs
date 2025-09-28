@@ -16,6 +16,9 @@ builder.Services
 })
     .AddMapsterConfigs()
     .AddRepositories()
+    .AddServices()
+    .AddValidation()
+    .AddModelStateResponse()
     .AddJwt(builder.Configuration);
 
 // swagger
