@@ -16,4 +16,24 @@ public class ServiceResult<T>
 
     public static ServiceResult<T> Fail(string message, ErrorType error = ErrorType.Validation) =>
         new ServiceResult<T> { Success = false, Message = message, Error = error };
+
+    public static ServiceResult<T> NoContent(string message)=>
+        new ServiceResult<T> {Success = false , Message = message, Error = ErrorType.NoContent};
+
+
 }
+
+public class ServiceResult
+{
+    public bool Success { get; set; }
+    public string? Message { get; set; }
+    public ErrorType Error { get; set; } = ErrorType.None;
+
+    public static ServiceResult Ok( string? message = null, bool success = true) =>
+        new ServiceResult { Success = success, Message = message };
+
+    public static ServiceResult Fail(string message, ErrorType error = ErrorType.Validation) =>
+        new ServiceResult { Success = false, Message = message, Error = error };
+}
+
+

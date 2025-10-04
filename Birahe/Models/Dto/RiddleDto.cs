@@ -1,6 +1,6 @@
-namespace Birahe.EndPoint.Entities;
+namespace Birahe.EndPoint.Models.Dto;
 
-public class Riddle : BaseEntity {
+public class RiddleDto {
     public string Department { get; set; }
     public int Level { get; set; }
 
@@ -10,7 +10,4 @@ public class Riddle : BaseEntity {
     public int OpeningCost { get; set; }
     public int HintCost { get; set; }
     public int Reward { get; set; }
-
-    public string RiddleUId { get; set; }
-
 }

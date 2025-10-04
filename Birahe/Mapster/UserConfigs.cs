@@ -5,7 +5,7 @@ using Mapster;
 
 namespace Birahe.EndPoint.Mapster;
 
-public class UserConfigs {
+public class UserConfigs  {
     public static void AddConfigs() {
 
         TypeAdapterConfig<UserDto, User>

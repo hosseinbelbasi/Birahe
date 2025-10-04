@@ -57,6 +57,9 @@ namespace Birahe.EndPoint.Migrations
                     b.Property<DateTime?>("ModificationDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("No")
+                        .HasColumnType("int");
+
                     b.Property<int>("OpeningCost")
                         .HasColumnType("int");
 
@@ -64,10 +67,19 @@ namespace Birahe.EndPoint.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Reward")
-                        .HasMaxLength(500)
                         .HasColumnType("int");
 
+                    b.Property<string>("RiddleUId")
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)")
+                        .HasComputedColumnSql("[Department] + CAST([No] AS NVARCHAR(10))");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RiddleUId")
+                        .IsUnique();
 
                     b.ToTable("Riddles");
                 });
@@ -171,12 +183,12 @@ namespace Birahe.EndPoint.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 100,
                             Coin = 0,
-                            CreationDateTime = new DateTime(2025, 9, 26, 14, 14, 8, 162, DateTimeKind.Local).AddTicks(5002),
+                            CreationDateTime = new DateTime(2025, 10, 4, 14, 29, 9, 904, DateTimeKind.Local).AddTicks(9135),
                             Passwordhashed = "fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe",
                             Role = 1,
-                            SerialNumber = "d18768c709",
+                            SerialNumber = "84aa194c58",
                             Username = "Admin"
                         });
                 });

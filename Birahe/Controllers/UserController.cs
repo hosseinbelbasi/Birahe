@@ -42,6 +42,7 @@ public class UserController : Controller {
                 ErrorType.Validation => BadRequest(new { message = result.Message }),
                 ErrorType.NotFound   => NotFound(new { message = result.Message }),
                 ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.NoContent=> NoContent(),
                 _ => BadRequest(new { message = result.Message })
             };
         }
@@ -69,6 +70,7 @@ public class UserController : Controller {
                 ErrorType.Validation => BadRequest(new { message = result.Message }),
                 ErrorType.NotFound   => NotFound(new { message = result.Message }),
                 ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.NoContent => NoContent(),
                 _ => BadRequest(new { message = result.Message })
             };
         }
@@ -98,6 +100,7 @@ public class UserController : Controller {
                 ErrorType.Validation => BadRequest(new { message = result.Message }),
                 ErrorType.NotFound   => NotFound(new { message = result.Message }),
                 ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.NoContent => NoContent(),
                 _ => BadRequest(new { message = result.Message })
             };
         }

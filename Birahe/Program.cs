@@ -4,6 +4,7 @@ using Birahe.EndPoint.Initializers;
 using Birahe.EndPoint.Mapster;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,7 @@ builder.Services
 // swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddFluentValidationRulesToSwagger();
 
 var app = builder.Build();
 

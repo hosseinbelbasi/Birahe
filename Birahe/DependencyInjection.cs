@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Birahe.EndPoint.Initializers;
+using Birahe.EndPoint.Mapster;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services;
 using Birahe.EndPoint.Validator;
@@ -8,27 +9,43 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Birahe.EndPoint;
 
 public static class DependencyInjection {
     public static IServiceCollection AddRepositories(this IServiceCollection services) {
-        services.AddScoped<UserRepository>();
-        services.AddScoped<DataBaseInitializer.DatabaseInitializer>();
+        services
+            .AddScoped<UserRepository>()
+            .AddScoped<RiddleRepository>();
         return services;
     }
 
     public static IServiceCollection AddServices(this IServiceCollection services) {
-        services.AddScoped<JwtService>();
-        services.AddScoped<UserService>();
+        services
+            .AddScoped<JwtService>()
+            .AddScoped<UserService>()
+            .AddScoped<AdminService>();
+        return services;
+    }
+
+    public static IServiceCollection AddMapsterConfigs(this IServiceCollection services)
+    {
+        services.AddMapster();
+        UserConfigs.AddConfigs();
+        StudentConfigs.AddConfigs();
+        RiddleConfigs.AddConfigs();
+
+
         return services;
     }
 
     public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration) {
         var key = Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!);
 
-        services.AddAuthentication(options => {
+        services
+            .AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
@@ -93,14 +110,16 @@ public static class DependencyInjection {
     }
 
     public static IServiceCollection AddValidation(this IServiceCollection services) {
-        services.AddFluentValidationAutoValidation();
-        services.AddValidatorsFromAssemblyContaining<UserDtoValidator>();
+        services
+            .AddFluentValidationAutoValidation()
+            .AddValidatorsFromAssemblyContaining<UserDtoValidator>();
 
         return services;
     }
 
     public static IServiceCollection AddModelStateResponse(this IServiceCollection services) {
-        services.Configure<ApiBehaviorOptions>(options => {
+        services
+            .Configure<ApiBehaviorOptions>(options => {
             options.InvalidModelStateResponseFactory = context => {
                 var errors = context.ModelState.Values
                     .SelectMany(v => v.Errors)
@@ -112,4 +131,6 @@ public static class DependencyInjection {
         });
         return services;
     }
+
+
 }

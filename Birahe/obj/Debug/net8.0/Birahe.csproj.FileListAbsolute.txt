@@ -151,3 +151,13 @@ D:\c#\Birahe\Birahe\Birahe\obj\Debug\net8.0\Birahe.sourcelink.json
 D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.dll
 D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\FluentValidation.WebApi.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\MicroElements.OpenApi.FluentValidation.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\MicroElements.Swashbuckle.FluentValidation.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\MicroElements.Swashbuckle.FluentValidation.WebApi.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\System.Web.Http.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\System.Web.Http.WebHost.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\c#\Birahe\Birahe\Birahe\bin\Debug\net8.0\Swashbuckle.Core.dll

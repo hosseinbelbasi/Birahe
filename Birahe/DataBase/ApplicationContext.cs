@@ -12,12 +12,13 @@ public class ApplicationContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfigs).Assembly);
         modelBuilder.Entity<User>().HasData(new User {
-            Id = 1,
+            Id = 100,
             Username = "Admin",
             Passwordhashed = "12345678".Hash(),
             Role = Role.Admin,
             Coin = 0
         });
+
         base.OnModelCreating(modelBuilder);
     }
 
