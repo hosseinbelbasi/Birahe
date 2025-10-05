@@ -145,18 +145,29 @@ namespace Birahe.EndPoint.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("BanDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BanReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
                     b.Property<int>("Coin")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("ModificationDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Passwordhashed")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("datetime2");
@@ -166,7 +177,8 @@ namespace Birahe.EndPoint.Migrations
 
                     b.Property<string>("SerialNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -185,10 +197,11 @@ namespace Birahe.EndPoint.Migrations
                         {
                             Id = 100,
                             Coin = 0,
-                            CreationDateTime = new DateTime(2025, 10, 4, 14, 29, 9, 904, DateTimeKind.Local).AddTicks(9135),
+                            CreationDateTime = new DateTime(2025, 10, 6, 0, 30, 38, 152, DateTimeKind.Local).AddTicks(2270),
+                            IsBanned = false,
                             Passwordhashed = "fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe",
                             Role = 1,
-                            SerialNumber = "84aa194c58",
+                            SerialNumber = "6b91cc3f37",
                             Username = "Admin"
                         });
                 });

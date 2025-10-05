@@ -1,5 +1,7 @@
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
+using Birahe.EndPoint.Models.Dto;
+using Birahe.EndPoint.Models.Dto.AdminDto_s;
 using Microsoft.EntityFrameworkCore;
 
 namespace Birahe.EndPoint.Repositories;
@@ -15,6 +17,7 @@ public class UserRepository {
         var hashedPassWord = passWord.Hash();
         var user = await _context
             .Users
+            .IgnoreQueryFilters()
             .Include(u=>u.Students)
             .FirstOrDefaultAsync(
                 x => x.Username == userName && x.Passwordhashed == hashedPassWord);
@@ -23,7 +26,10 @@ public class UserRepository {
     }
 
     public async Task<User?> CheckExistence(string userName) {
-        User? user = await _context.Users.FirstOrDefaultAsync(x => x.Username == userName);
+        User? user = await _context
+            .Users
+            .Include(u=>u.Students)
+            .FirstOrDefaultAsync(x => x.Username == userName);
         return user;
     }
 
@@ -32,7 +38,10 @@ public class UserRepository {
     }
 
     public async Task<User?> FindUser(int id) {
-        return await _context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        return await _context
+            .Users
+            .Include(u=>u.Students)
+            .FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public async Task<bool> ChangeUsername(string oldUsername, string newUsername) {
@@ -43,6 +52,35 @@ public class UserRepository {
 
         user.Username = newUsername;
         user.ModificationDateTime = DateTime.Now;
+        return true;
+    }
+
+    public async Task<bool> ChangePassword(ChangePasswordDto changePasswordDto) {
+        var user = await CheckExistence(changePasswordDto.Username);
+        if (user == null || user!.Passwordhashed != changePasswordDto.OldPassword.Hash()) {
+            return false;
+        }
+
+        user.Passwordhashed = changePasswordDto.NewPassword.Hash();
+        return true;
+    }
+
+    public async Task<List<User>?> GetAllUser() {
+        return await _context
+            .Users
+            .Include(u=>u.Students)
+            .ToListAsync();
+    }
+
+    public async Task<bool> BanUser(BanUserDto banUserDto) {
+        var user = await CheckExistence(banUserDto.Username);
+        if (user == null) {
+            return false;
+        }
+
+        user.IsBanned = true;
+        user.BanReason = banUserDto.BsnReason;
+        user.BanDateTime = DateTime.Now;
         return true;
     }
 }

@@ -69,6 +69,10 @@ public class UserService
             return ServiceResult<User>.Ok(user,success:false,message:"نام کاربری یا رمز عبور اشتباه است!");
         }
 
+        if (user.IsBanned) {
+            return ServiceResult<User>.Fail("حساب کاربری شما مسدود شده است.");
+        }
+
         return ServiceResult<User>.Ok(user);
     }
 
@@ -78,13 +82,27 @@ public class UserService
             ServiceResult<string>.Fail(message: " کاربری پیدا نشد!", error: ErrorType.Validation);
         }
 
-        var count =  await _context.SaveChangesAsync();
+        var rows =  await _context.SaveChangesAsync();
 
-        if (count == 0) {
+        if (rows == 0) {
             ServiceResult<string>.Fail(message: " تغییر نام کاربری با خطا مواجه شد!", error: ErrorType.ServerError);
         }
 
         return ServiceResult<string>.Ok(message: "تغییر نام کاربری با موفقیت انجام شد!", success:true, data:editUsernameDto.NewUsername);
+    }
+
+    public async Task<ServiceResult> ChangePasswordAsync(ChangePasswordDto changePasswordDto) {
+        var flag = await _userRepository.ChangePassword(changePasswordDto);
+        if (!flag) {
+            return ServiceResult.Fail("نام کاربری یا رمز عبور صحیح نمی باشد!");
+        }
+        var rows =  await _context.SaveChangesAsync();
+
+        if (rows == 0) {
+            ServiceResult.Fail(message: " تغییر رمز عبور با خطا مواجه شد!", error: ErrorType.ServerError);
+        }
+
+        return ServiceResult.Ok("تغییر رمز عبور با موفقیت انجام شد!");
     }
 
 

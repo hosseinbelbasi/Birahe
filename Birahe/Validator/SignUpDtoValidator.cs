@@ -34,5 +34,6 @@ public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
             .WithMessage("شماره دانشجویی تکراری در درخواست وجود دارد.");
 
 
+
     }
 }

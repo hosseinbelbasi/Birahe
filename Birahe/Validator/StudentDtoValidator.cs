@@ -30,7 +30,10 @@ public class StudentDtoValidator : AbstractValidator<StudentDto> {
             .MaximumLength(120).WithMessage("رشته تحصیلی میتواند حداکثر 120 کاراکتر باشد.")
             .Matches(@"^[\u0600-\u06FF\s]+$").WithMessage("رشته تحصیلی فقط می‌تواند شامل حروف فارسی باشد.");
 
-        RuleFor(x => x.IsMale).Must(g => g == true || g == false)
-            .WithMessage("جنسیت باید مقدار بولین داشته باشد!");
+        RuleFor(x => x.IsMale)
+            .NotNull()
+            .Must(g => g == true || g == false).WithMessage("جنسیت باید مقدار بولین داشته باشد!");
+
+
     }
 }

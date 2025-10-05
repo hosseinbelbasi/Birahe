@@ -10,7 +10,7 @@ public class RemoveRiddleDtoValidator : AbstractValidator<RemoveRiddleDto> {
             .MinimumLength(4).WithMessage("شعبه معما باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(200).WithMessage("شعبه معما میتواند حداکثر 200 کاراکتر باشد.")
             .Matches(@"^[a-zA-Z0-9]+$")
-            .WithMessage("شعبه معما فقط می‌تواند شامل حروف، اعداد باشد.");
+            .WithMessage("شعبه معما فقط می‌تواند شامل حروف انگلیسی باشد.");
 
         RuleFor(x => x.No)
             .NotEmpty().WithMessage("شماره معما نمیتواند خالی باشد.")

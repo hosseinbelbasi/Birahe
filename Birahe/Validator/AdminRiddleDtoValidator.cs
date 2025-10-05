@@ -1,10 +1,11 @@
 using Birahe.EndPoint.Models.Dto;
+using Birahe.EndPoint.Models.Dto.AdminDto_s;
 using FluentValidation;
 
 namespace Birahe.EndPoint.Validator;
 
-public class RiddleDtoValidator: AbstractValidator<RiddleDto> {
-    public RiddleDtoValidator() {
+public class AdminRiddleDtoValidator: AbstractValidator<AdminRiddleDto> {
+    public AdminRiddleDtoValidator() {
         RuleFor(x=> x.Department)
             .NotEmpty().WithMessage("شعبه معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("شعبه معما باید حداقل ۴ کاراکتر باشد.")

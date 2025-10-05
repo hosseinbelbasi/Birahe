@@ -110,4 +110,24 @@ public class UserController : Controller {
 
     }
 
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> EditPassword([FromBody] ChangePasswordDto changePasswordDto) {
+        var result =await _userService.ChangePasswordAsync(changePasswordDto);
+
+        if (!result.Success)
+        {
+            return result.Error switch
+            {
+                ErrorType.Validation => BadRequest(new { message = result.Message }),
+                ErrorType.NotFound   => NotFound(new { message = result.Message }),
+                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.NoContent => NoContent(),
+                _ => BadRequest(new { message = result.Message })
+            };
+        }
+
+        return Ok(new{message = result.Message});
+    }
+
 }
