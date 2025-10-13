@@ -1,4 +1,4 @@
-namespace Birahe.EndPoint.Models.Dto;
+namespace Birahe.EndPoint.Models.Dto.UserDto_s;
 
 public class SignUpDto {
     public ICollection<StudentDto> Students { get; set; } = new List<StudentDto>();

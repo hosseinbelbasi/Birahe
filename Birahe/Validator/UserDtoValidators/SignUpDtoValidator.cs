@@ -1,10 +1,8 @@
 using Birahe.EndPoint.DataBase;
-using Birahe.EndPoint.Models;
-using Birahe.EndPoint.Models.Dto;
+using Birahe.EndPoint.Models.Dto.UserDto_s;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 
-namespace Birahe.EndPoint.Validator;
+namespace Birahe.EndPoint.Validator.UserDtoValidators;
 
 public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
     public SignUpDtoValidator(ApplicationContext appContext) {
@@ -24,8 +22,8 @@ public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
 
         RuleFor(x => x.Students)
             .NotNull().WithMessage("دانشجویان الزامی است.")
-            .Must(list => list.Count >= 1 && list.Count <= 3)
-            .WithMessage("یک تیم باید حداقل 1 و حداکثر 3 دانشجو داشته باشد.");
+            .Must(list => list.Count >= 2 && list.Count <= 3)
+            .WithMessage("یک تیم باید حداقل 2 و حداکثر 3 دانشجو داشته باشد.");
 
         RuleForEach(x => x.Students).SetValidator(new StudentDtoValidator());
 

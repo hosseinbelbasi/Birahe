@@ -3,6 +3,7 @@ using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Models;
 using Birahe.EndPoint.Models.Dto;
+using Birahe.EndPoint.Models.Dto.UserDto_s;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
 using MapsterMapper;
@@ -70,32 +71,53 @@ public class UserService
         }
 
         if (user.IsBanned) {
-            return ServiceResult<User>.Fail("حساب کاربری شما مسدود شده است.");
+            return ServiceResult<User>.Fail($"{"حساب کاربری شما مسدود شده است."} \n {user.BanReason}");
         }
 
         return ServiceResult<User>.Ok(user);
     }
 
-    public async Task<ServiceResult<String>> EditUsernameAsync(EditUsernameDto editUsernameDto) {
-        var flag = await _userRepository.ChangeUsername(editUsernameDto.OldUsername, editUsernameDto.NewUsername);
-        if (!flag) {
-            ServiceResult<string>.Fail(message: " کاربری پیدا نشد!", error: ErrorType.Validation);
+    public async Task<ServiceResult> EditUsernameAsync(string oldUsername,EditUsernameDto editUsernameDto) {
+        var user = await _userRepository.CheckExistence(oldUsername);
+        if (user == null) {
+            return ServiceResult.Fail(message: " کاربری پیدا نشد!", error: ErrorType.Validation);
         }
+
+        var checkNewUsername = await _userRepository.CheckExistence(editUsernameDto.NewUsername);
+        if (checkNewUsername != null) {
+            return ServiceResult.Fail(message: " این نام کاربری در دسترس نیست!", error: ErrorType.Validation);
+        }
+
+
+        if (oldUsername == editUsernameDto.NewUsername) {
+            return ServiceResult.Fail("نام کاربری قدیمی و جدید نمیتوانند یکسان باشند");
+        }
+
+        _userRepository.ChangeUsername(user, editUsernameDto.NewUsername);
 
         var rows =  await _context.SaveChangesAsync();
 
         if (rows == 0) {
-            ServiceResult<string>.Fail(message: " تغییر نام کاربری با خطا مواجه شد!", error: ErrorType.ServerError);
+            ServiceResult.Fail(message: " تغییر نام کاربری با خطا مواجه شد!", error: ErrorType.ServerError);
         }
 
-        return ServiceResult<string>.Ok(message: "تغییر نام کاربری با موفقیت انجام شد!", success:true, data:editUsernameDto.NewUsername);
+        return ServiceResult.Ok(message: "تغییر نام کاربری با موفقیت انجام شد!", success:true);
     }
 
-    public async Task<ServiceResult> ChangePasswordAsync(ChangePasswordDto changePasswordDto) {
-        var flag = await _userRepository.ChangePassword(changePasswordDto);
+    public async Task<ServiceResult> ChangePasswordAsync(string username, ChangePasswordDto changePasswordDto) {
+
+        var user = await _userRepository.CheckExistence(username);
+        if (user == null) {
+            return ServiceResult.Fail("این کاربر قبلا ثبت نشده است!");
+        }
+
+        var flag =  _userRepository.ChangePassword(user, changePasswordDto.OldPassword , changePasswordDto.NewPassword);
+
         if (!flag) {
             return ServiceResult.Fail("نام کاربری یا رمز عبور صحیح نمی باشد!");
+
         }
+
         var rows =  await _context.SaveChangesAsync();
 
         if (rows == 0) {

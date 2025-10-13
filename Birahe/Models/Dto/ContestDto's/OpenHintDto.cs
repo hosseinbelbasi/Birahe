@@ -1,0 +1,13 @@
+namespace Birahe.EndPoint.Models.Dto.ContestDto_s;
+
+public class OpenHintDto {
+    public string Department { get; set; }
+    public int Level { get; set; }
+
+    public string Content { get; set; }
+    public string Hint { get; set; }
+    public int No { get; set; }
+    public int OpeningCost { get; set; }
+    public int HintCost { get; set; }
+    public int Reward { get; set; }
+}

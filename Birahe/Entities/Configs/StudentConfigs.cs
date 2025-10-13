@@ -11,5 +11,7 @@ public class StudentConfigs : IEntityTypeConfiguration<Student> {
         builder.Property(x => x.LastName).HasMaxLength(70);
         builder.Property(x => x.StudentNo).HasMaxLength(11);
         builder.Property(x => x.Field).HasMaxLength(70);
+
+        builder.HasQueryFilter(x => !x.User.IsBanned);
     }
 }

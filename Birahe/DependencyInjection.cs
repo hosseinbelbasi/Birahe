@@ -4,7 +4,9 @@ using Birahe.EndPoint.Initializers;
 using Birahe.EndPoint.Mapster;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services;
+using Birahe.EndPoint.Services.Utilities;
 using Birahe.EndPoint.Validator;
+using Birahe.EndPoint.Validator.UserDtoValidators;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
@@ -18,20 +20,22 @@ public static class DependencyInjection {
     public static IServiceCollection AddRepositories(this IServiceCollection services) {
         services
             .AddScoped<UserRepository>()
-            .AddScoped<RiddleRepository>();
+            .AddScoped<RiddleRepository>()
+            .AddScoped<ContestRepository>();
         return services;
     }
 
     public static IServiceCollection AddServices(this IServiceCollection services) {
         services
             .AddScoped<JwtService>()
+            .AddScoped<ImageService>()
             .AddScoped<UserService>()
-            .AddScoped<AdminService>();
+            .AddScoped<AdminService>()
+            .AddScoped<ContestService>();
         return services;
     }
 
-    public static IServiceCollection AddMapsterConfigs(this IServiceCollection services)
-    {
+    public static IServiceCollection AddMapsterConfigs(this IServiceCollection services) {
         services.AddMapster();
         UserConfigs.AddConfigs();
         StudentConfigs.AddConfigs();

@@ -13,23 +13,25 @@ public class UserRepository {
         _context = context;
     }
 
-    public async Task<User?> Login(string userName, string passWord) {
-        var hashedPassWord = passWord.Hash();
+    public async Task<User?> Login(string username, string password) {
+        var hashedPassWord = password.Hash();
         var user = await _context
             .Users
             .IgnoreQueryFilters()
             .Include(u=>u.Students)
             .FirstOrDefaultAsync(
-                x => x.Username == userName && x.Passwordhashed == hashedPassWord);
+                x => x.Username == username && x.Passwordhashed == hashedPassWord);
+
 
         return user;
     }
 
-    public async Task<User?> CheckExistence(string userName) {
+    public async Task<User?> CheckExistence(string username) {
         User? user = await _context
             .Users
+            .AsTracking()
             .Include(u=>u.Students)
-            .FirstOrDefaultAsync(x => x.Username == userName);
+            .FirstOrDefaultAsync(x => x.Username == username);
         return user;
     }
 
@@ -44,43 +46,68 @@ public class UserRepository {
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
-    public async Task<bool> ChangeUsername(string oldUsername, string newUsername) {
-        User? user = await CheckExistence(oldUsername);
-        if (user == null) {
-            return false;
-        }
-
-        user.Username = newUsername;
-        user.ModificationDateTime = DateTime.Now;
-        return true;
+    public async Task<User?> FindBannedUser(int id) {
+        return await _context.Users.IgnoreQueryFilters().Where(u => u.IsBanned && u.RemoveTime.HasValue == false).FirstOrDefaultAsync(u=>u.Id == id);
     }
 
-    public async Task<bool> ChangePassword(ChangePasswordDto changePasswordDto) {
-        var user = await CheckExistence(changePasswordDto.Username);
-        if (user == null || user!.Passwordhashed != changePasswordDto.OldPassword.Hash()) {
+    public void ChangeUsername(User user, string newUsername) {
+
+
+
+        user!.Username = newUsername;
+        user.ModificationDateTime = DateTime.Now;
+
+    }
+
+    public bool ChangePassword(User user,string oldPassword, string newPassword) {
+        if (user!.Passwordhashed != oldPassword.Hash()) {
             return false;
         }
 
-        user.Passwordhashed = changePasswordDto.NewPassword.Hash();
+        user.Passwordhashed = newPassword.Hash();
         return true;
     }
 
     public async Task<List<User>?> GetAllUser() {
         return await _context
             .Users
+            .IgnoreQueryFilters()
             .Include(u=>u.Students)
             .ToListAsync();
     }
 
-    public async Task<bool> BanUser(BanUserDto banUserDto) {
-        var user = await CheckExistence(banUserDto.Username);
-        if (user == null) {
+    public void BanUser(User user ,string banReason) {
+        user.IsBanned = true;
+        user.BanReason = banReason;
+        user.BanDateTime = DateTime.Now;
+    }
+
+    public void AdminChangePassword(User user, string password) {
+        user.Passwordhashed = password.Hash();
+    }
+
+    public void IncreaseBalance(User user, int c) {
+        user.Coin += c;
+    }
+
+    public bool DecreaseBalance(User user, int c) {
+        if (user.Coin < c) {
             return false;
         }
 
-        user.IsBanned = true;
-        user.BanReason = banUserDto.BsnReason;
-        user.BanDateTime = DateTime.Now;
+        user.Coin -= c;
         return true;
+    }
+
+    public void UnBanUser(User user) {
+        user.IsBanned = false;
+        user.BanReason = null;
+        user.BanDateTime = null;
+    }
+
+    public async Task<List<ContestItem>?> AdminGetUserStausAsync(int userId) {
+        return await _context.ContestItems
+            .Where(ci => ci.UserId == userId)
+            .ToListAsync();
     }
 }

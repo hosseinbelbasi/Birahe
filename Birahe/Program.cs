@@ -3,14 +3,18 @@ using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Initializers;
 using Birahe.EndPoint.Mapster;
 using Birahe.EndPoint.Repositories;
+using Birahe.EndPoint.RouteTransformers;
 using Birahe.EndPoint.Services;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => {
+    options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+});
 builder.Services
     .AddDbContext<ApplicationContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -56,7 +60,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 

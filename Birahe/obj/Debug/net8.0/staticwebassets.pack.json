@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\images\\riddles\\81ae03b0-55ea-4b96-84a8-129825c2fe3b.jpg",
+      "PackagePath": "staticwebassets\\images\\riddles\\81ae03b0-55ea-4b96-84a8-129825c2fe3b.jpg"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\images\\riddles\\c15f5eac-68d8-4559-9907-5e5b489b6559.jpg",
+      "PackagePath": "staticwebassets\\images\\riddles\\c15f5eac-68d8-4559-9907-5e5b489b6559.jpg"
+    },
+    {
       "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

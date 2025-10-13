@@ -6,5 +6,6 @@ public enum ErrorType
     Validation,   // BadRequest (400)
     NotFound,     // 404
     ServerError,   // 500
-    NoContent     // 204
+    NoContent  ,   // 204
+    Forbidden, // 403
 }

@@ -22,6 +22,64 @@ namespace Birahe.EndPoint.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Birahe.EndPoint.Entities.ContestItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("HasOpenedHint")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSolved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastAnswer")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<DateTime?>("LastTryDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModificationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("OpeningDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("OpeningHintDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RiddleId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("SolvingDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Tries")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RiddleId");
+
+                    b.HasIndex("UserId", "RiddleId")
+                        .IsUnique();
+
+                    b.ToTable("ContestItems");
+                });
+
             modelBuilder.Entity("Birahe.EndPoint.Entities.Riddle", b =>
                 {
                     b.Property<int>("Id")
@@ -29,6 +87,11 @@ namespace Birahe.EndPoint.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Asnwer")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -43,13 +106,12 @@ namespace Birahe.EndPoint.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<string>("Hint")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<int>("HintCost")
                         .HasColumnType("int");
+
+                    b.Property<string>("HintImageFileName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -68,6 +130,10 @@ namespace Birahe.EndPoint.Migrations
 
                     b.Property<int>("Reward")
                         .HasColumnType("int");
+
+                    b.Property<string>("RewardImageFileName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("RiddleUId")
                         .IsRequired()
@@ -197,13 +263,32 @@ namespace Birahe.EndPoint.Migrations
                         {
                             Id = 100,
                             Coin = 0,
-                            CreationDateTime = new DateTime(2025, 10, 6, 0, 30, 38, 152, DateTimeKind.Local).AddTicks(2270),
+                            CreationDateTime = new DateTime(2025, 10, 13, 16, 17, 55, 360, DateTimeKind.Local).AddTicks(8388),
                             IsBanned = false,
                             Passwordhashed = "fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe",
                             Role = 1,
-                            SerialNumber = "6b91cc3f37",
+                            SerialNumber = "a1e5b4e2c4",
                             Username = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("Birahe.EndPoint.Entities.ContestItem", b =>
+                {
+                    b.HasOne("Birahe.EndPoint.Entities.Riddle", "Riddle")
+                        .WithMany("ContestItems")
+                        .HasForeignKey("RiddleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Birahe.EndPoint.Entities.User", "User")
+                        .WithMany("ContestItems")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Riddle");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Birahe.EndPoint.Entities.Student", b =>
@@ -217,8 +302,15 @@ namespace Birahe.EndPoint.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Birahe.EndPoint.Entities.Riddle", b =>
+                {
+                    b.Navigation("ContestItems");
+                });
+
             modelBuilder.Entity("Birahe.EndPoint.Entities.User", b =>
                 {
+                    b.Navigation("ContestItems");
+
                     b.Navigation("Students");
                 });
 #pragma warning restore 612, 618

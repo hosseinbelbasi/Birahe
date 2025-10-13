@@ -7,7 +7,7 @@ namespace Birahe.EndPoint.Models.ResultModels;
 public class ServiceResult<T>
 {
     public bool Success { get; set; }
-    public string? Message { get; set; }
+    public string? Message { get; set; } = "";
     public T? Data { get; set; }
     public ErrorType Error { get; set; } = ErrorType.None;
 
@@ -17,8 +17,8 @@ public class ServiceResult<T>
     public static ServiceResult<T> Fail(string message, ErrorType error = ErrorType.Validation) =>
         new ServiceResult<T> { Success = false, Message = message, Error = error };
 
-    public static ServiceResult<T> NoContent(string message)=>
-        new ServiceResult<T> {Success = false , Message = message, Error = ErrorType.NoContent};
+    public static ServiceResult<T> NoContent()=>
+        new ServiceResult<T> {Success = false , Error = ErrorType.NoContent};
 
 
 }
@@ -26,7 +26,7 @@ public class ServiceResult<T>
 public class ServiceResult
 {
     public bool Success { get; set; }
-    public string? Message { get; set; }
+    public string? Message { get; set; } = "";
     public ErrorType Error { get; set; } = ErrorType.None;
 
     public static ServiceResult Ok( string? message = null, bool success = true) =>

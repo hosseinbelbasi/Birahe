@@ -1,11 +1,10 @@
-using Birahe.EndPoint.Models.Dto;
-using Birahe.EndPoint.Models.Dto.AdminDto_s;
+using Birahe.EndPoint.Models.Dto.ContestDto_s;
 using FluentValidation;
 
-namespace Birahe.EndPoint.Validator;
+namespace Birahe.EndPoint.Validator.ContestDtoValidators;
 
-public class AdminRiddleDtoValidator: AbstractValidator<AdminRiddleDto> {
-    public AdminRiddleDtoValidator() {
+public class ContestRiddleDtoValidator : AbstractValidator<ContestRiddleDto> {
+    public ContestRiddleDtoValidator() {
         RuleFor(x=> x.Department)
             .NotEmpty().WithMessage("شعبه معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("شعبه معما باید حداقل ۴ کاراکتر باشد.")
@@ -20,21 +19,6 @@ public class AdminRiddleDtoValidator: AbstractValidator<AdminRiddleDto> {
         RuleFor(x => x.No)
             .NotEmpty().WithMessage("شماره معما نمیتواند خالی باشد.")
             .Must(l => l > 0 && l < 16).WithMessage("شماره معما باید بزرگتر از 0 و کوچکتر از 16 باشد.");
-
-
-        RuleFor(x=> x.Content)
-            .NotEmpty().WithMessage("محتوای معما نمیتواند خالی باشد.")
-            .MinimumLength(4).WithMessage("محتوای معما باید حداقل ۴ کاراکتر باشد.")
-            .MaximumLength(1000).WithMessage("محتوای معما میتواند حداکثر 1000 کاراکتر باشد.")
-            .Matches(@"^[a-zA-Z0-9_\u0600-\u06FF\s]+$")
-            .WithMessage("محتوای معما فقط می‌تواند شامل حروف، اعداد یا _ باشد.");
-
-        RuleFor(x=> x.Hint)
-            .NotEmpty().WithMessage("نکته معما نمیتواند خالی باشد.")
-            .MinimumLength(4).WithMessage("نکته معما باید حداقل ۴ کاراکتر باشد.")
-            .MaximumLength(1000).WithMessage("نکته معما میتواند حداکثر 1000 کاراکتر باشد.")
-            .Matches(@"^[a-zA-Z0-9_]+$")
-            .WithMessage("نکته معما فقط می‌تواند شامل حروف، اعداد یا _ باشد.");
 
         RuleFor(x => x.OpeningCost)
             .NotEmpty().WithMessage("قیمت باز کردن معما نمیتواند خالی باشد.")

@@ -56,7 +56,7 @@ namespace Birahe.EndPoint.Migrations
                 oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Hint",
+                name: "HintImageFileName",
                 table: "Riddles",
                 type: "nvarchar(500)",
                 maxLength: 500,
@@ -155,7 +155,7 @@ namespace Birahe.EndPoint.Migrations
                 oldMaxLength: 70);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Hint",
+                name: "HintImageFileName",
                 table: "Riddles",
                 type: "nvarchar(max)",
                 nullable: false,

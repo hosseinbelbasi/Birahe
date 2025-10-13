@@ -18,6 +18,8 @@ public class User : BaseEntity {
 
     public DateTime? BanDateTime { get; set; }
 
+    public List<ContestItem>? ContestItems { get; set; }
+
     public User()
     {
         SerialNumber = Guid.NewGuid().ToString("N").Substring(0, 10);

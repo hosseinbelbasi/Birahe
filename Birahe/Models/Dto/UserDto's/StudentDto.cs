@@ -1,4 +1,4 @@
-namespace Birahe.EndPoint.Models.Dto;
+namespace Birahe.EndPoint.Models.Dto.UserDto_s;
 
 
 public class StudentDto {

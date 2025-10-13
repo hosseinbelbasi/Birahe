@@ -25,30 +25,29 @@ public class RiddleRepository {
         return riddle;
     }
 
-    public async Task<bool> EditRiddle(string riddleUId, Riddle riddle) {
-        var old = await CheckExistence(riddleUId);
-
-        if (old == null) {
-            return false;
-        }
-
-        riddle.Adapt(old);
-        old.ModificationDateTime = DateTime.Now;
-        return true;
+    public async Task<Riddle?> FindRiddleAsync(int id) {
+        return await _context.Riddles.FirstOrDefaultAsync(r => r.Id == id);
     }
 
-    public async Task<bool> RemoveRiddle(string riddleUId) {
-        var riddle = await CheckExistence(riddleUId);
+    public void EditRiddle(Riddle toEdit, Riddle riddle) {
 
-        if (riddle == null) {
-            return false;
-        }
 
-        riddle.RemoveTime = DateTime.Now;
-        return true;
+        riddle.Adapt(toEdit);
+        toEdit!.ModificationDateTime = DateTime.Now;
+    }
+
+    public void RemoveRiddle(Riddle riddle) {
+
+
+        riddle!.RemoveTime = DateTime.Now;
+
     }
 
     public async Task<List<Riddle>> GetRiddles() {
-        return await _context.Riddles.ToListAsync();
+        return await _context
+            .Riddles
+            .ToListAsync();
     }
+
+
 }

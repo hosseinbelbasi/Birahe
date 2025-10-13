@@ -4,6 +4,8 @@ using System.Text;
 using Birahe.EndPoint.Entities;
 using Microsoft.IdentityModel.Tokens;
 
+namespace Birahe.EndPoint.Services;
+
 public class JwtService
 {
     private readonly IConfiguration _config;

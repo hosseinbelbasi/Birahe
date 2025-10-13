@@ -1,7 +1,9 @@
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Enums;
+using Birahe.EndPoint.Extensions;
 using Birahe.EndPoint.Models;
 using Birahe.EndPoint.Models.Dto;
+using Birahe.EndPoint.Models.Dto.UserDto_s;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services;
 using Birahe.EndPoint.Validator;
@@ -12,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Route("User/[action]")]
+[Route("/user/[action]")]
 public class UserController : Controller {
     private readonly ApplicationContext _context;
     private readonly UserRepository _userRepository;
@@ -31,7 +33,7 @@ public class UserController : Controller {
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> SignUp([FromBody] SignUpDto signUpDto) {
+    public async Task<IActionResult> Signup([FromBody] SignUpDto signUpDto) {
 
         var result = await _userService.SignupAsync(signUpDto);
 
@@ -42,6 +44,7 @@ public class UserController : Controller {
                 ErrorType.Validation => BadRequest(new { message = result.Message }),
                 ErrorType.NotFound   => NotFound(new { message = result.Message }),
                 ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
                 ErrorType.NoContent=> NoContent(),
                 _ => BadRequest(new { message = result.Message })
             };
@@ -59,7 +62,7 @@ public class UserController : Controller {
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> LogIn([FromBody] LoginDto loginDto) {
+    public async Task<IActionResult> Login([FromBody] LoginDto loginDto) {
 
         var result =await _userService.LoginAsync(loginDto);
 
@@ -70,6 +73,7 @@ public class UserController : Controller {
                 ErrorType.Validation => BadRequest(new { message = result.Message }),
                 ErrorType.NotFound   => NotFound(new { message = result.Message }),
                 ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
                 ErrorType.NoContent => NoContent(),
                 _ => BadRequest(new { message = result.Message })
             };
@@ -89,9 +93,13 @@ public class UserController : Controller {
 
     [HttpPost]
     [Authorize]
-    public async Task<IActionResult> EditUserName([FromBody] EditUsernameDto editUsernameDto){
+    public async Task<IActionResult> EditUsername([FromBody] EditUsernameDto editUsernameDto) {
+        var currentUsername = User.GetUsername();
+        if (String.IsNullOrEmpty(currentUsername)) {
+            return BadRequest();
+        }
 
-        var result =await _userService.EditUsernameAsync(editUsernameDto);
+        var result =await _userService.EditUsernameAsync(currentUsername, editUsernameDto);
 
         if (!result.Success)
         {
@@ -100,6 +108,7 @@ public class UserController : Controller {
                 ErrorType.Validation => BadRequest(new { message = result.Message }),
                 ErrorType.NotFound   => NotFound(new { message = result.Message }),
                 ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
                 ErrorType.NoContent => NoContent(),
                 _ => BadRequest(new { message = result.Message })
             };
@@ -113,7 +122,12 @@ public class UserController : Controller {
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> EditPassword([FromBody] ChangePasswordDto changePasswordDto) {
-        var result =await _userService.ChangePasswordAsync(changePasswordDto);
+        var currentUsername = User.GetUsername();
+        if (String.IsNullOrEmpty(currentUsername)) {
+            return BadRequest();
+        }
+
+        var result =await _userService.ChangePasswordAsync(currentUsername ,changePasswordDto);
 
         if (!result.Success)
         {
