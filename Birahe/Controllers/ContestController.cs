@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Birahe.EndPoint.ControllerAttributes;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Extensions;
@@ -15,6 +16,7 @@ namespace Birahe.EndPoint.Controllers;
 [ApiController]
 [Route("api/contest/[action]")]
 [Authorize]
+[ContestTimeAuthorize("Contest")]
 public class ContestController : Controller {
     private readonly ContestService _contestService;
 

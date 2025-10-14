@@ -22,6 +22,35 @@ namespace Birahe.EndPoint.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Birahe.EndPoint.Entities.ContestConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModificationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContestConfigs");
+                });
+
             modelBuilder.Entity("Birahe.EndPoint.Entities.ContestItem", b =>
                 {
                     b.Property<int>("Id")
@@ -263,11 +292,11 @@ namespace Birahe.EndPoint.Migrations
                         {
                             Id = 100,
                             Coin = 0,
-                            CreationDateTime = new DateTime(2025, 10, 13, 16, 17, 55, 360, DateTimeKind.Local).AddTicks(8388),
+                            CreationDateTime = new DateTime(2025, 10, 14, 23, 3, 14, 427, DateTimeKind.Local).AddTicks(7068),
                             IsBanned = false,
                             Passwordhashed = "fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe",
                             Role = 1,
-                            SerialNumber = "a1e5b4e2c4",
+                            SerialNumber = "0e03976409",
                             Username = "Admin"
                         });
                 });

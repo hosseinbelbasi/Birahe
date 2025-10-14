@@ -49,6 +49,8 @@ public class ApplicationContext : DbContext {
     public DbSet<Riddle> Riddles { get; set; }
     public DbSet<ContestItem> ContestItems { get; set; }
 
+    public DbSet<ContestConfig> ContestConfigs { get; set; }
+
 
 
 

@@ -288,4 +288,26 @@ public class AdminService {
         return ServiceResult<List<AdminContestItemDto>?>.Ok(listDto);
     }
 
+    // ====================Contest Config =======================//
+
+    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync(SetContestStartDto setContestStartDto) {
+        var config = await _context.ContestConfigs.FirstOrDefaultAsync(x => x.Key == setContestStartDto.Key);
+        if (config == null) {
+            config = new ContestConfig { Key = setContestStartDto.Key, StartTime = setContestStartDto.StartTime };
+            _context.ContestConfigs.Add(config);
+        }
+        else {
+            config.StartTime = setContestStartDto.StartTime;
+            _context.ContestConfigs.Update(config);
+        }
+
+        var rows = await _context.SaveChangesAsync();
+        if (rows == 0) {
+            return ServiceResult<DateTime>.Fail("خطا در ثبت عملیات" , ErrorType.ServerError);
+        }
+
+        return ServiceResult<DateTime>.Ok(setContestStartDto.StartTime,$"{setContestStartDto.Key} start time updated.");
+
+    }
+
 }
