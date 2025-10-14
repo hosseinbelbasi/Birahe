@@ -60,7 +60,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "/{controller=Home}/{action=Index}/{id?}");
+    pattern: "api/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
 

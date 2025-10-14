@@ -105,6 +105,10 @@ public class UserRepository {
         user.BanDateTime = null;
     }
 
+    public int GetBalance(User user) {
+        return user.Coin;
+    }
+
     public async Task<List<ContestItem>?> AdminGetUserStausAsync(int userId) {
         return await _context.ContestItems
             .Where(ci => ci.UserId == userId)

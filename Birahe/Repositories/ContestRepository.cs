@@ -39,12 +39,12 @@ public class ContestRepository {
         contestItem.OpeningHintDateTime = DateTime.Now;
     }
 
-    public async Task<List<RiddleWithStatusDto>?> GetAllRiddlesWithStatusAsync(string username)
+    public async Task<List<RiddleWithStatusDto>?> GetAllRiddlesWithStatusAsync(int userId)
     {
         var query =
             from r in _context.Riddles
             join ci in _context.ContestItems
-                    .Where(c => c.User.Username == username)
+                    .Where(c => c.User.Id == userId)
                 on r.Id equals ci.RiddleId into joined
             from j in joined.DefaultIfEmpty() // LEFT JOIN — includes riddles user has not opened yet
             select new RiddleWithStatusDto

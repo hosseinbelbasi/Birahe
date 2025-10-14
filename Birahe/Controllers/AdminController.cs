@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Route("/admin/[action]")]
+[Route("api/admin/[action]")]
 [Authorize(Roles = "admin")]
 public class AdminController : Controller {
     private readonly AdminService _adminService;
@@ -148,27 +148,25 @@ public class AdminController : Controller {
         });
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetRiddleImagesById(int riddleId)
+    [HttpGet("{riddleId:int}/{type}")]
+    public async Task<IActionResult> GetRiddleImage(int riddleId, string type)
     {
-        var result = await _adminService.GetRiddleImagesByIdAsync(riddleId);
-        if (!result.Success) {
+        var result = await _adminService.GetRiddleImageByIdAsync(riddleId, type);
+
+        if (!result.Success)
+        {
             return result.Error switch
             {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound   => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.NoContent => NoContent(),
+                ErrorType.NotFound => NotFound(new { message = result.Message }),
+                ErrorType.Forbidden => Forbid(),
                 _ => BadRequest(new { message = result.Message })
             };
         }
 
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
+        var (bytes, contentType) = result.Data;
+        return File(bytes, contentType);
     }
+
 
 
 

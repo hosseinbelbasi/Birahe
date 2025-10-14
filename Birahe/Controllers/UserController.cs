@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Route("/user/[action]")]
+[Route("api/user/[action]")]
 public class UserController : Controller {
     private readonly ApplicationContext _context;
     private readonly UserRepository _userRepository;

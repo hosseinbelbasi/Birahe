@@ -152,46 +152,33 @@ public class AdminService {
     }
 
 
-    public async Task<ServiceResult<List<Object>>> GetRiddleImagesByIdAsync(int riddleId) {
+    public async Task<ServiceResult<(byte[] File, string ContentType)>> GetRiddleImageByIdAsync(int riddleId, string type)
+    {
+        // 1️⃣ Find the riddle
         var riddle = await _context.Riddles.FindAsync(riddleId);
         if (riddle == null)
-            return ServiceResult<List<object>>.Fail("معما پیدا نشد!", ErrorType.NotFound);
+            return ServiceResult<(byte[], string)>.Fail("معما پیدا نشد!", ErrorType.NotFound);
 
-        // Build physical paths (assuming images are stored under wwwroot/images/riddles/)
-        var wwwRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-        var hintImagePath = string.IsNullOrEmpty(riddle.HintImageFileName) ? null : Path.Combine(wwwRootPath, riddle.HintImageFileName.TrimStart('/'));
-        var rewardImagePath = string.IsNullOrEmpty(riddle.RewardImageFileName) ? null : Path.Combine(wwwRootPath, riddle.RewardImageFileName.TrimStart('/'));
-
-        // Prepare result list
-        var imageFiles = new List<object>();
-
-        if (hintImagePath != null && System.IO.File.Exists(hintImagePath))
+        // 2️⃣ Determine which image to load
+        string? fileName = type.ToLower() switch
         {
-            var hintBytes = await System.IO.File.ReadAllBytesAsync(hintImagePath);
-            imageFiles.Add(new {
-                type = "hintImage",
-                fileName = Path.GetFileName(hintImagePath),
-                contentType = GetContentType(hintImagePath),
-                file = Convert.ToBase64String(hintBytes)
-            });
-        }
+            "hint" => riddle.HintImageFileName,
+            "reward" => riddle.RewardImageFileName,
+            _ => null
+        };
 
-        if (rewardImagePath != null && System.IO.File.Exists(rewardImagePath))
-        {
-            var rewardBytes = await System.IO.File.ReadAllBytesAsync(rewardImagePath);
-            imageFiles.Add(new {
-                type = "rewardImage",
-                fileName = Path.GetFileName(rewardImagePath),
-                contentType = GetContentType(rewardImagePath),
-                file = Convert.ToBase64String(rewardBytes)
-            });
-        }
+        if (string.IsNullOrEmpty(fileName))
+            return ServiceResult<(byte[], string)>.Fail("عکس یافت نشد!", ErrorType.NotFound);
 
-        if (imageFiles.Count == 0)
-            return ServiceResult<List<object>>.NoContent();
+        // 3️⃣ Read the image securely
+        var imageResult = await _imageService.ReadImageAsync(fileName);
+        if (!imageResult.Success)
+            return ServiceResult<(byte[], string)>.Fail(imageResult.Message ?? "خطا در خواندن تصویر!", imageResult.Error);
 
-        return ServiceResult<List<object>>.Ok(imageFiles);
+        // 4️⃣ Return image bytes and content type
+        return ServiceResult<(byte[], string)>.Ok(imageResult.Data);
     }
+
 
     private static string GetContentType(string path)
     {

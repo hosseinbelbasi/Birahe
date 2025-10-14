@@ -4,6 +4,7 @@ using Birahe.EndPoint.Models.Dto.ContestDto_s;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services.Utilities;
+using Mapster;
 using MapsterMapper;
 
 namespace Birahe.EndPoint.Services;
@@ -25,9 +26,14 @@ public class ContestService {
         _contestRepository = contestRepository;
     }
 
-    public async Task<ServiceResult<List<RiddleWithStatusDto>>> GetAllRiddlesWithStatusAsync(string username)
+    public async Task<ServiceResult<List<RiddleWithStatusDto>>> GetAllRiddlesWithStatusAsync(int userId)
     {
-        var riddles = await _contestRepository.GetAllRiddlesWithStatusAsync(username);
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
+            return ServiceResult<List<RiddleWithStatusDto>>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+        }
+
+        var riddles = await _contestRepository.GetAllRiddlesWithStatusAsync(userId);
 
         if (riddles == null || riddles.Count == 0)
         {
@@ -37,8 +43,11 @@ public class ContestService {
         return ServiceResult<List<RiddleWithStatusDto>>.Ok(riddles, "معماها با موفقیت دریافت شدند.");
     }
 
-    public async Task<ServiceResult<RiddleWithStatusDto>> GetRiddleWithStatusAsync(int riddleId, string username) {
-        var user = await _userRepository.CheckExistence(username);
+    public async Task<ServiceResult<RiddleWithStatusDto>> GetRiddleWithStatusAsync(int userId ,int riddleId) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
+            return ServiceResult<RiddleWithStatusDto>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+        }
         var riddleWithStatus = await _contestRepository.GetRiddleWithStatusAsync(riddleId, user.Id);
         if (riddleWithStatus == null) {
             return ServiceResult<RiddleWithStatusDto>.Fail("این معما وجود ندارد", ErrorType.NotFound);
@@ -48,11 +57,14 @@ public class ContestService {
         return ServiceResult<RiddleWithStatusDto>.Ok(riddleWithStatusDto);
     }
 
-    public async Task<ServiceResult<ContestRiddleDto>> OpenRiddleAsync(string username,int id) {
-        var user = await _userRepository.CheckExistence(username);
+    public async Task<ServiceResult<ContestRiddleDto>> OpenRiddleAsync(int userId,int riddleId) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
+            return ServiceResult<ContestRiddleDto>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+        }
 
         // var riddleUId = openRiddleDto.Department + openRiddleDto.No;
-        var riddle = await _riddleRepository.FindRiddleAsync(id);
+        var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
 
         if (riddle==null) {
             return ServiceResult<ContestRiddleDto>.Fail("این معما وجود ندارد!");
@@ -77,11 +89,12 @@ public class ContestService {
         return ServiceResult<ContestRiddleDto>.Ok( riddleDto,"معما با موفقیت باز شد!");
     }
 
-    public async Task<ServiceResult<OpenHintDto>> OpenRiddleHintAsync(string username, int id) {
-        var user = await _userRepository.CheckExistence(username);
-
-        // var riddleUId = openRiddleDto.Department + openRiddleDto.No;
-        var riddle = await _riddleRepository.FindRiddleAsync(id);
+    public async Task<ServiceResult<OpenHintDto>> OpenRiddleHintAsync(int userId, int riddleId) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
+            return ServiceResult<OpenHintDto>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+        }
+        var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
 
         if (riddle==null) {
             return ServiceResult<OpenHintDto>.Fail("این معما وجود ندارد!");
@@ -108,8 +121,8 @@ public class ContestService {
         return ServiceResult<OpenHintDto>.Ok( riddleDto,"راهنمایی معما با موفقیت باز شد!");
     }
 
-    public async Task<ServiceResult> SubmitAnswerAsync(string username, SubmitAnswerDto submitAnswerDto) {
-        var user = await _userRepository.CheckExistence(username);
+    public async Task<ServiceResult> SubmitAnswerAsync(int userId, SubmitAnswerDto submitAnswerDto) {
+        var user = await _userRepository.FindUser(userId);
         var riddle = await _riddleRepository.FindRiddleAsync(submitAnswerDto.riddleId);
 
         if (riddle==null) {
@@ -148,12 +161,24 @@ public class ContestService {
         return ServiceResult<List<LeaderBoardUserDto>>.Ok(leaderBoard);
     }
 
+    public async Task<ServiceResult<int>> GetUserBalanceAsync(int userId) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
+            return ServiceResult<int>.Fail("کاربر یافت نشد!");
+        }
+
+        var balance = _userRepository.GetBalance(user);
+        return ServiceResult<int>.Ok(balance);
+    }
+
+
+
     // ======================== Image Retrieval ==========================
 
-    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetRewardImageAsync(string username, int riddleId)
+    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetRewardImageAsync(int userId, int riddleId)
     {
         // 1️⃣ Check user existence
-        var user = await _userRepository.CheckExistence(username);
+        var user = await _userRepository.FindUser(userId);
         if (user == null)
             return ServiceResult<(byte[], string)>.Fail("کاربر یافت نشد!", ErrorType.NotFound);
 
@@ -176,9 +201,9 @@ public class ContestService {
         return ServiceResult<(byte[], string)>.Ok(imageResult.Data);
     }
 
-    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetHintImageAsync(string username,
+    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetHintImageAsync(int userId,
         int riddleId) {
-        var user = await _userRepository.CheckExistence(username);
+        var user = await _userRepository.FindUser(userId);
         if (user == null)
             return ServiceResult<(byte[], string ContentType)>.Fail("کاربر یافت نشد!", ErrorType.NotFound);
 

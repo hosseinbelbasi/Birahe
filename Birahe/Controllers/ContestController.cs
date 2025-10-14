@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Route("/contest/[action]")]
+[Route("api/contest/[action]")]
 [Authorize]
 public class ContestController : Controller {
     private readonly ContestService _contestService;
@@ -27,12 +27,12 @@ public class ContestController : Controller {
 
     [HttpGet]
     public async Task<IActionResult> GetAllRiddles() {
-        var currentUsername = User.GetUsername();
-        if (String.IsNullOrEmpty(currentUsername)) {
+        var userId = User.GetUserId();
+        if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.GetAllRiddlesWithStatusAsync(currentUsername);
+        var result = await _contestService.GetAllRiddlesWithStatusAsync(userId);
 
         if (!result.Success) {
             return result.Error switch {
@@ -55,12 +55,12 @@ public class ContestController : Controller {
 
     [HttpGet]
     public async Task<IActionResult> OpenRiddle(int id) {
-        var currentUsername = User.GetUsername();
-        if (String.IsNullOrEmpty(currentUsername)) {
+        var userId = User.GetUserId();
+        if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.OpenRiddleAsync(currentUsername, id);
+        var result = await _contestService.OpenRiddleAsync(userId, id);
 
         if (!result.Success) {
             return result.Error switch {
@@ -84,12 +84,12 @@ public class ContestController : Controller {
 
     [HttpGet]
     public async Task<IActionResult> OpenHint(int id) {
-        var currentUsername = User.GetUsername();
-        if (String.IsNullOrEmpty(currentUsername)) {
+        var userId = User.GetUserId();
+        if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.OpenRiddleHintAsync(currentUsername, id);
+        var result = await _contestService.OpenRiddleHintAsync(userId, id);
 
         if (!result.Success) {
             return result.Error switch {
@@ -113,12 +113,12 @@ public class ContestController : Controller {
 
     [HttpPost]
     public async Task<IActionResult> SubmitAnswer([FromBody] SubmitAnswerDto submitAnswerDto) {
-        var currentUsername = User.GetUsername();
-        if (String.IsNullOrEmpty(currentUsername)) {
+        var userId = User.GetUserId();
+        if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.SubmitAnswerAsync(currentUsername, submitAnswerDto);
+        var result = await _contestService.SubmitAnswerAsync(userId, submitAnswerDto);
 
         if (!result.Success) {
             return result.Error switch {
@@ -138,13 +138,13 @@ public class ContestController : Controller {
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetRiddle(int id) {
-        var currentUsername = User.GetUsername();
-        if (String.IsNullOrEmpty(currentUsername)) {
+    public async Task<IActionResult> GetRiddle(int riddleId) {
+        var userId = User.GetUserId();
+        if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.GetRiddleWithStatusAsync(id,currentUsername);
+        var result = await _contestService.GetRiddleWithStatusAsync(userId, riddleId);
 
         if (!result.Success) {
             return result.Error switch {
@@ -187,9 +187,29 @@ public class ContestController : Controller {
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetUserStatus() {
-        throw new NotImplementedException();
+    public async Task<IActionResult> GetUserBalance() {
+        var userId = User.GetUserId();
+        if (userId == -1) {
+            return NotFound();
+        }
 
+        var result = await _contestService.GetUserBalanceAsync(userId);
+        if (!result.Success) {
+            return result.Error switch {
+                ErrorType.Validation => BadRequest(new { message = result.Message }),
+                ErrorType.NotFound => NotFound(new { message = result.Message }),
+                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
+                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
+                ErrorType.NoContent => NoContent(),
+                _ => BadRequest(new { message = result.Message })
+            };
+        }
+
+        return Ok(new {
+            success = result.Success,
+            message = result.Message,
+            data = result.Data
+        });
     }
 
     // =================== Image Retrieval ========================
@@ -197,11 +217,11 @@ public class ContestController : Controller {
     [HttpGet]
     public async Task<IActionResult> GetRewardImage(int riddleId)
     {
-        var username = User.GetUsername();
-        if (string.IsNullOrEmpty(username))
-            return BadRequest();
+        var userId = User.GetUserId();
+        if (userId == -1)
+            return NotFound();
 
-        var result = await _contestService.GetRewardImageAsync(username, riddleId);
+        var result = await _contestService.GetRewardImageAsync(userId, riddleId);
 
         if (!result.Success)
         {
@@ -219,11 +239,11 @@ public class ContestController : Controller {
 
     [HttpGet]
     public async Task<IActionResult> GetHintImage(int riddleId) {
-        var username = User.GetUsername();
-        if (string.IsNullOrEmpty(username))
-            return BadRequest();
+        var userId = User.GetUserId();
+        if (userId == -1)
+            return NotFound();
 
-        var result = await _contestService.GetHintImageAsync(username, riddleId);
+        var result = await _contestService.GetHintImageAsync(userId, riddleId);
 
         if (!result.Success)
         {
