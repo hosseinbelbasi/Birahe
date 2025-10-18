@@ -1,6 +1,8 @@
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
+using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Models.Dto.ContestDto_s;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace Birahe.EndPoint.Repositories;
@@ -96,18 +98,22 @@ public class ContestRepository {
         ci.LastAnswer = answer;
         ci.LastTryDateTime = DateTime.Now;
         ci.SolvingDateTime = success ? DateTime.Now : null;
+
+        ci.User.SolvedRiddles++;
     }
 
     public async Task<List<LeaderBoardUserDto>?> GetLeaderBoardAsync() {
         var leaderBoard = await _context.Users
+            .Where(u=> u.Role != Role.Admin)
             .Select(u => new LeaderBoardUserDto() {
-                Username = u.Username,
+                TeamName = u.TeamName,
                 Coin = u.Coin,
-                SolvedRiddles = (u.ContestItems != null) ? u.ContestItems.Count(ci=>ci.IsSolved) : 0
-            })
-            .OrderByDescending(u => u.Coin)
+                SolvedRiddles = u.SolvedRiddles
+            }).OrderByDescending(u => u.Coin)
             .ThenByDescending(u => u.SolvedRiddles)
             .ToListAsync();
+
+
 
         for (int i = 0; i < leaderBoard.Count; i++) {
             leaderBoard[i].Position = i + 1;

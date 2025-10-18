@@ -1,11 +1,13 @@
+using Birahe.EndPoint.Caching;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Models.Dto.ContestDto_s;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services.Utilities;
-using Mapster;
 using MapsterMapper;
+using Microsoft.Extensions.Caching.Memory;
+using Birahe.EndPoint.Constants;
 
 namespace Birahe.EndPoint.Services;
 
@@ -16,13 +18,16 @@ public class ContestService {
     private readonly ApplicationContext _context;
     private readonly IMapper _mapper;
     private readonly ImageService _imageService;
+    private readonly MemoryCacheService _cache;
 
-    public ContestService(ContestRepository contestRepository, UserRepository userRepository, RiddleRepository riddleRepository, ApplicationContext context, IMapper mapper, ImageService imageService) {
+
+    public ContestService(ContestRepository contestRepository, UserRepository userRepository, RiddleRepository riddleRepository, ApplicationContext context, IMapper mapper, ImageService imageService, MemoryCacheService cache) {
         _userRepository = userRepository;
         _riddleRepository = riddleRepository;
         _context = context;
         _mapper = mapper;
         _imageService = imageService;
+        _cache = cache;
         _contestRepository = contestRepository;
     }
 
@@ -149,11 +154,20 @@ public class ContestService {
         if (rows == 0) {
             return ServiceResult.Fail("خطا در ثبت جواب معما!" , ErrorType.ServerError);
         }
+
+        _ = RefreshLeaderBoardCacheAsync();
         return ServiceResult.Ok( "معما با موفقیت حل شد!");
     }
 
     public async Task<ServiceResult<List<LeaderBoardUserDto>>> GetLeaderBoardAsync() {
-        var leaderBoard = await _contestRepository.GetLeaderBoardAsync();
+
+        var leaderBoard = await _cache.GetOrSetAsync(
+            CacheKeys.Leaderboard,
+            async () => await _contestRepository.GetLeaderBoardAsync(),
+            TimeSpan.FromMinutes(5)
+        );
+
+
         if (leaderBoard == null || leaderBoard.Count == 0) {
             return ServiceResult<List<LeaderBoardUserDto>>.NoContent();
         }
@@ -220,6 +234,16 @@ public class ContestService {
             return ServiceResult<(byte[], string ContentType)>.Fail(imageResult.Message== null ?"" : imageResult.Message, imageResult.Error);
 
         return ServiceResult<(byte[], string ContentType)>.Ok(imageResult.Data);
+    }
+
+
+    // =================== caching ======================
+
+
+    private async Task RefreshLeaderBoardCacheAsync()
+    {
+        var leaderBoard = await _contestRepository.GetLeaderBoardAsync();
+        _cache.Set<List<LeaderBoardUserDto>>(CacheKeys.Leaderboard, leaderBoard, TimeSpan.FromMinutes(5));
     }
 
 }

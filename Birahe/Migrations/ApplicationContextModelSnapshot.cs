@@ -275,12 +275,23 @@ namespace Birahe.EndPoint.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("SolvedRiddles")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeamName")
+                        .IsUnique();
 
                     b.HasIndex("Username")
                         .IsUnique();
@@ -290,13 +301,15 @@ namespace Birahe.EndPoint.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 100,
+                            Id = 1000,
                             Coin = 0,
-                            CreationDateTime = new DateTime(2025, 10, 14, 23, 3, 14, 427, DateTimeKind.Local).AddTicks(7068),
+                            CreationDateTime = new DateTime(2025, 10, 17, 17, 27, 54, 451, DateTimeKind.Local).AddTicks(4997),
                             IsBanned = false,
                             Passwordhashed = "fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe",
                             Role = 1,
-                            SerialNumber = "0e03976409",
+                            SerialNumber = "0b1b8a65aa",
+                            SolvedRiddles = 0,
+                            TeamName = "hossein",
                             Username = "Admin"
                         });
                 });

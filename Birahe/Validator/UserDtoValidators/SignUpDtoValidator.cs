@@ -5,13 +5,22 @@ using FluentValidation;
 namespace Birahe.EndPoint.Validator.UserDtoValidators;
 
 public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
-    public SignUpDtoValidator(ApplicationContext appContext) {
+    public SignUpDtoValidator() {
         RuleFor(x => x.Username)
             .NotEmpty().WithMessage("نام کاربری الزامی است.")
             .MinimumLength(4).WithMessage("نام کاربری باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(50).WithMessage("نام کاربری میتواند حداکثر 50 کاراکتر باشد.")
             .Matches(@"^[a-zA-Z0-9_]+$")
             .WithMessage("نام کاربری فقط می‌تواند شامل حروف، اعداد یا _ باشد.");
+
+        RuleFor(x => x.TeamName)
+            .NotEmpty().WithMessage("نام تیم الزامی است.")
+            .MinimumLength(4).WithMessage("نام تیم باید حداقل ۴ کاراکتر باشد.")
+            .MaximumLength(50).WithMessage("نام تیم میتواند حداکثر 50 کاراکتر باشد.")
+            .Matches(@"^[a-zA-Z\u0600-\u06FF\s0-9_!]+$")
+            .WithMessage("نام تیم فقط می‌تواند شامل حروف، اعداد یا _ ، ! باشد.");
+
+
 
         RuleFor(x => x.Password)
             .NotEmpty().WithMessage("رمز عبور الزامی است.")

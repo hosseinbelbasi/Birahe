@@ -1,10 +1,7 @@
 using Birahe.EndPoint;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Initializers;
-using Birahe.EndPoint.Mapster;
-using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.RouteTransformers;
-using Birahe.EndPoint.Services;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +14,14 @@ builder.Services.AddControllers(options => {
 });
 builder.Services
     .AddDbContext<ApplicationContext>(options => {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-})
-    .AddMapsterConfigs()
-    .AddRepositories()
-    .AddServices()
-    .AddValidation()
-    .AddModelStateResponse()
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    })
     .AddJwt(builder.Configuration);
+
+builder.Services.AddDependencyInjection();
+
+
+
 
 // swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -61,6 +58,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "api/{controller=Home}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope()) {
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<DataBaseInitializer>();
+    dbInitializer.SeedData();
+}
 
 app.Run();
 

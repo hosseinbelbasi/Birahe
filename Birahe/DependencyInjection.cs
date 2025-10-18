@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Birahe.EndPoint.Caching;
 using Birahe.EndPoint.Initializers;
 using Birahe.EndPoint.Mapster;
 using Birahe.EndPoint.Repositories;
@@ -17,6 +18,21 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint;
 
 public static class DependencyInjection {
+
+    public static IServiceCollection AddDependencyInjection(this IServiceCollection services) {
+        services
+            .AddMapsterConfigs()
+            .AddRepositories()
+            .AddServices()
+            .AddValidation()
+            .AddModelStateResponse()
+            .AddCaching()
+            .AddInitializers();
+
+        return services;
+    }
+
+
     public static IServiceCollection AddRepositories(this IServiceCollection services) {
         services
             .AddScoped<UserRepository>()
@@ -133,6 +149,19 @@ public static class DependencyInjection {
                 return new BadRequestObjectResult(new { errors });
             };
         });
+        return services;
+    }
+
+    public static IServiceCollection AddCaching(this IServiceCollection services) {
+        services.AddMemoryCache();
+        services.AddSingleton<MemoryCacheService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddInitializers(this IServiceCollection services) {
+        services.AddScoped<DataBaseInitializer>();
+
         return services;
     }
 

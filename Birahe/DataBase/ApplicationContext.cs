@@ -11,13 +11,8 @@ public class ApplicationContext : DbContext {
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfigs).Assembly);
-        modelBuilder.Entity<User>().HasData(new User {
-            Id = 100,
-            Username = "Admin",
-            Passwordhashed = "12345678".Hash(),
-            Role = Role.Admin,
-            Coin = 0
-        });
+
+        
 
         // ==============Relations==============
 
@@ -39,6 +34,13 @@ public class ApplicationContext : DbContext {
             .WithMany(r => r.ContestItems)
             .HasForeignKey(ci => ci.RiddleId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // User To ContestItem
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.ContestItems)
+            .WithOne(ci => ci.User)
+            .HasForeignKey(ci => ci.UserId);
+
 
         base.OnModelCreating(modelBuilder);
     }

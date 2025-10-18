@@ -5,6 +5,8 @@ namespace Birahe.EndPoint.Entities;
 public class User : BaseEntity {
     public string Username { get; set; }
     public string Passwordhashed { get; set; }
+
+    public string TeamName { get; set; }
     public ICollection<Student> Students { get; set; } = new List<Student>();
     public int Coin { get; set; }
 
@@ -18,7 +20,9 @@ public class User : BaseEntity {
 
     public DateTime? BanDateTime { get; set; }
 
-    public List<ContestItem>? ContestItems { get; set; }
+    public virtual List<ContestItem>? ContestItems { get; set; } = new List<ContestItem>();
+
+    public int SolvedRiddles { get; set; } = 0;
 
     public User()
     {

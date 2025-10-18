@@ -10,6 +10,7 @@ using Birahe.EndPoint.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Birahe.EndPoint.Controllers;
 
@@ -23,7 +24,6 @@ public class ContestController : Controller {
 
     public ContestController(ContestService contestService) {
         _contestService = contestService;
-
     }
 
 
