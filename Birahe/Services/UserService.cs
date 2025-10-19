@@ -16,25 +16,27 @@ public class UserService
     private readonly UserRepository _userRepository;
     private readonly ApplicationContext _context;
     private readonly IMapper _mapper;
+    private readonly JwtService _jwtService;
 
-    public UserService(UserRepository userRepository, ApplicationContext context, IMapper mapper)
+    public UserService(UserRepository userRepository, ApplicationContext context, IMapper mapper, JwtService jwtService)
     {
         _userRepository = userRepository;
         _context = context;
         _mapper = mapper;
+        _jwtService = jwtService;
     }
 
-    public async Task<ServiceResult<User>> SignupAsync(SignUpDto signUpDto)
+    public async Task<ServiceResult<LoginResultDto>> SignupAsync(SignUpDto signUpDto)
     {
         if (signUpDto.Students.Count > 3)
-            return ServiceResult<User>.Fail("یک تیم میتواند حداکثر 3 دانشجو داشته باشد!");
+            return ServiceResult<LoginResultDto>.Fail("یک تیم میتواند حداکثر 3 دانشجو داشته باشد!");
 
         if (signUpDto.Students.Count == 0)
-            return ServiceResult<User>.Fail("حداقل یک دانشجو باید عضو تیم باشد!");
+            return ServiceResult<LoginResultDto>.Fail("حداقل یک دانشجو باید عضو تیم باشد!");
 
         User? exists = await _userRepository.CheckExistence(signUpDto.Username);
         if (exists != null)
-            return ServiceResult<User>.Fail("این نام کاربری قبلاً استفاده شده است.");
+            return ServiceResult<LoginResultDto>.Fail("این نام کاربری قبلاً استفاده شده است.");
 
         var duplicateStudentNos = signUpDto.Students
             .GroupBy(s => s.StudentNo)
@@ -43,38 +45,51 @@ public class UserService
             .ToList();
 
         if (duplicateStudentNos.Any())
-            return ServiceResult<User>.Fail("شماره دانشجویی تکراری در درخواست!");
+            return ServiceResult<LoginResultDto>.Fail("شماره دانشجویی تکراری در درخواست!");
 
         var studentNos = signUpDto.Students.Select(s => s.StudentNo).ToList();
         bool anyExists = await _context.Students
             .AnyAsync(s => studentNos.Contains(s.StudentNo));
 
         if (anyExists)
-            return ServiceResult<User>.Fail("هر دانشجو میتواند حداکثر عضو یک تیم باشد!");
+            return ServiceResult<LoginResultDto>.Fail("هر دانشجو میتواند حداکثر عضو یک تیم باشد!");
 
         var user = _mapper.Map<User>(signUpDto);
         user.Students = _mapper.Map<List<Student>>(signUpDto.Students);
 
         await _userRepository.AddUser(user);
-        var count = await _context.SaveChangesAsync();
+        var rows = await _context.SaveChangesAsync();
 
-        if (count <= 0)
-            return ServiceResult<User>.Fail("ثبت نام با خطا مواجه شد!", ErrorType.ServerError);
+        if (rows <= 0)
+            return ServiceResult<LoginResultDto>.Fail("ثبت نام با خطا مواجه شد!", ErrorType.ServerError);
 
-        return ServiceResult<User>.Ok(user, "ثبت نام با موفقیت انجام شد!");
+        var result = new LoginResultDto() {
+            UserDto = _mapper.Map<UserDto>(user),
+            Token = _jwtService.GenerateToken(user)
+        };
+
+        return ServiceResult<LoginResultDto>.Ok(result, "ثبت نام با موفقیت انجام شد!");
     }
 
-    public async Task<ServiceResult<User>> LoginAsync(LoginDto loginDto) {
+    public async Task<ServiceResult<LoginResultDto>> LoginAsync(LoginDto loginDto) {
         var user =await _userRepository.Login(loginDto.Username, loginDto.Password);
         if (user == null) {
-            return ServiceResult<User>.Ok(user,success:false,message:"نام کاربری یا رمز عبور اشتباه است!");
+            return ServiceResult<LoginResultDto>.Fail("نام کاربری یا رمز عبور اشتباه است!" , ErrorType.Validation);
         }
 
         if (user.IsBanned) {
-            return ServiceResult<User>.Fail($"{"حساب کاربری شما مسدود شده است."} \n {user.BanReason}");
+            return ServiceResult<LoginResultDto>.Fail($"{"حساب کاربری شما مسدود شده است."} \n {user.BanReason}");
         }
 
-        return ServiceResult<User>.Ok(user);
+        var result = new LoginResultDto() {
+            UserDto = _mapper.Map<UserDto>(user),
+            Token = _jwtService.GenerateToken(user)
+        };
+
+        // var userDto = _mapper.Map<UserDto>(user);
+        // var tokenString = _jwtService.GenerateToken(user);
+
+        return ServiceResult<LoginResultDto>.Ok(result);
     }
 
     public async Task<ServiceResult> EditUsernameAsync(string oldUsername,EditUsernameDto editUsernameDto) {

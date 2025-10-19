@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Route("api/admin/[action]")]
+[Route("api/[controller]/[action]")]
 [Authorize(Roles = "admin")]
 public class AdminController : Controller {
     private readonly AdminService _adminService;
@@ -22,6 +22,8 @@ public class AdminController : Controller {
     [HttpPost]
     public async Task<IActionResult> AddRiddle([FromBody] AddRiddleDto addRiddleDto) {
         var result = await _adminService.AddRiddleAsync(addRiddleDto);
+
+
         if (!result.Success) {
             return result.Error switch
             {

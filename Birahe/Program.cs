@@ -1,5 +1,6 @@
 using Birahe.EndPoint;
 using Birahe.EndPoint.DataBase;
+using Birahe.EndPoint.Helpers.Extensions;
 using Birahe.EndPoint.Initializers;
 using Birahe.EndPoint.RouteTransformers;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
@@ -30,11 +31,8 @@ builder.Services.AddFluentValidationRulesToSwagger();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseProblemDetailsExceptionHandler();
 }
 
 if (app.Environment.IsDevelopment()) {
@@ -55,9 +53,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "api/{controller=Home}/{action=Index}/{id?}");
+app.MapControllers();
 
 using (var scope = app.Services.CreateScope()) {
     var dbInitializer = scope.ServiceProvider.GetRequiredService<DataBaseInitializer>();

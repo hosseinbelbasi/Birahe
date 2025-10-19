@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Microsoft.IdentityModel.JsonWebTokens;
 
-namespace Birahe.EndPoint.Extensions;
+namespace Birahe.EndPoint.Helpers.Extensions;
 
 public static class ClaimsPrincipalExtensions
 {

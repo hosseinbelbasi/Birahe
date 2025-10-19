@@ -3,7 +3,7 @@ using System.Security.Claims;
 using Birahe.EndPoint.ControllerAttributes;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Enums;
-using Birahe.EndPoint.Extensions;
+using Birahe.EndPoint.Helpers.Extensions;
 using Birahe.EndPoint.Models.Dto.ContestDto_s;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.Caching.Memory;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Route("api/contest/[action]")]
+[Route("api/[controller]")]
 [Authorize]
 [ContestTimeAuthorize("Contest")]
 public class ContestController : Controller {
@@ -27,7 +27,7 @@ public class ContestController : Controller {
     }
 
 
-    [HttpGet]
+    [HttpGet("riddles")]
     public async Task<IActionResult> GetAllRiddles() {
         var userId = User.GetUserId();
         if (userId == -1) {
@@ -36,26 +36,11 @@ public class ContestController : Controller {
 
         var result = await _contestService.GetAllRiddlesWithStatusAsync(userId);
 
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
+        return this.MapServiceResult(result);
 
     }
 
-    [HttpGet]
+    [HttpGet("riddles/{id:int}/open")]
     public async Task<IActionResult> OpenRiddle(int id) {
         var userId = User.GetUserId();
         if (userId == -1) {
@@ -63,28 +48,13 @@ public class ContestController : Controller {
         }
 
         var result = await _contestService.OpenRiddleAsync(userId, id);
+        return this.MapServiceResult(result);
 
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
 
 
     }
 
-    [HttpGet]
+    [HttpGet("riddles/{id:int}/hint")]
     public async Task<IActionResult> OpenHint(int id) {
         var userId = User.GetUserId();
         if (userId == -1) {
@@ -92,28 +62,13 @@ public class ContestController : Controller {
         }
 
         var result = await _contestService.OpenRiddleHintAsync(userId, id);
+        return this.MapServiceResult(result);
 
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
 
 
     }
 
-    [HttpPost]
+    [HttpPost("riddles/{id:int}")]
     public async Task<IActionResult> SubmitAnswer([FromBody] SubmitAnswerDto submitAnswerDto) {
         var userId = User.GetUserId();
         if (userId == -1) {
@@ -121,25 +76,11 @@ public class ContestController : Controller {
         }
 
         var result = await _contestService.SubmitAnswerAsync(userId, submitAnswerDto);
+        return this.MapServiceResult(result);
 
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-        });
     }
 
-    [HttpGet]
+    [HttpGet("riddles/{id:int}")]
     public async Task<IActionResult> GetRiddle(int riddleId) {
         var userId = User.GetUserId();
         if (userId == -1) {
@@ -147,48 +88,18 @@ public class ContestController : Controller {
         }
 
         var result = await _contestService.GetRiddleWithStatusAsync(userId, riddleId);
+        return this.MapServiceResult(result);
 
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
     }
 
-    [HttpGet]
+    [HttpGet("leaderboard")]
     public async Task<IActionResult> GetLeaderBoard() {
         var result = await _contestService.GetLeaderBoardAsync();
+        return this.MapServiceResult(result);
 
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
     }
 
-    [HttpGet]
+    [HttpGet("user/me/balance")]
     public async Task<IActionResult> GetUserBalance() {
         var userId = User.GetUserId();
         if (userId == -1) {
@@ -196,69 +107,34 @@ public class ContestController : Controller {
         }
 
         var result = await _contestService.GetUserBalanceAsync(userId);
-        if (!result.Success) {
-            return result.Error switch {
-                ErrorType.Validation => BadRequest(new { message = result.Message }),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                ErrorType.ServerError => StatusCode(500, new { message = result.Message }),
-                ErrorType.Forbidden => StatusCode(403, new{ message = result.Message }),
-                ErrorType.NoContent => NoContent(),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
 
-        return Ok(new {
-            success = result.Success,
-            message = result.Message,
-            data = result.Data
-        });
+        return this.MapServiceResult(result);
+
     }
 
     // =================== Image Retrieval ========================
 
-    [HttpGet]
-    public async Task<IActionResult> GetRewardImage(int riddleId)
-    {
+    [HttpGet("riddles/{id:int}/images/reward")]
+    public async Task<IActionResult> GetRewardImage(int riddleId) {
         var userId = User.GetUserId();
         if (userId == -1)
             return NotFound();
 
         var result = await _contestService.GetRewardImageAsync(userId, riddleId);
 
-        if (!result.Success)
-        {
-            return result.Error switch
-            {
-                ErrorType.Forbidden => Forbid(),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
+        return this.MapImageServiceResult(result);
 
-        var (bytes, contentType) = result.Data;
-        return File(bytes, contentType);
     }
 
-    [HttpGet]
+    [HttpGet("riddles/{id:int}/image/hint")]
     public async Task<IActionResult> GetHintImage(int riddleId) {
         var userId = User.GetUserId();
         if (userId == -1)
             return NotFound();
 
         var result = await _contestService.GetHintImageAsync(userId, riddleId);
+        return this.MapImageServiceResult(result);
 
-        if (!result.Success)
-        {
-            return result.Error switch
-            {
-                ErrorType.Forbidden => Forbid(),
-                ErrorType.NotFound => NotFound(new { message = result.Message }),
-                _ => BadRequest(new { message = result.Message })
-            };
-        }
-
-        var (bytes, contentType) = result.Data;
-        return File(bytes, contentType);
     }
 
 

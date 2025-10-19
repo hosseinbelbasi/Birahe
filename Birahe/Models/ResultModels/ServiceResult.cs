@@ -11,6 +11,8 @@ public class ServiceResult<T>
     public T? Data { get; set; }
     public ErrorType Error { get; set; } = ErrorType.None;
 
+    public string? Detail { get; set; } = null;
+
     public static ServiceResult<T> Ok(T data, string? message = null, bool success = true) =>
         new ServiceResult<T> { Success = success, Data = data, Message = message };
 
@@ -28,6 +30,9 @@ public class ServiceResult
     public bool Success { get; set; }
     public string? Message { get; set; } = "";
     public ErrorType Error { get; set; } = ErrorType.None;
+
+    public string? Detail { get; set; } = null;
+
 
     public static ServiceResult Ok( string? message = null, bool success = true) =>
         new ServiceResult { Success = success, Message = message };
