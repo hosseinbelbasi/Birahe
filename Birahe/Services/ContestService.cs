@@ -141,6 +141,22 @@ public class ContestService {
 
         if (ciExists.IsSolved) return ServiceResult.Fail("شما قبلا این معما را حل کرده اید!");
 
+        // rate limiting for submitting answers
+
+        var minInterval = TimeSpan.FromMinutes(5);
+        if (ciExists.LastTryDateTime.HasValue && DateTime.Now - ciExists.LastTryDateTime.Value < minInterval)
+        {
+            return ServiceResult.Fail(
+                $"لطفا قبل از ارسال جواب بعدی {minInterval.TotalSeconds} دقیقه صبر کنید."
+            );
+        }
+
+        ciExists.LastTryDateTime = DateTime.Now;
+        ciExists.Tries += 1;
+        ciExists.LastAnswer = submitAnswerDto.Answer;
+
+        // end of rate limit
+
         var success = riddle.Asnwer == submitAnswerDto.Answer;
         _contestRepository.SubmitAnswer(ciExists,submitAnswerDto.Answer ,success);
 
