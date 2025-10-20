@@ -1,3 +1,5 @@
+using Birahe.EndPoint.Caching;
+using Birahe.EndPoint.Constants;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Enums;
@@ -19,25 +21,27 @@ public class AdminService {
     private readonly ApplicationContext _context;
     private readonly UserRepository _userRepository;
     private readonly ImageService _imageService;
+    private readonly ContestConfigRepository _configRepository;
+    private readonly MemoryCacheService _cacheService;
 
     public AdminService(
         RiddleRepository riddleRepository,
         IMapper mapper,
         ApplicationContext context,
         UserRepository userRepository,
-        ImageService imageService) {
-
-
+        ImageService imageService, ContestConfigRepository configRepository, MemoryCacheService cacheService) {
         _riddleRepository = riddleRepository;
         _mapper = mapper;
         _context = context;
         _userRepository = userRepository;
         _imageService = imageService;
+        _configRepository = configRepository;
+        _cacheService = cacheService;
     }
 
 
     // ================Riddle business=============
-    public async Task<ServiceResult>AddRiddleAsync(AddRiddleDto addRiddleDto) {
+    public async Task<ServiceResult> AddRiddleAsync(AddRiddleDto addRiddleDto) {
         var riddleDtoUId = addRiddleDto.Department + addRiddleDto.No;
         var exists = await _riddleRepository.CheckExistence(riddleDtoUId);
         if (exists != null) {
@@ -48,17 +52,17 @@ public class AdminService {
         await _riddleRepository.AddRiddle(riddle);
         var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
-            return ServiceResult.Fail("ثبت معما با خطا روبرو شد!" , ErrorType.ServerError);
+            return ServiceResult.Fail("ثبت معما با خطا روبرو شد!", ErrorType.ServerError);
         }
+
+        _cacheService.Remove(CacheKeys.AdminAllRiddles);
         return ServiceResult.Ok("معما با موفقیت ثبت شد!");
     }
 
-    public async Task<ServiceResult<AdminRiddleDto>> EditRiddleAsync(AdminRiddleDto adminRiddleDto) {
-
-        var exists = await _riddleRepository.FindRiddleAsync(adminRiddleDto.Id);
+    public async Task<ServiceResult<AdminRiddleDto>> EditRiddleAsync(int riddleId, AdminRiddleDto adminRiddleDto) {
+        var exists = await _riddleRepository.FindRiddleAsync(riddleId);
         if (exists == null) {
             return ServiceResult<AdminRiddleDto>.Fail("این معما قبلا ثبت نشده است.");
-
         }
 
 
@@ -67,16 +71,22 @@ public class AdminService {
         _riddleRepository.EditRiddle(exists, oldRiddle);
 
 
-
-        var rows =await _context.SaveChangesAsync();
-        if (rows==0) {
+        var rows = await _context.SaveChangesAsync();
+        if (rows == 0) {
             return ServiceResult<AdminRiddleDto>.Fail("ویرایش معما با خطا رو به رو شد!", ErrorType.ServerError);
         }
-        return ServiceResult<AdminRiddleDto>.Ok(adminRiddleDto , message:"معما با موفقیت ویرایش شد.");
+        _cacheService.Remove(CacheKeys.AdminAllRiddles);
+
+        return ServiceResult<AdminRiddleDto>.Ok(adminRiddleDto, message: "معما با موفقیت ویرایش شد.");
     }
 
     public async Task<ServiceResult<List<AdminRiddleDto>>> GetAllRiddlesAsync() {
-        var riddles =await _riddleRepository.GetRiddles();
+        var riddles = await _cacheService.GetOrSetAsync(
+            CacheKeys.AdminAllRiddles,
+            async () => await _riddleRepository.GetRiddles(),
+            TimeSpan.FromMinutes(60)
+        );
+
         if (riddles.Count == 0) {
             return ServiceResult<List<AdminRiddleDto>>.NoContent();
         }
@@ -86,9 +96,9 @@ public class AdminService {
         return ServiceResult<List<AdminRiddleDto>>.Ok(riddlesDto, "خدمت شما.");
     }
 
-    public async Task<ServiceResult> DeleteRiddleAsync(RemoveRiddleDto removeRiddleDto) {
-        var uId = removeRiddleDto.Department + removeRiddleDto.No;
-        var riddle = await _riddleRepository.CheckExistence(uId);
+    public async Task<ServiceResult> DeleteRiddleAsync(int riddleId) {
+
+        var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
         if (riddle == null) {
             return ServiceResult.Fail("این معما قبلا ثبت نشده است.");
         }
@@ -100,11 +110,13 @@ public class AdminService {
             return ServiceResult.Fail("حدف معما با خطا رو به رو شد!", ErrorType.ServerError);
         }
 
+        _cacheService.Remove(CacheKeys.AdminAllRiddles);
+
         return ServiceResult.Ok("معما با موفقیت حذف شد");
     }
 
     public async Task<ServiceResult<AdminRiddleDto>> GetRiddleByIdAsync(int id) {
-        var riddle =await _riddleRepository.FindRiddleAsync(id);
+        var riddle = await _riddleRepository.FindRiddleAsync(id);
         if (riddle == null) {
             return ServiceResult<AdminRiddleDto>.Fail("این معما قبلا ثبت نشده است.");
         }
@@ -114,24 +126,23 @@ public class AdminService {
     }
 
     public async Task<ServiceResult>
-        UploadRiddleImageAsync(int riddleId, IFormFile? hintImage, IFormFile? rewardImage)
-    {
+        UploadRiddleImageAsync(int riddleId, IFormFile? hintImage, IFormFile? rewardImage) {
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
         if (riddle == null) {
             return ServiceResult.Fail("معما یافت نشد!", ErrorType.NotFound);
         }
 
-        if (hintImage== null && rewardImage == null) {
+        if (hintImage == null && rewardImage == null) {
             return ServiceResult.Fail("هیچ عکسی آپلود نکرده اید!");
         }
 
         if (hintImage != null) {
-           var imgResult = await _imageService.SaveImageAsync(hintImage);
-           if (!imgResult.Success) {
-               return ServiceResult.Fail(imgResult.Message, imgResult.Error);
-           }
+            var imgResult = await _imageService.SaveImageAsync(hintImage);
+            if (!imgResult.Success) {
+                return ServiceResult.Fail(imgResult.Message, imgResult.Error);
+            }
 
-           riddle.HintImageFileName = imgResult.Data;
+            riddle.HintImageFileName = imgResult.Data;
         }
 
         if (rewardImage != null) {
@@ -143,25 +154,26 @@ public class AdminService {
             riddle.RewardImageFileName = imgResult.Data;
         }
 
-        var rows =await _context.SaveChangesAsync();
+        var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
             return ServiceResult.Fail("دخیره عکس با خطا مواجه شد!", ErrorType.ServerError);
         }
+
+        _cacheService.Remove(CacheKeys.AdminAllRiddles);
 
         return ServiceResult.Ok("عکس(ها) با موفقیت ذخیره شدند!");
     }
 
 
-    public async Task<ServiceResult<(byte[] File, string ContentType)>> GetRiddleImageByIdAsync(int riddleId, string type)
-    {
+    public async Task<ServiceResult<(byte[] File, string ContentType)>> GetRiddleImageByIdAsync(int riddleId,
+        string type) {
         // 1️⃣ Find the riddle
         var riddle = await _context.Riddles.FindAsync(riddleId);
         if (riddle == null)
             return ServiceResult<(byte[], string)>.Fail("معما پیدا نشد!", ErrorType.NotFound);
 
         // 2️⃣ Determine which image to load
-        string? fileName = type.ToLower() switch
-        {
+        string? fileName = type.ToLower() switch {
             "hint" => riddle.HintImageFileName,
             "reward" => riddle.RewardImageFileName,
             _ => null
@@ -173,18 +185,17 @@ public class AdminService {
         // 3️⃣ Read the image securely
         var imageResult = await _imageService.ReadImageAsync(fileName);
         if (!imageResult.Success)
-            return ServiceResult<(byte[], string)>.Fail(imageResult.Message ?? "خطا در خواندن تصویر!", imageResult.Error);
+            return ServiceResult<(byte[], string)>.Fail(imageResult.Message ?? "خطا در خواندن تصویر!",
+                imageResult.Error);
 
         // 4️⃣ Return image bytes and content type
         return ServiceResult<(byte[], string)>.Ok(imageResult.Data);
     }
 
 
-    private static string GetContentType(string path)
-    {
+    private static string GetContentType(string path) {
         var ext = Path.GetExtension(path).ToLowerInvariant();
-        return ext switch
-        {
+        return ext switch {
             ".jpg" or ".jpeg" => "image/jpeg",
             ".png" => "image/png",
             ".gif" => "image/gif",
@@ -197,7 +208,11 @@ public class AdminService {
     // =======================User business===================
 
     public async Task<ServiceResult<List<AdminUserDto>>> GetAllUsersAsync() {
-        var userList = await _userRepository.GetAllUser();
+        var userList = await _cacheService.GetOrSetAsync(
+            CacheKeys.AdminAllUsers,
+            async ()=> await _userRepository.GetAllUser(),
+            TimeSpan.FromMinutes(10)
+            );
         if (userList == null) {
             return ServiceResult<List<AdminUserDto>>.NoContent();
         }
@@ -205,15 +220,15 @@ public class AdminService {
         var userListDto = _mapper.Map<List<AdminUserDto>>(userList);
 
         return ServiceResult<List<AdminUserDto>>.Ok(userListDto, "خدمت شما");
-
     }
 
 
-    public async Task<ServiceResult> BanUserAsync(BanUserDto banUserDto) {
-        var user =await _userRepository.CheckExistence(banUserDto.Username);
-        if (user==null) {
+    public async Task<ServiceResult> BanUserAsync(int userId ,BanUserDto banUserDto) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
         }
+
         _userRepository.BanUser(user, banUserDto.BsnReason);
 
 
@@ -222,14 +237,17 @@ public class AdminService {
             return ServiceResult.Fail("فرآیند بن کردن با خطا رو به رو شد!", ErrorType.ServerError);
         }
 
+        _cacheService.Remove(CacheKeys.AdminAllUsers);
+
         return ServiceResult.Ok("کاربر با موفقیت بن شد.");
     }
 
     public async Task<ServiceResult> UnBanUserAsync(int userId) {
-        var user =await _userRepository.FindBannedUser(userId);
-        if (user==null) {
+        var user = await _userRepository.FindBannedUser(userId);
+        if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
         }
+
         _userRepository.UnBanUser(user);
 
 
@@ -237,14 +255,15 @@ public class AdminService {
         if (rows == 0) {
             return ServiceResult.Fail("فرآیند رفع مسدود کردن با خطا رو به رو شد!", ErrorType.ServerError);
         }
+        _cacheService.Remove(CacheKeys.AdminAllUsers);
 
         return ServiceResult.Ok("کاربر با موفقیت رفع مسدود شد.");
     }
 
 
-    public async Task<ServiceResult> EditUserUsernameAsync(AdminEditUserUsernameDto usernameDto) {
-        var user =await _userRepository.CheckExistence(usernameDto.OldUsername);
-        if (user==null) {
+    public async Task<ServiceResult> EditUserUsernameAsync(int userId,AdminEditUserUsernameDto usernameDto) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
         }
 
@@ -255,23 +274,27 @@ public class AdminService {
         if (rows == 0) {
             return ServiceResult.Fail("تغییر نام کاربری با خطا مواجه شد!");
         }
+        _cacheService.Remove(CacheKeys.AdminAllUsers);
+
         return ServiceResult.Ok("نام کاربری با موفقیت تغییر یافت.");
     }
 
-    public async Task<ServiceResult> EditUserPasswordAsync(AdminEditUserPasswordDto userPasswordDto) {
-        var user =await _userRepository.CheckExistence(userPasswordDto.Username);
-        if (user==null) {
+    public async Task<ServiceResult> EditUserPasswordAsync(int userId, AdminEditUserPasswordDto userPasswordDto) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
         }
 
 
-        _userRepository.AdminChangePassword(user,userPasswordDto.NewPassword);
+        _userRepository.AdminChangePassword(user, userPasswordDto.NewPassword);
 
         var rows = await _context.SaveChangesAsync();
 
         if (rows == 0) {
             return ServiceResult.Fail("تغییر رمز عبور با خطا مواجه شد!");
         }
+        _cacheService.Remove(CacheKeys.AdminAllUsers);
+
         return ServiceResult.Ok("رمز عبور با موفقیت تغییر یافت.");
     }
 
@@ -279,10 +302,10 @@ public class AdminService {
         var list = await _userRepository.AdminGetUserStausAsync(userId);
 
         if (list == null || list.Count == 0)
-            return ServiceResult<List<AdminContestItemDto>?>.Fail( "برای این کاربر هیچ سابقه‌ای یافت نشد." , ErrorType.NotFound);
+            return ServiceResult<List<AdminContestItemDto>?>.Fail("برای این کاربر هیچ سابقه‌ای یافت نشد.",
+                ErrorType.NotFound);
 
         var listDto = _mapper.Map<List<AdminContestItemDto>>(list);
-
 
 
         return ServiceResult<List<AdminContestItemDto>?>.Ok(listDto);
@@ -290,7 +313,7 @@ public class AdminService {
 
     // ====================Contest Config =======================//
 
-    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync(SetContestStartDto setContestStartDto) {
+    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync( SetContestStartDto setContestStartDto) {
         var config = await _context.ContestConfigs.FirstOrDefaultAsync(x => x.Key == setContestStartDto.Key);
         if (config == null) {
             config = new ContestConfig { Key = setContestStartDto.Key, StartTime = setContestStartDto.StartTime };
@@ -303,11 +326,18 @@ public class AdminService {
 
         var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
-            return ServiceResult<DateTime>.Fail("خطا در ثبت عملیات" , ErrorType.ServerError);
+            return ServiceResult<DateTime>.Fail("خطا در ثبت عملیات", ErrorType.ServerError);
         }
 
-        return ServiceResult<DateTime>.Ok(setContestStartDto.StartTime,$"{setContestStartDto.Key} start time updated.");
-
+        return ServiceResult<DateTime>.Ok(setContestStartDto.StartTime,
+            $"{setContestStartDto.Key} start time updated.");
     }
 
+    public async Task<ServiceResult<DateTime>> GetContestStartTimeAsync(string key) {
+        var cc = await _configRepository.CheckExistence(key);
+        if (cc == null) {
+            return ServiceResult<DateTime>.Fail("کانفیگ مورد نظر یافت نشد!" , ErrorType.NotFound);
+        }
+        return ServiceResult<DateTime>.Ok(cc.StartTime);
+    }
 }

@@ -18,7 +18,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint;
 
 public static class DependencyInjection {
-
     public static IServiceCollection AddDependencyInjection(this IServiceCollection services) {
         services
             .AddMapsterConfigs()
@@ -37,7 +36,8 @@ public static class DependencyInjection {
         services
             .AddScoped<UserRepository>()
             .AddScoped<RiddleRepository>()
-            .AddScoped<ContestRepository>();
+            .AddScoped<ContestRepository>()
+            .AddScoped<ContestConfigRepository>();
         return services;
     }
 
@@ -109,8 +109,6 @@ public static class DependencyInjection {
 
                         context.Success();
                     }
-
-
                 };
 
                 options.Events = new JwtBearerEvents {
@@ -140,15 +138,15 @@ public static class DependencyInjection {
     public static IServiceCollection AddModelStateResponse(this IServiceCollection services) {
         services
             .Configure<ApiBehaviorOptions>(options => {
-            options.InvalidModelStateResponseFactory = context => {
-                var errors = context.ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToArray();
+                options.InvalidModelStateResponseFactory = context => {
+                    var errors = context.ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToArray();
 
-                return new BadRequestObjectResult(new { errors });
-            };
-        });
+                    return new BadRequestObjectResult(new { errors });
+                };
+            });
         return services;
     }
 
@@ -164,6 +162,4 @@ public static class DependencyInjection {
 
         return services;
     }
-
-
 }

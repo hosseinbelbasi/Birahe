@@ -6,17 +6,14 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Birahe.EndPoint.Services;
 
-public class JwtService
-{
+public class JwtService {
     private readonly IConfiguration _config;
 
-    public JwtService(IConfiguration config)
-    {
+    public JwtService(IConfiguration config) {
         _config = config;
     }
 
-    public string GenerateToken(User user)
-    {
+    public string GenerateToken(User user) {
         // 1) Secret key
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -24,8 +21,7 @@ public class JwtService
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         // 2) Claims
-        var claims = new List<Claim>
-        {
+        var claims = new List<Claim> {
             new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.UniqueName, user.Username),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),

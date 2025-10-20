@@ -1,12 +1,9 @@
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Routing;
 
-namespace Birahe.EndPoint.RouteTransformers
-{
-    public class SlugifyParameterTransformer : IOutboundParameterTransformer
-    {
-        public string? TransformOutbound(object? value)
-        {
+namespace Birahe.EndPoint.RouteTransformers {
+    public class SlugifyParameterTransformer : IOutboundParameterTransformer {
+        public string? TransformOutbound(object? value) {
             if (value == null) return null;
 
             // Convert PascalCase → kebab-case

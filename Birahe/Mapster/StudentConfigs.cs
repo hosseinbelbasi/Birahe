@@ -6,6 +6,5 @@ namespace Birahe.EndPoint.Mapster;
 
 public class StudentConfigs {
     public static void AddConfigs() {
-
     }
 }

@@ -9,6 +9,5 @@ public class ContestItemConfigs : IEntityTypeConfiguration<ContestItem> {
 
 
         builder.Property(ci => ci.LastAnswer).HasMaxLength(2000);
-
     }
 }

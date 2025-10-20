@@ -18,9 +18,8 @@ public class UserRepository {
         var user = await _context
             .Users
             .IgnoreQueryFilters()
-            .Include(u=>u.Students)
-            .FirstOrDefaultAsync(
-                x => x.Username == username && x.Passwordhashed == hashedPassWord);
+            .Include(u => u.Students)
+            .FirstOrDefaultAsync(x => x.Username == username && x.Passwordhashed == hashedPassWord);
 
 
         return user;
@@ -30,7 +29,7 @@ public class UserRepository {
         User? user = await _context
             .Users
             .AsTracking()
-            .Include(u=>u.Students)
+            .Include(u => u.Students)
             .FirstOrDefaultAsync(x => x.Username == username);
         return user;
     }
@@ -42,24 +41,21 @@ public class UserRepository {
     public async Task<User?> FindUser(int id) {
         return await _context
             .Users
-            .Include(u=>u.Students)
+            .Include(u => u.Students)
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public async Task<User?> FindBannedUser(int id) {
-        return await _context.Users.IgnoreQueryFilters().Where(u => u.IsBanned && u.RemoveTime.HasValue == false).FirstOrDefaultAsync(u=>u.Id == id);
+        return await _context.Users.IgnoreQueryFilters().Where(u => u.IsBanned && u.RemoveTime.HasValue == false)
+            .FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public void ChangeUsername(User user, string newUsername) {
-
-
-
         user!.Username = newUsername;
         user.ModificationDateTime = DateTime.Now;
-
     }
 
-    public bool ChangePassword(User user,string oldPassword, string newPassword) {
+    public bool ChangePassword(User user, string oldPassword, string newPassword) {
         if (user!.Passwordhashed != oldPassword.Hash()) {
             return false;
         }
@@ -72,11 +68,11 @@ public class UserRepository {
         return await _context
             .Users
             .IgnoreQueryFilters()
-            .Include(u=>u.Students)
+            .Include(u => u.Students)
             .ToListAsync();
     }
 
-    public void BanUser(User user ,string banReason) {
+    public void BanUser(User user, string banReason) {
         user.IsBanned = true;
         user.BanReason = banReason;
         user.BanDateTime = DateTime.Now;

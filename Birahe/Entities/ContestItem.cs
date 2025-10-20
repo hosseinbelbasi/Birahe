@@ -2,7 +2,7 @@ using System.Runtime.InteropServices.JavaScript;
 
 namespace Birahe.EndPoint.Entities;
 
-public class ContestItem : BaseEntity{
+public class ContestItem : BaseEntity {
     public User User { get; set; }
     public int UserId { get; set; }
 
@@ -20,5 +20,4 @@ public class ContestItem : BaseEntity{
 
     public bool HasOpenedHint { get; set; } = false;
     public DateTime? OpeningHintDateTime { get; set; }
-
 }

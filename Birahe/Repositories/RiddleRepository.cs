@@ -30,17 +30,12 @@ public class RiddleRepository {
     }
 
     public void EditRiddle(Riddle toEdit, Riddle riddle) {
-
-
         riddle.Adapt(toEdit);
         toEdit!.ModificationDateTime = DateTime.Now;
     }
 
     public void RemoveRiddle(Riddle riddle) {
-
-
         riddle!.RemoveTime = DateTime.Now;
-
     }
 
     public async Task<List<Riddle>> GetRiddles() {
@@ -48,6 +43,4 @@ public class RiddleRepository {
             .Riddles
             .ToListAsync();
     }
-
-
 }

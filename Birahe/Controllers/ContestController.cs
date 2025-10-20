@@ -37,7 +37,6 @@ public class ContestController : Controller {
         var result = await _contestService.GetAllRiddlesWithStatusAsync(userId);
 
         return this.MapServiceResult(result);
-
     }
 
     [HttpGet("riddles/{id:int}/open")]
@@ -49,9 +48,6 @@ public class ContestController : Controller {
 
         var result = await _contestService.OpenRiddleAsync(userId, id);
         return this.MapServiceResult(result);
-
-
-
     }
 
     [HttpGet("riddles/{id:int}/hint")]
@@ -63,21 +59,17 @@ public class ContestController : Controller {
 
         var result = await _contestService.OpenRiddleHintAsync(userId, id);
         return this.MapServiceResult(result);
-
-
-
     }
 
     [HttpPost("riddles/{id:int}")]
-    public async Task<IActionResult> SubmitAnswer([FromBody] SubmitAnswerDto submitAnswerDto) {
+    public async Task<IActionResult> SubmitAnswer(int riddleId, [FromBody] SubmitAnswerDto submitAnswerDto) {
         var userId = User.GetUserId();
         if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.SubmitAnswerAsync(userId, submitAnswerDto);
+        var result = await _contestService.SubmitAnswerAsync(userId, riddleId, submitAnswerDto);
         return this.MapServiceResult(result);
-
     }
 
     [HttpGet("riddles/{id:int}")]
@@ -89,14 +81,12 @@ public class ContestController : Controller {
 
         var result = await _contestService.GetRiddleWithStatusAsync(userId, riddleId);
         return this.MapServiceResult(result);
-
     }
 
     [HttpGet("leaderboard")]
     public async Task<IActionResult> GetLeaderBoard() {
         var result = await _contestService.GetLeaderBoardAsync();
         return this.MapServiceResult(result);
-
     }
 
     [HttpGet("user/me/balance")]
@@ -109,7 +99,6 @@ public class ContestController : Controller {
         var result = await _contestService.GetUserBalanceAsync(userId);
 
         return this.MapServiceResult(result);
-
     }
 
     // =================== Image Retrieval ========================
@@ -123,10 +112,9 @@ public class ContestController : Controller {
         var result = await _contestService.GetRewardImageAsync(userId, riddleId);
 
         return this.MapImageServiceResult(result);
-
     }
 
-    [HttpGet("riddles/{id:int}/image/hint")]
+    [HttpGet("riddles/{id:int}/images/hint")]
     public async Task<IActionResult> GetHintImage(int riddleId) {
         var userId = User.GetUserId();
         if (userId == -1)
@@ -134,11 +122,7 @@ public class ContestController : Controller {
 
         var result = await _contestService.GetHintImageAsync(userId, riddleId);
         return this.MapImageServiceResult(result);
-
     }
 
 
-
-
 }
-

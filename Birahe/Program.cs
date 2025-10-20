@@ -22,8 +22,6 @@ builder.Services
 builder.Services.AddDependencyInjection();
 
 
-
-
 // swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,13 +35,11 @@ if (!app.Environment.IsDevelopment()) {
 
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
+    app.UseSwaggerUI(c => {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
         c.RoutePrefix = string.Empty; // Swagger at root: http://localhost:5000/
     });
 }
-
 
 
 app.UseHttpsRedirection();
@@ -61,4 +57,3 @@ using (var scope = app.Services.CreateScope()) {
 }
 
 app.Run();
-

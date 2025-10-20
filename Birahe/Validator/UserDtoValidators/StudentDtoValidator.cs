@@ -32,7 +32,5 @@ public class StudentDtoValidator : AbstractValidator<StudentDto> {
         RuleFor(x => x.IsMale)
             .NotNull()
             .Must(g => g == true || g == false).WithMessage("جنسیت باید مقدار بولین داشته باشد!");
-
-
     }
 }

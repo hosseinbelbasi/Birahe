@@ -24,9 +24,5 @@ public class RiddleConfigs {
             .NewConfig()
             .Map(dest => dest.HintImage, src => !String.IsNullOrEmpty(src.HintImageFileName))
             .Map(dest => dest.RewardImage, src => !String.IsNullOrEmpty(src.RewardImageFileName));
-
-
-
-
     }
 }

@@ -3,12 +3,10 @@ using Birahe.EndPoint.Models.ResultModels;
 
 namespace Birahe.EndPoint.Services.Utilities;
 
-public class ImageService
-{
+public class ImageService {
     private readonly string _imageRootPath;
 
-    public ImageService(IWebHostEnvironment env)
-    {
+    public ImageService(IWebHostEnvironment env) {
         // ✅ Store outside wwwroot for security
         _imageRootPath = Path.Combine(env.ContentRootPath, "SecureImages", "Riddles");
         if (!Directory.Exists(_imageRootPath))
@@ -16,8 +14,7 @@ public class ImageService
     }
 
     // Save image and return only the filename
-    public async Task<ServiceResult<string>> SaveImageAsync(IFormFile? image)
-    {
+    public async Task<ServiceResult<string>> SaveImageAsync(IFormFile? image) {
         if (image == null || image.Length == 0)
             return ServiceResult<string>.Fail("عکس خالی است!");
 
@@ -37,8 +34,7 @@ public class ImageService
     }
 
     // Read image securely by filename
-    public async Task<ServiceResult<(byte[] File, string ContentType)>> ReadImageAsync(string fileName)
-    {
+    public async Task<ServiceResult<(byte[] File, string ContentType)>> ReadImageAsync(string fileName) {
         // 1️⃣ Validate input
         if (string.IsNullOrWhiteSpace(fileName))
             return ServiceResult<(byte[], string)>.Fail("نام فایل نامعتبر است!", ErrorType.Validation);
@@ -60,11 +56,9 @@ public class ImageService
         return ServiceResult<(byte[], string)>.Ok((bytes, contentType));
     }
 
-    private string GetContentType(string path)
-    {
+    private string GetContentType(string path) {
         var ext = Path.GetExtension(path).ToLowerInvariant();
-        return ext switch
-        {
+        return ext switch {
             ".jpg" or ".jpeg" => "image/jpeg",
             ".png" => "image/png",
             ".webp" => "image/webp",

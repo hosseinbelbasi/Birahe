@@ -14,6 +14,4 @@ public class Riddle : BaseEntity {
     public string Asnwer { get; set; }
 
     public List<ContestItem>? ContestItems { get; set; }
-
-
 }

@@ -6,9 +6,8 @@ using Mapster;
 
 namespace Birahe.EndPoint.Mapster;
 
-public class UserConfigs  {
+public class UserConfigs {
     public static void AddConfigs() {
-
         TypeAdapterConfig<UserDto, User>
             .NewConfig()
             .Ignore(dest => dest.Coin);
@@ -18,6 +17,5 @@ public class UserConfigs  {
         TypeAdapterConfig<User, UserDto>
             .NewConfig()
             .Map(dest => dest.Students, src => src.Students);
-
     }
 }

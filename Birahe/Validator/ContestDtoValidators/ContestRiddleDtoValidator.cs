@@ -5,7 +5,7 @@ namespace Birahe.EndPoint.Validator.ContestDtoValidators;
 
 public class ContestRiddleDtoValidator : AbstractValidator<ContestRiddleDto> {
     public ContestRiddleDtoValidator() {
-        RuleFor(x=> x.Department)
+        RuleFor(x => x.Department)
             .NotEmpty().WithMessage("شعبه معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("شعبه معما باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(200).WithMessage("شعبه معما میتواند حداکثر 200 کاراکتر باشد.")

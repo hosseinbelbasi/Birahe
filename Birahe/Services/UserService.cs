@@ -11,23 +11,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Birahe.EndPoint.Services;
 
-public class UserService
-{
+public class UserService {
     private readonly UserRepository _userRepository;
     private readonly ApplicationContext _context;
     private readonly IMapper _mapper;
     private readonly JwtService _jwtService;
 
-    public UserService(UserRepository userRepository, ApplicationContext context, IMapper mapper, JwtService jwtService)
-    {
+    public UserService(UserRepository userRepository, ApplicationContext context, IMapper mapper,
+        JwtService jwtService) {
         _userRepository = userRepository;
         _context = context;
         _mapper = mapper;
         _jwtService = jwtService;
     }
 
-    public async Task<ServiceResult<LoginResultDto>> SignupAsync(SignUpDto signUpDto)
-    {
+    public async Task<ServiceResult<LoginResultDto>> SignupAsync(SignUpDto signUpDto) {
         if (signUpDto.Students.Count > 3)
             return ServiceResult<LoginResultDto>.Fail("یک تیم میتواند حداکثر 3 دانشجو داشته باشد!");
 
@@ -72,9 +70,9 @@ public class UserService
     }
 
     public async Task<ServiceResult<LoginResultDto>> LoginAsync(LoginDto loginDto) {
-        var user =await _userRepository.Login(loginDto.Username, loginDto.Password);
+        var user = await _userRepository.Login(loginDto.Username, loginDto.Password);
         if (user == null) {
-            return ServiceResult<LoginResultDto>.Fail("نام کاربری یا رمز عبور اشتباه است!" , ErrorType.Validation);
+            return ServiceResult<LoginResultDto>.Fail("نام کاربری یا رمز عبور اشتباه است!", ErrorType.Validation);
         }
 
         if (user.IsBanned) {
@@ -86,13 +84,11 @@ public class UserService
             Token = _jwtService.GenerateToken(user)
         };
 
-        // var userDto = _mapper.Map<UserDto>(user);
-        // var tokenString = _jwtService.GenerateToken(user);
 
         return ServiceResult<LoginResultDto>.Ok(result);
     }
 
-    public async Task<ServiceResult> EditUsernameAsync(string oldUsername,EditUsernameDto editUsernameDto) {
+    public async Task<ServiceResult> EditUsernameAsync(string oldUsername, EditUsernameDto editUsernameDto) {
         var user = await _userRepository.CheckExistence(oldUsername);
         if (user == null) {
             return ServiceResult.Fail(message: " کاربری پیدا نشد!", error: ErrorType.Validation);
@@ -110,30 +106,28 @@ public class UserService
 
         _userRepository.ChangeUsername(user, editUsernameDto.NewUsername);
 
-        var rows =  await _context.SaveChangesAsync();
+        var rows = await _context.SaveChangesAsync();
 
         if (rows == 0) {
             ServiceResult.Fail(message: " تغییر نام کاربری با خطا مواجه شد!", error: ErrorType.ServerError);
         }
 
-        return ServiceResult.Ok(message: "تغییر نام کاربری با موفقیت انجام شد!", success:true);
+        return ServiceResult.Ok(message: "تغییر نام کاربری با موفقیت انجام شد!", success: true);
     }
 
     public async Task<ServiceResult> ChangePasswordAsync(string username, ChangePasswordDto changePasswordDto) {
-
         var user = await _userRepository.CheckExistence(username);
         if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است!");
         }
 
-        var flag =  _userRepository.ChangePassword(user, changePasswordDto.OldPassword , changePasswordDto.NewPassword);
+        var flag = _userRepository.ChangePassword(user, changePasswordDto.OldPassword, changePasswordDto.NewPassword);
 
         if (!flag) {
             return ServiceResult.Fail("نام کاربری یا رمز عبور صحیح نمی باشد!");
-
         }
 
-        var rows =  await _context.SaveChangesAsync();
+        var rows = await _context.SaveChangesAsync();
 
         if (rows == 0) {
             ServiceResult.Fail(message: " تغییر رمز عبور با خطا مواجه شد!", error: ErrorType.ServerError);
@@ -141,6 +135,4 @@ public class UserService
 
         return ServiceResult.Ok("تغییر رمز عبور با موفقیت انجام شد!");
     }
-
-
 }

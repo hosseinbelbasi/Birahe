@@ -18,7 +18,6 @@ public class RiddleConfigs : IEntityTypeConfiguration<Riddle> {
             .Property(r => r.RiddleUId)
             .HasComputedColumnSql("[Department] + CAST([No] AS NVARCHAR(10))");
 
-        builder.HasQueryFilter(r => r.RemoveTime.HasValue== false);
-
+        builder.HasQueryFilter(r => r.RemoveTime.HasValue == false);
     }
 }

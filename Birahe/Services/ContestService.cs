@@ -18,41 +18,46 @@ public class ContestService {
     private readonly ApplicationContext _context;
     private readonly IMapper _mapper;
     private readonly ImageService _imageService;
-    private readonly MemoryCacheService _cache;
+    private readonly MemoryCacheService _cacheService;
 
 
-    public ContestService(ContestRepository contestRepository, UserRepository userRepository, RiddleRepository riddleRepository, ApplicationContext context, IMapper mapper, ImageService imageService, MemoryCacheService cache) {
+    public ContestService(ContestRepository contestRepository, UserRepository userRepository,
+        RiddleRepository riddleRepository, ApplicationContext context, IMapper mapper, ImageService imageService,
+        MemoryCacheService cacheService) {
         _userRepository = userRepository;
         _riddleRepository = riddleRepository;
         _context = context;
         _mapper = mapper;
         _imageService = imageService;
-        _cache = cache;
+        _cacheService = cacheService;
         _contestRepository = contestRepository;
     }
 
-    public async Task<ServiceResult<List<RiddleWithStatusDto>>> GetAllRiddlesWithStatusAsync(int userId)
-    {
+    public async Task<ServiceResult<AllRiddlesWithStatusDto>> GetAllRiddlesWithStatusAsync(int userId) {
         var user = await _userRepository.FindUser(userId);
         if (user == null) {
-            return ServiceResult<List<RiddleWithStatusDto>>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+            return ServiceResult<AllRiddlesWithStatusDto>.Fail("کاربریافت نشد!", ErrorType.NotFound);
         }
 
-        var riddles = await _contestRepository.GetAllRiddlesWithStatusAsync(userId);
+        var result = new AllRiddlesWithStatusDto() {
+            riddles = await _contestRepository.GetAllRiddlesWithStatusAsync(userId),
+            Solved = user.SolvedRiddles
+        };
 
-        if (riddles == null || riddles.Count == 0)
-        {
-            return ServiceResult<List<RiddleWithStatusDto>>.NoContent();
+
+        if (result.riddles == null || result.riddles.Count == 0) {
+            return ServiceResult<AllRiddlesWithStatusDto>.NoContent();
         }
 
-        return ServiceResult<List<RiddleWithStatusDto>>.Ok(riddles, "معماها با موفقیت دریافت شدند.");
+        return ServiceResult<AllRiddlesWithStatusDto>.Ok(result, "معماها با موفقیت دریافت شدند.");
     }
 
-    public async Task<ServiceResult<RiddleWithStatusDto>> GetRiddleWithStatusAsync(int userId ,int riddleId) {
+    public async Task<ServiceResult<RiddleWithStatusDto>> GetRiddleWithStatusAsync(int userId, int riddleId) {
         var user = await _userRepository.FindUser(userId);
         if (user == null) {
-            return ServiceResult<RiddleWithStatusDto>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+            return ServiceResult<RiddleWithStatusDto>.Fail("کاربریافت نشد!", ErrorType.NotFound);
         }
+
         var riddleWithStatus = await _contestRepository.GetRiddleWithStatusAsync(riddleId, user.Id);
         if (riddleWithStatus == null) {
             return ServiceResult<RiddleWithStatusDto>.Fail("این معما وجود ندارد", ErrorType.NotFound);
@@ -62,16 +67,16 @@ public class ContestService {
         return ServiceResult<RiddleWithStatusDto>.Ok(riddleWithStatusDto);
     }
 
-    public async Task<ServiceResult<ContestRiddleDto>> OpenRiddleAsync(int userId,int riddleId) {
+    public async Task<ServiceResult<ContestRiddleDto>> OpenRiddleAsync(int userId, int riddleId) {
         var user = await _userRepository.FindUser(userId);
         if (user == null) {
-            return ServiceResult<ContestRiddleDto>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+            return ServiceResult<ContestRiddleDto>.Fail("کاربریافت نشد!", ErrorType.NotFound);
         }
 
         // var riddleUId = openRiddleDto.Department + openRiddleDto.No;
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
 
-        if (riddle==null) {
+        if (riddle == null) {
             return ServiceResult<ContestRiddleDto>.Fail("این معما وجود ندارد!");
         }
 
@@ -91,17 +96,19 @@ public class ContestService {
         if (rows == 0) {
             return ServiceResult<ContestRiddleDto>.Fail("خطا در باز کردت معما!", ErrorType.ServerError);
         }
-        return ServiceResult<ContestRiddleDto>.Ok( riddleDto,"معما با موفقیت باز شد!");
+
+        return ServiceResult<ContestRiddleDto>.Ok(riddleDto, "معما با موفقیت باز شد!");
     }
 
     public async Task<ServiceResult<OpenHintDto>> OpenRiddleHintAsync(int userId, int riddleId) {
         var user = await _userRepository.FindUser(userId);
         if (user == null) {
-            return ServiceResult<OpenHintDto>.Fail("کاربریافت نشد!" , ErrorType.NotFound);
+            return ServiceResult<OpenHintDto>.Fail("کاربریافت نشد!", ErrorType.NotFound);
         }
+
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
 
-        if (riddle==null) {
+        if (riddle == null) {
             return ServiceResult<OpenHintDto>.Fail("این معما وجود ندارد!");
         }
 
@@ -121,16 +128,17 @@ public class ContestService {
         if (rows == 0) {
             return ServiceResult<OpenHintDto>.Fail("خطا در باز کردت راهنمایی معما!");
         }
+
         var riddleDto = _mapper.Map<OpenHintDto>(riddle);
 
-        return ServiceResult<OpenHintDto>.Ok( riddleDto,"راهنمایی معما با موفقیت باز شد!");
+        return ServiceResult<OpenHintDto>.Ok(riddleDto, "راهنمایی معما با موفقیت باز شد!");
     }
 
-    public async Task<ServiceResult> SubmitAnswerAsync(int userId, SubmitAnswerDto submitAnswerDto) {
+    public async Task<ServiceResult> SubmitAnswerAsync(int userId, int riddleId, SubmitAnswerDto submitAnswerDto) {
         var user = await _userRepository.FindUser(userId);
-        var riddle = await _riddleRepository.FindRiddleAsync(submitAnswerDto.riddleId);
+        var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
 
-        if (riddle==null) {
+        if (riddle == null) {
             return ServiceResult.Fail("این معما وجود ندارد!");
         }
 
@@ -144,8 +152,7 @@ public class ContestService {
         // rate limiting for submitting answers
 
         var minInterval = TimeSpan.FromMinutes(5);
-        if (ciExists.LastTryDateTime.HasValue && DateTime.Now - ciExists.LastTryDateTime.Value < minInterval)
-        {
+        if (ciExists.LastTryDateTime.HasValue && DateTime.Now - ciExists.LastTryDateTime.Value < minInterval) {
             return ServiceResult.Fail(
                 $"لطفا قبل از ارسال جواب بعدی {minInterval.TotalSeconds} دقیقه صبر کنید."
             );
@@ -158,26 +165,25 @@ public class ContestService {
         // end of rate limit
 
         var success = riddle.Asnwer == submitAnswerDto.Answer;
-        _contestRepository.SubmitAnswer(ciExists,submitAnswerDto.Answer ,success);
+        _contestRepository.SubmitAnswer(ciExists, submitAnswerDto.Answer, success);
 
         if (!success) {
             return ServiceResult.Fail("متاسفانه جواب نا درست بود !");
         }
 
 
-        _userRepository.IncreaseBalance(user,riddle.Reward);
-        var rows =await _context.SaveChangesAsync();
+        _userRepository.IncreaseBalance(user, riddle.Reward);
+        var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
-            return ServiceResult.Fail("خطا در ثبت جواب معما!" , ErrorType.ServerError);
+            return ServiceResult.Fail("خطا در ثبت جواب معما!", ErrorType.ServerError);
         }
 
-        _ = RefreshLeaderBoardCacheAsync();
-        return ServiceResult.Ok( "معما با موفقیت حل شد!");
+        _cacheService.Remove(CacheKeys.Leaderboard);
+        return ServiceResult.Ok("معما با موفقیت حل شد!");
     }
 
     public async Task<ServiceResult<List<LeaderBoardUserDto>>> GetLeaderBoardAsync() {
-
-        var leaderBoard = await _cache.GetOrSetAsync(
+        var leaderBoard = await _cacheService.GetOrSetAsync(
             CacheKeys.Leaderboard,
             async () => await _contestRepository.GetLeaderBoardAsync(),
             TimeSpan.FromMinutes(5)
@@ -202,11 +208,9 @@ public class ContestService {
     }
 
 
-
     // ======================== Image Retrieval ==========================
 
-    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetRewardImageAsync(int userId, int riddleId)
-    {
+    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetRewardImageAsync(int userId, int riddleId) {
         // 1️⃣ Check user existence
         var user = await _userRepository.FindUser(userId);
         if (user == null)
@@ -225,7 +229,8 @@ public class ContestService {
         // 4️⃣ Read image securely via ImageService
         var imageResult = await _imageService.ReadImageAsync(riddle.RewardImageFileName);
         if (!imageResult.Success)
-            return ServiceResult<(byte[], string)>.Fail(imageResult.Message== null ?"" : imageResult.Message, imageResult.Error);
+            return ServiceResult<(byte[], string)>.Fail(imageResult.Message == null ? "" : imageResult.Message,
+                imageResult.Error);
 
         // 5️⃣ Return image bytes and content type
         return ServiceResult<(byte[], string)>.Ok(imageResult.Data);
@@ -247,19 +252,12 @@ public class ContestService {
 
         var imageResult = await _imageService.ReadImageAsync(riddle.HintImageFileName);
         if (!imageResult.Success)
-            return ServiceResult<(byte[], string ContentType)>.Fail(imageResult.Message== null ?"" : imageResult.Message, imageResult.Error);
+            return ServiceResult<(byte[], string ContentType)>.Fail(
+                imageResult.Message == null ? "" : imageResult.Message, imageResult.Error);
 
         return ServiceResult<(byte[], string ContentType)>.Ok(imageResult.Data);
     }
 
 
-    // =================== caching ======================
-
-
-    private async Task RefreshLeaderBoardCacheAsync()
-    {
-        var leaderBoard = await _contestRepository.GetLeaderBoardAsync();
-        _cache.Set<List<LeaderBoardUserDto>>(CacheKeys.Leaderboard, leaderBoard, TimeSpan.FromMinutes(5));
-    }
 
 }

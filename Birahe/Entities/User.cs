@@ -24,10 +24,7 @@ public class User : BaseEntity {
 
     public int SolvedRiddles { get; set; } = 0;
 
-    public User()
-    {
+    public User() {
         SerialNumber = Guid.NewGuid().ToString("N").Substring(0, 10);
     }
-
-
 }

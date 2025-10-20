@@ -21,13 +21,11 @@ public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
             .WithMessage("نام تیم فقط می‌تواند شامل حروف، اعداد یا _ ، ! باشد.");
 
 
-
         RuleFor(x => x.Password)
             .NotEmpty().WithMessage("رمز عبور الزامی است.")
             .MinimumLength(8).WithMessage("رمز عبور باید حداقل 8 کاراکتر باشد.")
             .MaximumLength(70).WithMessage("رمز عبور میتواند حداکثر 70 کاراکتر باشد.")
-            .Matches(@"^[a-zA-Z0-9_@!-]+$").
-            WithMessage("رمز عبور فقط می‌تواند شامل حروف، اعداد یا _ ,@ ,! ,- ,باشد.");
+            .Matches(@"^[a-zA-Z0-9_@!-]+$").WithMessage("رمز عبور فقط می‌تواند شامل حروف، اعداد یا _ ,@ ,! ,- ,باشد.");
 
         RuleFor(x => x.Students)
             .NotNull().WithMessage("دانشجویان الزامی است.")
@@ -39,8 +37,5 @@ public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
         RuleFor(x => x.Students)
             .Must(list => list.Select(s => s.StudentNo).Distinct().Count() == list.Count)
             .WithMessage("شماره دانشجویی تکراری در درخواست وجود دارد.");
-
-
-
     }
 }

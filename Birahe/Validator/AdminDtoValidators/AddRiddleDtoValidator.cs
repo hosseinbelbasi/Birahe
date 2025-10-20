@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace Birahe.EndPoint.Validator;
 
-public class AddRiddleDtoValidator: AbstractValidator<AddRiddleDto> {
+public class AddRiddleDtoValidator : AbstractValidator<AddRiddleDto> {
     public AddRiddleDtoValidator() {
-        RuleFor(x=> x.Department)
+        RuleFor(x => x.Department)
             .NotEmpty().WithMessage("شعبه معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("شعبه معما باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(200).WithMessage("شعبه معما میتواند حداکثر 200 کاراکتر باشد.")
@@ -22,7 +22,7 @@ public class AddRiddleDtoValidator: AbstractValidator<AddRiddleDto> {
             .Must(l => l > 0 && l < 16).WithMessage("شماره معما باید بزرگتر از 0 و کوچکتر از 16 باشد.");
 
 
-        RuleFor(x=> x.Content)
+        RuleFor(x => x.Content)
             .NotEmpty().WithMessage("محتوای معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("محتوای معما باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(1000).WithMessage("محتوای معما میتواند حداکثر 1000 کاراکتر باشد.")
@@ -47,6 +47,5 @@ public class AddRiddleDtoValidator: AbstractValidator<AddRiddleDto> {
         RuleFor(x => x.Reward)
             .NotEmpty().WithMessage("پاداش معما نمیتواند خالی باشد.")
             .Must(l => l > 0).WithMessage("پاداش معما باید بزرگتر از 0  باشد.");
-
     }
 }

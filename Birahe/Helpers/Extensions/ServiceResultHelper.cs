@@ -9,18 +9,16 @@ public static class ServiceResultHelper {
         if (result.Success)
             return controller.Ok(new { success = true, message = result.Message, data = result.Data });
 
-        var statusCode = result.Error switch
-        {
-            ErrorType.Validation   => StatusCodes.Status400BadRequest,
-            ErrorType.NotFound     => StatusCodes.Status404NotFound,
-            ErrorType.Forbidden    => StatusCodes.Status403Forbidden,
-            ErrorType.ServerError  => StatusCodes.Status500InternalServerError,
-            ErrorType.NoContent    => StatusCodes.Status204NoContent,
-            _                      => StatusCodes.Status400BadRequest
+        var statusCode = result.Error switch {
+            ErrorType.Validation => StatusCodes.Status400BadRequest,
+            ErrorType.NotFound => StatusCodes.Status404NotFound,
+            ErrorType.Forbidden => StatusCodes.Status403Forbidden,
+            ErrorType.ServerError => StatusCodes.Status500InternalServerError,
+            ErrorType.NoContent => StatusCodes.Status204NoContent,
+            _ => StatusCodes.Status400BadRequest
         };
 
-        var problem = new ProblemDetails
-        {
+        var problem = new ProblemDetails {
             Type = $"https://birahe.com/errors/{result.Error.ToString().ToLower()}",
             Title = result.Message,
             Status = statusCode,
@@ -31,8 +29,7 @@ public static class ServiceResultHelper {
         if (statusCode == StatusCodes.Status204NoContent)
             return controller.NoContent();
 
-        return new ObjectResult(problem)
-        {
+        return new ObjectResult(problem) {
             StatusCode = statusCode,
             ContentTypes = { "application/problem+json" }
         };
@@ -42,18 +39,16 @@ public static class ServiceResultHelper {
         if (result.Success)
             return controller.Ok(new { success = true, message = result.Message });
 
-        var statusCode = result.Error switch
-        {
-            ErrorType.Validation   => StatusCodes.Status400BadRequest,
-            ErrorType.NotFound     => StatusCodes.Status404NotFound,
-            ErrorType.Forbidden    => StatusCodes.Status403Forbidden,
-            ErrorType.ServerError  => StatusCodes.Status500InternalServerError,
-            ErrorType.NoContent    => StatusCodes.Status204NoContent,
-            _                      => StatusCodes.Status400BadRequest
+        var statusCode = result.Error switch {
+            ErrorType.Validation => StatusCodes.Status400BadRequest,
+            ErrorType.NotFound => StatusCodes.Status404NotFound,
+            ErrorType.Forbidden => StatusCodes.Status403Forbidden,
+            ErrorType.ServerError => StatusCodes.Status500InternalServerError,
+            ErrorType.NoContent => StatusCodes.Status204NoContent,
+            _ => StatusCodes.Status400BadRequest
         };
 
-        var problem = new ProblemDetails
-        {
+        var problem = new ProblemDetails {
             Type = $"https://birahe.com/errors/{result.Error.ToString().ToLower()}",
             Title = result.Message,
             Status = statusCode,
@@ -64,8 +59,7 @@ public static class ServiceResultHelper {
         if (statusCode == StatusCodes.Status204NoContent)
             return controller.NoContent();
 
-        return new ObjectResult(problem)
-        {
+        return new ObjectResult(problem) {
             StatusCode = statusCode,
             ContentTypes = { "application/problem+json" }
         };

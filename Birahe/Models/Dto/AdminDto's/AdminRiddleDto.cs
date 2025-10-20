@@ -1,8 +1,6 @@
 namespace Birahe.EndPoint.Models.Dto.AdminDto_s;
 
 public class AdminRiddleDto {
-
-    public int Id { get; set; }
     public string Department { get; set; }
     public int Level { get; set; }
 

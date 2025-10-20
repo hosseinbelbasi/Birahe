@@ -12,7 +12,6 @@ public class ApplicationContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfigs).Assembly);
 
-        
 
         // ==============Relations==============
 
@@ -52,9 +51,4 @@ public class ApplicationContext : DbContext {
     public DbSet<ContestItem> ContestItems { get; set; }
 
     public DbSet<ContestConfig> ContestConfigs { get; set; }
-
-
-
-
-
 }

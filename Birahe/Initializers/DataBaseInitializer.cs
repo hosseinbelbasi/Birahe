@@ -16,7 +16,7 @@ public class DataBaseInitializer {
     public void SeedData() {
         _context.Database.Migrate();
 
-        if (!_context.Users.Any(u=> u.Role == Role.Admin)) {
+        if (!_context.Users.Any(u => u.Role == Role.Admin)) {
             _context.Users.Add(new User() {
                 Username = "admin",
                 Passwordhashed = "12345678".Hash(),
