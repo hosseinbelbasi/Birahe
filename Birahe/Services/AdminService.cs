@@ -313,15 +313,14 @@ public class AdminService {
 
     // ====================Contest Config =======================//
 
-    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync( SetContestStartDto setContestStartDto) {
-        var config = await _context.ContestConfigs.FirstOrDefaultAsync(x => x.Key == setContestStartDto.Key);
+    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync( SetContesConfigDto setContestConfigDto) {
+        var config = await _configRepository.CheckExistence(setContestConfigDto.Key);
         if (config == null) {
-            config = new ContestConfig { Key = setContestStartDto.Key, StartTime = setContestStartDto.StartTime };
-            _context.ContestConfigs.Add(config);
-        }
-        else {
-            config.StartTime = setContestStartDto.StartTime;
-            _context.ContestConfigs.Update(config);
+            config = _mapper.Map<ContestConfig>(setContestConfigDto);
+            await _configRepository.AddContestConfig(config);
+        }else {
+            config.StartTime = setContestConfigDto.StartTime;
+            _configRepository.UpdateContestConfig(config);
         }
 
         var rows = await _context.SaveChangesAsync();
@@ -329,8 +328,8 @@ public class AdminService {
             return ServiceResult<DateTime>.Fail("خطا در ثبت عملیات", ErrorType.ServerError);
         }
 
-        return ServiceResult<DateTime>.Ok(setContestStartDto.StartTime,
-            $"{setContestStartDto.Key} start time updated.");
+        return ServiceResult<DateTime>.Ok(setContestConfigDto.StartTime,
+            $"{setContestConfigDto.Key} start time updated.");
     }
 
     public async Task<ServiceResult<DateTime>> GetContestStartTimeAsync(string key) {

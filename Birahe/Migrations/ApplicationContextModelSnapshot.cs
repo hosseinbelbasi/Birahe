@@ -33,6 +33,9 @@ namespace Birahe.EndPoint.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Key")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -297,21 +300,6 @@ namespace Birahe.EndPoint.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1000,
-                            Coin = 0,
-                            CreationDateTime = new DateTime(2025, 10, 17, 17, 27, 54, 451, DateTimeKind.Local).AddTicks(4997),
-                            IsBanned = false,
-                            Passwordhashed = "fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe",
-                            Role = 1,
-                            SerialNumber = "0b1b8a65aa",
-                            SolvedRiddles = 0,
-                            TeamName = "hossein",
-                            Username = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("Birahe.EndPoint.Entities.ContestItem", b =>

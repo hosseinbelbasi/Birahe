@@ -109,8 +109,8 @@ public class AdminController : Controller {
     // ================= Contest Configs Actins =====================
 
     [HttpPost("contest/config")]
-    public async Task<IActionResult> SetContestStartTime([FromBody] SetContestStartDto setContestStartDto) {
-        var result = await _adminService.SetContestStartTimeAsync(setContestStartDto);
+    public async Task<IActionResult> SetContestStartTime([FromBody] SetContesConfigDto setContestConfigDto) {
+        var result = await _adminService.SetContestStartTimeAsync(setContestConfigDto);
         return this.MapServiceResult(result);
     }
 

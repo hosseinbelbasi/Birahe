@@ -8,7 +8,7 @@ namespace Birahe.EndPoint.ControllerAttributes;
 public class ContestTimeAuthorizeAttribute : ActionFilterAttribute {
     private readonly string _configKey;
 
-    // 👇 Parameter identifies which start time this attribute should use
+
     public ContestTimeAuthorizeAttribute(string configKey) {
         _configKey = configKey;
     }
@@ -24,7 +24,7 @@ public class ContestTimeAuthorizeAttribute : ActionFilterAttribute {
 
         var db = (ApplicationContext)context.HttpContext.RequestServices.GetService(typeof(ApplicationContext))!;
 
-        // Each configKey could represent a different contest phase
+
         var config = db.ContestConfigs.FirstOrDefault(c => c.Key == _configKey);
         if (config == null) {
             context.Result = new JsonResult(new { message = "خطا در بازیابی اطلاعات : کنترل دسترسی یافت نشد" })
@@ -34,6 +34,12 @@ public class ContestTimeAuthorizeAttribute : ActionFilterAttribute {
 
         if (DateTime.UtcNow < config.StartTime) {
             context.Result = new JsonResult(new { message = "مسابقه هنوز شروع نشده است !" })
+                { StatusCode = 403 };
+            return;
+        }
+
+        if (DateTime.UtcNow > config.EndTime) {
+            context.Result = new JsonResult(new { message = "مسابقه تمام شده است !" })
                 { StatusCode = 403 };
             return;
         }

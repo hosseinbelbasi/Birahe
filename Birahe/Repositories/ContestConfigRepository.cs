@@ -14,4 +14,12 @@ public class ContestConfigRepository {
     public async Task<ContestConfig?> CheckExistence(string key) {
         return await _context.ContestConfigs.FirstOrDefaultAsync(cc => cc.Key == key);
     }
+
+    public async Task AddContestConfig(ContestConfig contestConfig) {
+        await _context.ContestConfigs.AddAsync(contestConfig);
+    }
+
+    public void UpdateContestConfig(ContestConfig contestConfig) {
+        _context.ContestConfigs.Update(contestConfig);
+    }
 }
