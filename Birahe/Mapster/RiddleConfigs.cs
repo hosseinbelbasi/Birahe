@@ -18,7 +18,7 @@ public class RiddleConfigs {
 
         TypeAdapterConfig<AdminRiddleDto, Riddle>
             .NewConfig()
-            .Map(dest => dest.Asnwer, src => src.Asnswer);
+            .Map(dest => dest.Asnwer, src => src.Answer);
 
         TypeAdapterConfig<Riddle, AdminRiddleDto>
             .NewConfig()

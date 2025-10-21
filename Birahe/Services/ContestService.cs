@@ -60,7 +60,7 @@ public class ContestService {
 
         var riddleWithStatus = await _contestRepository.GetRiddleWithStatusAsync(riddleId, user.Id);
         if (riddleWithStatus == null) {
-            return ServiceResult<RiddleWithStatusDto>.Fail("این معما وجود ندارد", ErrorType.NotFound);
+            return ServiceResult<RiddleWithStatusDto>.Fail("شما این معما را باز نکرده اید!", ErrorType.Forbidden);
         }
 
         var riddleWithStatusDto = _mapper.Map<RiddleWithStatusDto>(riddleWithStatus);
