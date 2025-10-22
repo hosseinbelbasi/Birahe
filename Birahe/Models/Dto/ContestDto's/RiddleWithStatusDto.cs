@@ -9,8 +9,8 @@ public class RiddleWithStatusDto {
     public int Level { get; set; }
     public int No { get; set; }
     public string? Content { get; set; }
-
     public int OpeningCost { get; set; }
-
     public int HintCost { get; set; }
+
+    public int Reward { get; set; }
 }

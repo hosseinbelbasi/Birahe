@@ -257,7 +257,4 @@ public class ContestService {
 
         return ServiceResult<(byte[], string ContentType)>.Ok(imageResult.Data);
     }
-
-
-
 }

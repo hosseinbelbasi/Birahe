@@ -5,8 +5,6 @@ namespace Birahe.EndPoint.Validator;
 
 public class BanReasonDtoValidator : AbstractValidator<BanUserDto> {
     public BanReasonDtoValidator() {
-
-
         RuleFor(x => x.BsnReason)
             .NotEmpty().WithMessage("علت بن شدن الزامی است.")
             .MinimumLength(10).WithMessage("علت بن شدن باید حداقل 10 کاراکتر باشد.")

@@ -52,7 +52,6 @@ public class ContestRepository {
                 Level = r.Level,
                 No = r.No,
                 Content = j != null ? r.Content : null, // only show content if opened
-                // only show hint if bought
                 IsOpened = j != null,
                 IsSolved = j != null && j.IsSolved,
                 HasOpenedHint = j != null && j.HasOpenedHint,
@@ -76,7 +75,7 @@ public class ContestRepository {
                 Department = r.Department,
                 Level = r.Level,
                 No = r.No,
-                Content = j != null ? r.Content : null, // only show content if opened// only show hint if bought
+                Content = j != null ? r.Content : null, // only show content if opened
                 IsOpened = j != null,
                 IsSolved = j != null && j.IsSolved,
                 HasOpenedHint = j != null && j.HasOpenedHint,

@@ -7,7 +7,7 @@ namespace Birahe.EndPoint.Helpers.Extensions;
 public static class ServiceResultHelper {
     public static IActionResult MapServiceResult<T>(this ControllerBase controller, ServiceResult<T> result) {
         if (result.Success)
-            return controller.Ok(new { success = true, message = result.Message, data = result.Data });
+            return controller.Ok(new { message = result.Message, data = result.Data });
 
         var statusCode = result.Error switch {
             ErrorType.Validation => StatusCodes.Status400BadRequest,
@@ -37,7 +37,7 @@ public static class ServiceResultHelper {
 
     public static IActionResult MapServiceResult(this ControllerBase controller, ServiceResult result) {
         if (result.Success)
-            return controller.Ok(new { success = true, message = result.Message });
+            return controller.Ok(new { message = result.Message });
 
         var statusCode = result.Error switch {
             ErrorType.Validation => StatusCodes.Status400BadRequest,

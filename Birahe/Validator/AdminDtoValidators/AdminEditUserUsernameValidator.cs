@@ -5,7 +5,6 @@ namespace Birahe.EndPoint.Validator.AdminDtoValidators;
 
 public class AdminEditUserUsernameValidator : AbstractValidator<AdminEditUserUsernameDto> {
     public AdminEditUserUsernameValidator() {
-
         RuleFor(x => x.NewUsername)
             .NotEmpty().WithMessage("نام کاربری الزامی است.")
             .MinimumLength(4).WithMessage("نام کاربری باید حداقل ۴ کاراکتر باشد.")

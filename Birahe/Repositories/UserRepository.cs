@@ -17,6 +17,7 @@ public class UserRepository {
         var hashedPassWord = password.Hash();
         var user = await _context
             .Users
+            .AsNoTracking()
             .IgnoreQueryFilters()
             .Include(u => u.Students)
             .FirstOrDefaultAsync(x => x.Username == username && x.Passwordhashed == hashedPassWord);
@@ -45,14 +46,22 @@ public class UserRepository {
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
+    public void Update(User user) {
+        user.ModificationDateTime = DateTime.Now;
+        _context.Users.Update(user);
+    }
+
     public async Task<User?> FindBannedUser(int id) {
-        return await _context.Users.IgnoreQueryFilters().Where(u => u.IsBanned && u.RemoveTime.HasValue == false)
+        return await _context.Users.AsNoTracking().IgnoreQueryFilters()
+            .Where(u => u.IsBanned && u.RemoveTime.HasValue == false)
             .FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public void ChangeUsername(User user, string newUsername) {
         user!.Username = newUsername;
         user.ModificationDateTime = DateTime.Now;
+
+        Update(user);
     }
 
     public bool ChangePassword(User user, string oldPassword, string newPassword) {
@@ -61,12 +70,14 @@ public class UserRepository {
         }
 
         user.Passwordhashed = newPassword.Hash();
+        Update(user);
         return true;
     }
 
     public async Task<List<User>?> GetAllUser() {
         return await _context
             .Users
+            .AsNoTracking()
             .IgnoreQueryFilters()
             .Include(u => u.Students)
             .ToListAsync();
@@ -76,14 +87,20 @@ public class UserRepository {
         user.IsBanned = true;
         user.BanReason = banReason;
         user.BanDateTime = DateTime.Now;
+
+        Update(user);
     }
 
     public void AdminChangePassword(User user, string password) {
         user.Passwordhashed = password.Hash();
+
+        Update(user);
     }
 
     public void IncreaseBalance(User user, int c) {
         user.Coin += c;
+
+        Update(user);
     }
 
     public bool DecreaseBalance(User user, int c) {
@@ -92,6 +109,8 @@ public class UserRepository {
         }
 
         user.Coin -= c;
+
+        Update(user);
         return true;
     }
 
@@ -99,6 +118,8 @@ public class UserRepository {
         user.IsBanned = false;
         user.BanReason = null;
         user.BanDateTime = null;
+
+        Update(user);
     }
 
     public int GetBalance(User user) {
@@ -107,6 +128,7 @@ public class UserRepository {
 
     public async Task<List<ContestItem>?> AdminGetUserStausAsync(int userId) {
         return await _context.ContestItems
+            .AsNoTracking()
             .Where(ci => ci.UserId == userId)
             .ToListAsync();
     }

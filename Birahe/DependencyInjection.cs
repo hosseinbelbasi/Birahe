@@ -26,7 +26,8 @@ public static class DependencyInjection {
             .AddValidation()
             .AddModelStateResponse()
             .AddCaching()
-            .AddInitializers();
+            .AddInitializers()
+            .AddPayment();
 
         return services;
     }
@@ -159,6 +160,12 @@ public static class DependencyInjection {
 
     public static IServiceCollection AddInitializers(this IServiceCollection services) {
         services.AddScoped<DataBaseInitializer>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddPayment(this IServiceCollection services) {
+        services.AddHttpClient<PaymentService>();
 
         return services;
     }

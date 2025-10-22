@@ -75,6 +75,7 @@ public class AdminService {
         if (rows == 0) {
             return ServiceResult<AdminRiddleDto>.Fail("ویرایش معما با خطا رو به رو شد!", ErrorType.ServerError);
         }
+
         _cacheService.Remove(CacheKeys.AdminAllRiddles);
 
         return ServiceResult<AdminRiddleDto>.Ok(adminRiddleDto, message: "معما با موفقیت ویرایش شد.");
@@ -97,7 +98,6 @@ public class AdminService {
     }
 
     public async Task<ServiceResult> DeleteRiddleAsync(int riddleId) {
-
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
         if (riddle == null) {
             return ServiceResult.Fail("این معما قبلا ثبت نشده است.");
@@ -210,9 +210,9 @@ public class AdminService {
     public async Task<ServiceResult<List<AdminUserDto>>> GetAllUsersAsync() {
         var userList = await _cacheService.GetOrSetAsync(
             CacheKeys.AdminAllUsers,
-            async ()=> await _userRepository.GetAllUser(),
+            async () => await _userRepository.GetAllUser(),
             TimeSpan.FromMinutes(10)
-            );
+        );
         if (userList == null) {
             return ServiceResult<List<AdminUserDto>>.NoContent();
         }
@@ -223,7 +223,7 @@ public class AdminService {
     }
 
 
-    public async Task<ServiceResult> BanUserAsync(int userId ,BanUserDto banUserDto) {
+    public async Task<ServiceResult> BanUserAsync(int userId, BanUserDto banUserDto) {
         var user = await _userRepository.FindUser(userId);
         if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
@@ -255,13 +255,14 @@ public class AdminService {
         if (rows == 0) {
             return ServiceResult.Fail("فرآیند رفع مسدود کردن با خطا رو به رو شد!", ErrorType.ServerError);
         }
+
         _cacheService.Remove(CacheKeys.AdminAllUsers);
 
         return ServiceResult.Ok("کاربر با موفقیت رفع مسدود شد.");
     }
 
 
-    public async Task<ServiceResult> EditUserUsernameAsync(int userId,AdminEditUserUsernameDto usernameDto) {
+    public async Task<ServiceResult> EditUserUsernameAsync(int userId, AdminEditUserUsernameDto usernameDto) {
         var user = await _userRepository.FindUser(userId);
         if (user == null) {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
@@ -274,6 +275,7 @@ public class AdminService {
         if (rows == 0) {
             return ServiceResult.Fail("تغییر نام کاربری با خطا مواجه شد!");
         }
+
         _cacheService.Remove(CacheKeys.AdminAllUsers);
 
         return ServiceResult.Ok("نام کاربری با موفقیت تغییر یافت.");
@@ -293,6 +295,7 @@ public class AdminService {
         if (rows == 0) {
             return ServiceResult.Fail("تغییر رمز عبور با خطا مواجه شد!");
         }
+
         _cacheService.Remove(CacheKeys.AdminAllUsers);
 
         return ServiceResult.Ok("رمز عبور با موفقیت تغییر یافت.");
@@ -313,12 +316,13 @@ public class AdminService {
 
     // ====================Contest Config =======================//
 
-    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync( SetContesConfigDto setContestConfigDto) {
+    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync(SetContesConfigDto setContestConfigDto) {
         var config = await _configRepository.CheckExistence(setContestConfigDto.Key);
         if (config == null) {
             config = _mapper.Map<ContestConfig>(setContestConfigDto);
             await _configRepository.AddContestConfig(config);
-        }else {
+        }
+        else {
             config.StartTime = setContestConfigDto.StartTime;
             _configRepository.UpdateContestConfig(config);
         }
@@ -335,8 +339,9 @@ public class AdminService {
     public async Task<ServiceResult<DateTime>> GetContestStartTimeAsync(string key) {
         var cc = await _configRepository.CheckExistence(key);
         if (cc == null) {
-            return ServiceResult<DateTime>.Fail("کانفیگ مورد نظر یافت نشد!" , ErrorType.NotFound);
+            return ServiceResult<DateTime>.Fail("کانفیگ مورد نظر یافت نشد!", ErrorType.NotFound);
         }
+
         return ServiceResult<DateTime>.Ok(cc.StartTime);
     }
 }

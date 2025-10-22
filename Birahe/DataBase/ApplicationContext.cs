@@ -21,24 +21,28 @@ public class ApplicationContext : DbContext {
             .WithOne(s => s.User)
             .HasForeignKey(s => s.UserId);
 
-        // ContestItem to User , one to many
-        modelBuilder.Entity<ContestItem>()
-            .HasOne(ci => ci.User)
-            .WithMany(u => u.ContestItems)
-            .HasForeignKey(ci => ci.UserId)
-            .OnDelete(DeleteBehavior.Restrict);
-        // ContestItem to Riddle , ont to many
-        modelBuilder.Entity<ContestItem>()
-            .HasOne(ci => ci.Riddle)
-            .WithMany(r => r.ContestItems)
+        // Riddle To ContestItem
+        modelBuilder.Entity<Riddle>()
+            .HasMany(u => u.ContestItems)
+            .WithOne(ci => ci.Riddle)
             .HasForeignKey(ci => ci.RiddleId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Restrict);
 
         // User To ContestItem
         modelBuilder.Entity<User>()
             .HasMany(u => u.ContestItems)
             .WithOne(ci => ci.User)
-            .HasForeignKey(ci => ci.UserId);
+            .HasForeignKey(ci => ci.UserId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
+        // Payment to User
+        modelBuilder.Entity<Payment>()
+            .HasOne(p => p.User)
+            .WithOne(u => u.Payment)
+            .HasForeignKey<Payment>(p => p.UserId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
 
 
         base.OnModelCreating(modelBuilder);
@@ -49,6 +53,6 @@ public class ApplicationContext : DbContext {
     public DbSet<Student> Students { get; set; }
     public DbSet<Riddle> Riddles { get; set; }
     public DbSet<ContestItem> ContestItems { get; set; }
-
     public DbSet<ContestConfig> ContestConfigs { get; set; }
+    public DbSet<Payment> Payments { get; set; }
 }

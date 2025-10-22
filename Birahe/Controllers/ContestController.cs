@@ -83,11 +83,11 @@ public class ContestController : Controller {
         return this.MapServiceResult(result);
     }
 
-    [HttpGet("leaderboard")]
-    public async Task<IActionResult> GetLeaderBoard() {
-        var result = await _contestService.GetLeaderBoardAsync();
-        return this.MapServiceResult(result);
-    }
+    // [HttpGet("leaderboard")]
+    // public async Task<IActionResult> GetLeaderBoard() {
+    //     var result = await _contestService.GetLeaderBoardAsync();
+    //     return this.MapServiceResult(result);
+    // }
 
     [HttpGet("user/me/balance")]
     public async Task<IActionResult> GetUserBalance() {
@@ -123,6 +123,4 @@ public class ContestController : Controller {
         var result = await _contestService.GetHintImageAsync(userId, riddleId);
         return this.MapImageServiceResult(result);
     }
-
-
 }

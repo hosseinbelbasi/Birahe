@@ -5,4 +5,6 @@ public class UserDto {
     public string TeamName { get; set; }
     public ICollection<StudentDto> Students { get; set; }
     public int Coin { get; set; }
+
+    public int SolvedRiddles { get; set; }
 }

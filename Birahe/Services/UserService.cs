@@ -76,7 +76,11 @@ public class UserService {
         }
 
         if (user.IsBanned) {
-            return ServiceResult<LoginResultDto>.Fail($"{"حساب کاربری شما مسدود شده است."} \n {user.BanReason}");
+            return ServiceResult<LoginResultDto>.Fail($" {"حساب کاربری شما مسدود شده است :"}  {user.BanReason}");
+        }
+
+        if (user.RemoveTime != null) {
+            return ServiceResult<LoginResultDto>.Fail($"{"حساب کاربری یافت نشد ."}", ErrorType.NotFound);
         }
 
         var result = new LoginResultDto() {

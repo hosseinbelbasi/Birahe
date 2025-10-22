@@ -34,8 +34,8 @@ public class AdminController : Controller {
     }
 
     [HttpPut("riddles/{riddleId:int}")]
-    public async Task<IActionResult> EditRiddle(int riddleId,[FromBody] AdminRiddleDto adminRiddleDto) {
-        var result = await _adminService.EditRiddleAsync(riddleId,adminRiddleDto);
+    public async Task<IActionResult> EditRiddle(int riddleId, [FromBody] AdminRiddleDto adminRiddleDto) {
+        var result = await _adminService.EditRiddleAsync(riddleId, adminRiddleDto);
         return this.MapServiceResult(result);
     }
 
@@ -76,7 +76,7 @@ public class AdminController : Controller {
 
     [HttpPatch("users/{userId:int}/ban")]
     public async Task<IActionResult> BanUser(int userId, [FromBody] BanUserDto banUserDto) {
-        var result = await _adminService.BanUserAsync(userId,banUserDto);
+        var result = await _adminService.BanUserAsync(userId, banUserDto);
         return this.MapServiceResult(result);
     }
 
@@ -93,7 +93,7 @@ public class AdminController : Controller {
     }
 
     [HttpPatch("users/{userId:int}/password")]
-    public async Task<IActionResult> EditUserPassword(int userId,[FromBody] AdminEditUserPasswordDto userPasswordDto) {
+    public async Task<IActionResult> EditUserPassword(int userId, [FromBody] AdminEditUserPasswordDto userPasswordDto) {
         var result = await _adminService.EditUserPasswordAsync(userId, userPasswordDto);
         return this.MapServiceResult(result);
     }
@@ -119,6 +119,4 @@ public class AdminController : Controller {
         var result = await _adminService.GetContestStartTimeAsync(key);
         return this.MapServiceResult(result);
     }
-
-
 }

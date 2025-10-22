@@ -5,8 +5,6 @@ namespace Birahe.EndPoint.Validator;
 
 public class AdminEditUserPasswordDtoValidator : AbstractValidator<AdminEditUserPasswordDto> {
     public AdminEditUserPasswordDtoValidator() {
-
-
         RuleFor(x => x.NewPassword)
             .NotEmpty().WithMessage("رمز عبور جدید الزامی است.")
             .MinimumLength(8).WithMessage("رمز عبور جدید باید حداقل 8 کاراکتر باشد.")
