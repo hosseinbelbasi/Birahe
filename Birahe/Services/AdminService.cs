@@ -20,7 +20,7 @@ public class AdminService {
     private readonly IMapper _mapper;
     private readonly ApplicationContext _context;
     private readonly UserRepository _userRepository;
-    private readonly ImageService _imageService;
+    private readonly MediaService _mediaService;
     private readonly ContestConfigRepository _configRepository;
     private readonly MemoryCacheService _cacheService;
 
@@ -29,12 +29,12 @@ public class AdminService {
         IMapper mapper,
         ApplicationContext context,
         UserRepository userRepository,
-        ImageService imageService, ContestConfigRepository configRepository, MemoryCacheService cacheService) {
+        MediaService mediaService, ContestConfigRepository configRepository, MemoryCacheService cacheService) {
         _riddleRepository = riddleRepository;
         _mapper = mapper;
         _context = context;
         _userRepository = userRepository;
-        _imageService = imageService;
+        _mediaService = mediaService;
         _configRepository = configRepository;
         _cacheService = cacheService;
     }
@@ -126,32 +126,37 @@ public class AdminService {
     }
 
     public async Task<ServiceResult>
-        UploadRiddleImageAsync(int riddleId, IFormFile? hintImage, IFormFile? rewardImage) {
+        UploadRiddleFilesAsync(int riddleId, IFormFile? hintFile, IFormFile? rewardFile) {
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
         if (riddle == null) {
             return ServiceResult.Fail("معما یافت نشد!", ErrorType.NotFound);
         }
 
-        if (hintImage == null && rewardImage == null) {
+        if (hintFile == null && rewardFile == null) {
             return ServiceResult.Fail("هیچ عکسی آپلود نکرده اید!");
         }
 
-        if (hintImage != null) {
-            var imgResult = await _imageService.SaveImageAsync(hintImage);
-            if (!imgResult.Success) {
-                return ServiceResult.Fail(imgResult.Message, imgResult.Error);
+        if (hintFile != null) {
+            var result = await _mediaService.SaveFileAsync(hintFile);
+            if (!result.Success) {
+                return ServiceResult.Fail(result.Message, result.Error);
             }
 
-            riddle.HintImageFileName = imgResult.Data;
+            var (fileName, mediaType) = result.Data;
+
+            riddle.HintMediaType = mediaType;
+            riddle.HintFileName = fileName;
         }
 
-        if (rewardImage != null) {
-            var imgResult = await _imageService.SaveImageAsync(rewardImage);
-            if (!imgResult.Success) {
-                return ServiceResult.Fail(imgResult.Message, imgResult.Error);
+        if (rewardFile != null) {
+            var result = await _mediaService.SaveFileAsync(rewardFile);
+            if (!result.Success) {
+                return ServiceResult.Fail(result.Message, result.Error);
             }
+            var (fileName, mediaType) = result.Data;
 
-            riddle.RewardImageFileName = imgResult.Data;
+            riddle.RewardMediaType = mediaType;
+            riddle.RewardFileName = fileName;
         }
 
         var rows = await _context.SaveChangesAsync();
@@ -165,44 +170,31 @@ public class AdminService {
     }
 
 
-    public async Task<ServiceResult<(byte[] File, string ContentType)>> GetRiddleImageByIdAsync(int riddleId,
+    public async Task<ServiceResult<(byte[] File, string ContentType)>> GetRiddleMediaByIdAsync(int riddleId,
         string type) {
-        // 1️⃣ Find the riddle
         var riddle = await _context.Riddles.FindAsync(riddleId);
         if (riddle == null)
             return ServiceResult<(byte[], string)>.Fail("معما پیدا نشد!", ErrorType.NotFound);
 
-        // 2️⃣ Determine which image to load
         string? fileName = type.ToLower() switch {
-            "hint" => riddle.HintImageFileName,
-            "reward" => riddle.RewardImageFileName,
+            "hint" => riddle.HintFileName,
+            "reward" => riddle.RewardFileName,
             _ => null
         };
 
         if (string.IsNullOrEmpty(fileName))
-            return ServiceResult<(byte[], string)>.Fail("عکس یافت نشد!", ErrorType.NotFound);
+            return ServiceResult<(byte[], string)>.Fail("فایل یافت نشد!", ErrorType.NotFound);
 
-        // 3️⃣ Read the image securely
-        var imageResult = await _imageService.ReadImageAsync(fileName);
-        if (!imageResult.Success)
-            return ServiceResult<(byte[], string)>.Fail(imageResult.Message ?? "خطا در خواندن تصویر!",
-                imageResult.Error);
+        var result = await _mediaService.ReadFileAsync(fileName);
+        if (!result.Success)
+            return ServiceResult<(byte[], string)>.Fail(result.Message ?? "خطا در خواندن فایل!",
+                result.Error);
 
-        // 4️⃣ Return image bytes and content type
-        return ServiceResult<(byte[], string)>.Ok(imageResult.Data);
+        return ServiceResult<(byte[], string)>.Ok(result.Data);
     }
 
 
-    private static string GetContentType(string path) {
-        var ext = Path.GetExtension(path).ToLowerInvariant();
-        return ext switch {
-            ".jpg" or ".jpeg" => "image/jpeg",
-            ".png" => "image/png",
-            ".gif" => "image/gif",
-            ".webp" => "image/webp",
-            _ => "application/octet-stream"
-        };
-    }
+
 
 
     // =======================User business===================
@@ -316,7 +308,7 @@ public class AdminService {
 
     // ====================Contest Config =======================//
 
-    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync(SetContesConfigDto setContestConfigDto) {
+    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync(SetContestConfigDto setContestConfigDto) {
         var config = await _configRepository.CheckExistence(setContestConfigDto.Key);
         if (config == null) {
             config = _mapper.Map<ContestConfig>(setContestConfigDto);

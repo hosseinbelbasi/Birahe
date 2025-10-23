@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Birahe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcb41a7c81a233b247f8be8f299096dcef5d7193")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75a7715100b9f05abce23cd240511fdb48090cb6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Birahe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Birahe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

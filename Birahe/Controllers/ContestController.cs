@@ -62,24 +62,24 @@ public class ContestController : Controller {
     }
 
     [HttpPost("riddles/{id:int}")]
-    public async Task<IActionResult> SubmitAnswer(int riddleId, [FromBody] SubmitAnswerDto submitAnswerDto) {
+    public async Task<IActionResult> SubmitAnswer(int id, [FromBody] SubmitAnswerDto submitAnswerDto) {
         var userId = User.GetUserId();
         if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.SubmitAnswerAsync(userId, riddleId, submitAnswerDto);
+        var result = await _contestService.SubmitAnswerAsync(userId, id, submitAnswerDto);
         return this.MapServiceResult(result);
     }
 
     [HttpGet("riddles/{id:int}")]
-    public async Task<IActionResult> GetRiddle(int riddleId) {
+    public async Task<IActionResult> GetRiddle(int id) {
         var userId = User.GetUserId();
         if (userId == -1) {
             return BadRequest();
         }
 
-        var result = await _contestService.GetRiddleWithStatusAsync(userId, riddleId);
+        var result = await _contestService.GetRiddleWithStatusAsync(userId, id);
         return this.MapServiceResult(result);
     }
 
@@ -101,26 +101,26 @@ public class ContestController : Controller {
         return this.MapServiceResult(result);
     }
 
-    // =================== Image Retrieval ========================
+    // =================== file Retrieval ========================
 
-    [HttpGet("riddles/{id:int}/images/reward")]
-    public async Task<IActionResult> GetRewardImage(int riddleId) {
+    [HttpGet("riddles/{id:int}/media/reward")]
+    public async Task<IActionResult> GetRewardMedia(int id) {
         var userId = User.GetUserId();
         if (userId == -1)
             return NotFound();
 
-        var result = await _contestService.GetRewardImageAsync(userId, riddleId);
+        var result = await _contestService.GetRewardMediaAsync(userId, id);
 
-        return this.MapImageServiceResult(result);
+        return this.MapMediaServiceResult(result);
     }
 
-    [HttpGet("riddles/{id:int}/images/hint")]
-    public async Task<IActionResult> GetHintImage(int riddleId) {
+    [HttpGet("riddles/{id:int}/media/hint")]
+    public async Task<IActionResult> GetHintMedia(int id) {
         var userId = User.GetUserId();
         if (userId == -1)
             return NotFound();
 
-        var result = await _contestService.GetHintImageAsync(userId, riddleId);
-        return this.MapImageServiceResult(result);
+        var result = await _contestService.GetHintMediaAsync(userId, id);
+        return this.MapMediaServiceResult(result);
     }
 }

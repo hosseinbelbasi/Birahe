@@ -66,7 +66,7 @@ public static class ServiceResultHelper {
     }
 
 
-    public static IActionResult MapImageServiceResult(this ControllerBase controller,
+    public static IActionResult MapMediaServiceResult(this ControllerBase controller,
         ServiceResult<(byte[] bytes, string contentType)> result) {
         if (result.Success) {
             var (bytes, contentType) = result.Data;

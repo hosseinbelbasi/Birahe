@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiExplorerSettings(IgnoreApi = true)]
-[ApiController]
-[Route("api/[controller]")]
+// [ApiController]
+// [Route("api/[controller]")]
 public class PaymentController : ControllerBase {
     private readonly PaymentService _paymentService;
 
@@ -16,7 +16,7 @@ public class PaymentController : ControllerBase {
     }
 
 
-    [HttpPost()]
+    [HttpPost]
     public async Task<IActionResult> CreatePaymentAsync([FromBody] CreatePaymentDto createPaymentDto) {
         var result = await _paymentService.CreatePaymentAsync(createPaymentDto);
         return this.MapServiceResult(result);

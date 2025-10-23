@@ -151,9 +151,7 @@ namespace Birahe.EndPoint.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Payments");
                 });
@@ -187,9 +185,13 @@ namespace Birahe.EndPoint.Migrations
                     b.Property<int>("HintCost")
                         .HasColumnType("int");
 
-                    b.Property<string>("HintImageFileName")
+                    b.Property<string>("HintFileName")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("HintMediaType")
+                        .HasMaxLength(10)
+                        .HasColumnType("int");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -209,9 +211,13 @@ namespace Birahe.EndPoint.Migrations
                     b.Property<int>("Reward")
                         .HasColumnType("int");
 
-                    b.Property<string>("RewardImageFileName")
+                    b.Property<string>("RewardFileName")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("RewardMediaType")
+                        .HasMaxLength(10)
+                        .HasColumnType("int");
 
                     b.Property<string>("RiddleUId")
                         .IsRequired()
@@ -313,9 +319,6 @@ namespace Birahe.EndPoint.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("datetime2");
 
@@ -361,8 +364,7 @@ namespace Birahe.EndPoint.Migrations
                     b.HasOne("Birahe.EndPoint.Entities.User", "User")
                         .WithMany("ContestItems")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Riddle");
 
@@ -372,8 +374,8 @@ namespace Birahe.EndPoint.Migrations
             modelBuilder.Entity("Birahe.EndPoint.Entities.Payment", b =>
                 {
                     b.HasOne("Birahe.EndPoint.Entities.User", "User")
-                        .WithOne("Payment")
-                        .HasForeignKey("Birahe.EndPoint.Entities.Payment", "UserId")
+                        .WithMany("Payments")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
@@ -399,8 +401,7 @@ namespace Birahe.EndPoint.Migrations
                 {
                     b.Navigation("ContestItems");
 
-                    b.Navigation("Payment")
-                        .IsRequired();
+                    b.Navigation("Payments");
 
                     b.Navigation("Students");
                 });

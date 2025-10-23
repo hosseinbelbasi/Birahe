@@ -6,7 +6,7 @@ namespace Birahe.EndPoint.Mapster;
 
 public class ContestConfigConfigs {
     public static void AddConfigs() {
-        TypeAdapterConfig<SetContesConfigDto, ContestConfig>
+        TypeAdapterConfig<SetContestConfigDto, ContestConfig>
             .NewConfig()
             .Ignore(dest => dest.Id);
     }

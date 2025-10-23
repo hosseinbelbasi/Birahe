@@ -1,3 +1,5 @@
+using Birahe.EndPoint.Constants.Enums;
+
 namespace Birahe.EndPoint.Entities;
 
 public class Riddle : BaseEntity {
@@ -5,8 +7,12 @@ public class Riddle : BaseEntity {
     public int Level { get; set; }
     public int No { get; set; }
     public string Content { get; set; }
-    public string? HintImageFileName { get; set; }
-    public string? RewardImageFileName { get; set; }
+    public string? HintFileName { get; set; }
+
+    public MediaType? HintMediaType { get; set; }
+    public string? RewardFileName { get; set; }
+
+    public MediaType? RewardMediaType { get; set; }
     public int OpeningCost { get; set; }
     public int HintCost { get; set; }
     public int Reward { get; set; }

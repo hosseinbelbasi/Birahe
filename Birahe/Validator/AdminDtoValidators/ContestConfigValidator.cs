@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Birahe.EndPoint.Validator.AdminDtoValidators;
 
-public class ContestConfigValidator : AbstractValidator<SetContesConfigDto> {
+public class ContestConfigValidator : AbstractValidator<SetContestConfigDto> {
     public ContestConfigValidator() {
         RuleFor(cc => cc)
             .Must(cc => cc.Key == "Contest" && cc.Key == "FinalContest");

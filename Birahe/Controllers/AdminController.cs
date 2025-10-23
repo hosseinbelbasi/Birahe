@@ -1,8 +1,5 @@
-using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Helpers.Extensions;
-using Birahe.EndPoint.Models.Dto;
 using Birahe.EndPoint.Models.Dto.AdminDto_s;
-using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -52,17 +49,17 @@ public class AdminController : Controller {
         return this.MapServiceResult(result);
     }
 
-    [HttpPost("riddles/{riddleId:int}/images")]
+    [HttpPost("riddles/{riddleId:int}/media")]
     [Consumes("multipart/form-data")]
-    public async Task<IActionResult> UploadRiddleImages(int riddleId, IFormFile? hintImage, IFormFile? rewardImage) {
-        var result = await _adminService.UploadRiddleImageAsync(riddleId, hintImage, rewardImage);
+    public async Task<IActionResult> UploadRiddleImages(int riddleId, IFormFile? hintFile, IFormFile? rewardFile) {
+        var result = await _adminService.UploadRiddleFilesAsync(riddleId, hintFile, rewardFile);
         return this.MapServiceResult(result);
     }
 
-    [HttpGet("riddles/{riddleId:int}/images/{type}")]
+    [HttpGet("riddles/{riddleId:int}/media/{type}")]
     public async Task<IActionResult> GetRiddleImage(int riddleId, string type) {
-        var result = await _adminService.GetRiddleImageByIdAsync(riddleId, type);
-        return this.MapImageServiceResult(result);
+        var result = await _adminService.GetRiddleMediaByIdAsync(riddleId, type);
+        return this.MapMediaServiceResult(result);
     }
 
 
@@ -109,7 +106,7 @@ public class AdminController : Controller {
     // ================= Contest Configs Actins =====================
 
     [HttpPost("contest/config")]
-    public async Task<IActionResult> SetContestStartTime([FromBody] SetContesConfigDto setContestConfigDto) {
+    public async Task<IActionResult> SetContestStartTime([FromBody] SetContestConfigDto setContestConfigDto) {
         var result = await _adminService.SetContestStartTimeAsync(setContestConfigDto);
         return this.MapServiceResult(result);
     }

@@ -24,9 +24,8 @@ public class User : BaseEntity {
 
     public int SolvedRiddles { get; set; } = 0;
 
-    public int PaymentId { get; set; }
 
-    public virtual Payment Payment { get; set; }
+    public virtual ICollection<Payment> Payments { get; set; }
 
     public User() {
         SerialNumber = Guid.NewGuid().ToString("N").Substring(0, 10);

@@ -10,8 +10,8 @@ public class AddRiddleDtoValidator : AbstractValidator<AddRiddleDto> {
             .NotEmpty().WithMessage("شعبه معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("شعبه معما باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(200).WithMessage("شعبه معما میتواند حداکثر 200 کاراکتر باشد.")
-            .Matches(@"^[a-zA-Z0-9]+$")
-            .WithMessage("شعبه معما فقط می‌تواند شامل حروف، اعداد باشد.");
+            .Matches(@"^[\u0600-\u06FF\s]+$")
+            .WithMessage("شعبه معما فقط می‌تواند شامل حروف فارسی باشد.");
 
         RuleFor(x => x.Level)
             .NotEmpty().WithMessage("سطح معما نمیتواند خالی باشد.")

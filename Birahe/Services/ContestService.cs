@@ -17,18 +17,18 @@ public class ContestService {
     private readonly RiddleRepository _riddleRepository;
     private readonly ApplicationContext _context;
     private readonly IMapper _mapper;
-    private readonly ImageService _imageService;
+    private readonly MediaService _mediaService;
     private readonly MemoryCacheService _cacheService;
 
 
     public ContestService(ContestRepository contestRepository, UserRepository userRepository,
-        RiddleRepository riddleRepository, ApplicationContext context, IMapper mapper, ImageService imageService,
+        RiddleRepository riddleRepository, ApplicationContext context, IMapper mapper, MediaService mediaService,
         MemoryCacheService cacheService) {
         _userRepository = userRepository;
         _riddleRepository = riddleRepository;
         _context = context;
         _mapper = mapper;
-        _imageService = imageService;
+        _mediaService = mediaService;
         _cacheService = cacheService;
         _contestRepository = contestRepository;
     }
@@ -210,33 +210,32 @@ public class ContestService {
 
     // ======================== Image Retrieval ==========================
 
-    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetRewardImageAsync(int userId, int riddleId) {
-        // 1️⃣ Check user existence
+    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetRewardMediaAsync(int userId, int riddleId) {
         var user = await _userRepository.FindUser(userId);
         if (user == null)
             return ServiceResult<(byte[], string)>.Fail("کاربر یافت نشد!", ErrorType.NotFound);
 
-        // 2️⃣ Check if user has solved this riddle
+
         var ci = await _contestRepository.CheckExistence(user.Id, riddleId);
         if (ci == null || !ci.IsSolved)
             return ServiceResult<(byte[], string)>.Fail("کاربر اجازه دسترسی ندارد!", ErrorType.Forbidden);
 
-        // 3️⃣ Get riddle
+
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
-        if (riddle == null || string.IsNullOrEmpty(riddle.RewardImageFileName))
+        if (riddle == null || string.IsNullOrEmpty(riddle.RewardFileName))
             return ServiceResult<(byte[], string)>.Fail("عکس یافت نشد!", ErrorType.NotFound);
 
-        // 4️⃣ Read image securely via ImageService
-        var imageResult = await _imageService.ReadImageAsync(riddle.RewardImageFileName);
+
+        var imageResult = await _mediaService.ReadFileAsync(riddle.RewardFileName);
         if (!imageResult.Success)
             return ServiceResult<(byte[], string)>.Fail(imageResult.Message == null ? "" : imageResult.Message,
                 imageResult.Error);
 
-        // 5️⃣ Return image bytes and content type
+
         return ServiceResult<(byte[], string)>.Ok(imageResult.Data);
     }
 
-    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetHintImageAsync(int userId,
+    public async Task<ServiceResult<(byte[] Bytes, string ContentType)>> GetHintMediaAsync(int userId,
         int riddleId) {
         var user = await _userRepository.FindUser(userId);
         if (user == null)
@@ -247,10 +246,10 @@ public class ContestService {
             return ServiceResult<(byte[], string ContentType)>.Fail("کاربر اجازه دسترسی ندارد!", ErrorType.Forbidden);
 
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
-        if (riddle == null || string.IsNullOrEmpty(riddle.HintImageFileName))
+        if (riddle == null || string.IsNullOrEmpty(riddle.HintFileName))
             return ServiceResult<(byte[], string ContentType)>.Fail("عکس یافت نشد!", ErrorType.NotFound);
 
-        var imageResult = await _imageService.ReadImageAsync(riddle.HintImageFileName);
+        var imageResult = await _mediaService.ReadFileAsync(riddle.HintFileName);
         if (!imageResult.Success)
             return ServiceResult<(byte[], string ContentType)>.Fail(
                 imageResult.Message == null ? "" : imageResult.Message, imageResult.Error);

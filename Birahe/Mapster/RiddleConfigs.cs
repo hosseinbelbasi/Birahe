@@ -22,7 +22,7 @@ public class RiddleConfigs {
 
         TypeAdapterConfig<Riddle, AdminRiddleDto>
             .NewConfig()
-            .Map(dest => dest.HintImage, src => !String.IsNullOrEmpty(src.HintImageFileName))
-            .Map(dest => dest.RewardImage, src => !String.IsNullOrEmpty(src.RewardImageFileName));
+            .Map(dest => dest.HintFile, src => !String.IsNullOrEmpty(src.HintFileName))
+            .Map(dest => dest.RewardFile, src => !String.IsNullOrEmpty(src.RewardFileName));
     }
 }
