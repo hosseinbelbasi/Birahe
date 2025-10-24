@@ -13,6 +13,7 @@ public class PaymentService {
     private readonly IConfiguration _config;
     private readonly PaymentRepository _paymentRepository;
     private readonly ApplicationContext _context;
+    private readonly UserRepository _userRepository;
 
     private string MerchantId => _config["Zarinpal:MerchantId"]!;
     private string CallbackUrl => _config["Zarinpal:CallbackUrl"]!;
@@ -23,19 +24,22 @@ public class PaymentService {
 
 
 
-    public PaymentService(HttpClient httpClient, IConfiguration config, PaymentRepository paymentRepository, ApplicationContext context) {
+    public PaymentService(HttpClient httpClient, IConfiguration config, PaymentRepository paymentRepository, ApplicationContext context, UserRepository userRepository) {
         _httpClient = httpClient;
         _config = config;
         _paymentRepository = paymentRepository;
         _context = context;
+        _userRepository = userRepository;
     }
 
-    public async Task<ServiceResult<string>> CreatePaymentAsync(CreatePaymentDto dto)
-    {
+    public async Task<ServiceResult<string>> CreatePaymentAsync(CreatePaymentDto dto) {
+        var amount = 1000;
+        var description = "";
+
         var payment = new Payment
         {
             UserId = dto.UserId,
-            Amount = dto.Amount,
+            Amount = amount,
             Status = PaymentStatus.Pending
         };
 
@@ -45,8 +49,8 @@ public class PaymentService {
         var request = new
         {
             merchant_id = MerchantId,
-            amount = dto.Amount,
-            description = dto.Description,
+            amount = amount,
+            description = description,
             callback_url = $"{CallbackUrl}?authority={{Authority}}"
         };
 
@@ -69,7 +73,7 @@ public class PaymentService {
     public async Task<ServiceResult<Payment>> VerifyPaymentAsync(VerifyPaymentDto dto)
     {
         var payment = await _paymentRepository
-            .GetBuAuthorityAsync(dto.Authority);
+            .GetByAuthorityAsync(dto.Authority);
 
         if (payment == null)
             return ServiceResult<Payment>.Fail("Payment not found.");
@@ -98,6 +102,13 @@ public class PaymentService {
         {
             payment.Status = PaymentStatus.Success;
             payment.RefId = result.Data.RefId.ToString();
+            var activated = await _userRepository.ActivateUser(payment.Authority);
+            if (!activated)
+            {
+                payment.Status = PaymentStatus.Failed;
+                await _context.SaveChangesAsync();
+                return ServiceResult<Payment>.Fail("Payment verified but user activation failed.");
+            }
             await _context.SaveChangesAsync();
             return ServiceResult<Payment>.Ok(payment);
         }

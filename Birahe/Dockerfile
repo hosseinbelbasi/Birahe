@@ -17,7 +17,7 @@ COPY --from=build /app/out .
 
 # Expose ports
 EXPOSE 80
-EXPOSE 443
+
 
 # Run the app
 ENTRYPOINT ["dotnet", "Birahe.dll"]

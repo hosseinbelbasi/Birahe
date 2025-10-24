@@ -15,7 +15,7 @@ public class PaymentRepository {
         await _context.Payments.AddAsync(payment);
     }
 
-    public async Task<Payment?> GetBuAuthorityAsync(string authority) {
+    public async Task<Payment?> GetByAuthorityAsync(string authority) {
         return await _context.Payments.FirstOrDefaultAsync(p => p.Authority == authority);
     }
 

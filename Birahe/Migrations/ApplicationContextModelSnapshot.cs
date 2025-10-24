@@ -308,6 +308,9 @@ namespace Birahe.EndPoint.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsBanned")
                         .HasColumnType("bit");
 

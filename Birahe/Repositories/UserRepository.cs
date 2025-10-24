@@ -1,3 +1,4 @@
+using Birahe.EndPoint.Constants.Enums;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Models.Dto;
@@ -131,5 +132,24 @@ public class UserRepository {
             .AsNoTracking()
             .Where(ci => ci.UserId == userId)
             .ToListAsync();
+    }
+
+    public async Task<bool> ActivateUser(string authority) {
+        var payment = await _context.Payments.FirstOrDefaultAsync(p=> p.Authority == authority && p.Status == PaymentStatus.Pending);
+        if (payment == null || payment.UserId == null) {
+            return false;
+        }
+
+        var userId = payment.UserId ?? -1;
+
+        var user = await FindUser(userId);
+
+        if (user == null) {
+            return false;
+        }
+
+        user.IsActive = true;
+        Update(user);
+        return true;
     }
 }
