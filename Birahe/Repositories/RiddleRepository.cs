@@ -8,25 +8,23 @@ using Microsoft.EntityFrameworkCore;
 namespace Birahe.EndPoint.Repositories;
 
 public class RiddleRepository {
-    private readonly ApplicationContext _context;
-    private readonly IMapper _mapper;
+    private readonly DbSet<Riddle> _riddles;
 
-    public RiddleRepository(ApplicationContext context, IMapper mapper) {
-        _context = context;
-        _mapper = mapper;
+    public RiddleRepository(ApplicationContext context) {
+        _riddles = context.Riddles;
     }
 
     public async Task AddRiddle(Riddle riddle) {
-        await _context.Riddles.AddAsync(riddle);
+        await _riddles.AddAsync(riddle);
     }
 
     public async Task<Riddle?> CheckExistence(string riddleUId) {
-        var riddle = await _context.Riddles.AsTracking().FirstOrDefaultAsync(r => r.RiddleUId == riddleUId);
+        var riddle = await _riddles.AsTracking().FirstOrDefaultAsync(r => r.RiddleUId == riddleUId);
         return riddle;
     }
 
     public async Task<Riddle?> FindRiddleAsync(int id) {
-        return await _context.Riddles.FirstOrDefaultAsync(r => r.Id == id);
+        return await _riddles.FirstOrDefaultAsync(r => r.Id == id);
     }
 
     public void EditRiddle(Riddle toEdit, Riddle riddle) {
@@ -39,8 +37,7 @@ public class RiddleRepository {
     }
 
     public async Task<List<Riddle>> GetRiddles() {
-        return await _context
-            .Riddles
+        return await _riddles
             .ToListAsync();
     }
 }
