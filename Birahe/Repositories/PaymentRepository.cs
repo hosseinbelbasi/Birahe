@@ -24,5 +24,9 @@ public class PaymentRepository {
         _context.Payments.Update(payment);
     }
 
+    public async Task<Discount?> FindDiscount(string key) {
+        return await _context.Discounts.FirstOrDefaultAsync(d => d.Key == key);
+    }
+
 
 }

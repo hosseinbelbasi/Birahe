@@ -50,7 +50,7 @@ public class AdminController : Controller {
     }
 
     [HttpPost("riddles/{riddleId:int}/media")]
-    [Consumes("multipart/form-data")]
+    [Consumes("multipart/form-Data")]
     public async Task<IActionResult> UploadRiddleImages(int riddleId, IFormFile? hintFile, IFormFile? rewardFile) {
         var result = await _adminService.UploadRiddleFilesAsync(riddleId, hintFile, rewardFile);
         return this.MapServiceResult(result);

@@ -5,6 +5,7 @@ using Birahe.EndPoint.Models.Dto.PaymentDto_s.Dto;
 using Birahe.EndPoint.Models.Dto.PaymentDto_s.ResponseModels;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Birahe.EndPoint.Services;
 
@@ -20,6 +21,7 @@ public class PaymentService {
     private string ZarinPalUrl => _config["ZarinPal:ZarinPalUrl"]!;
     private string RedirectToZarinPalUrl => _config["ZarinPal:RedirectToZarinPal"]!;
     private string VerifyPaymentUrl => _config["ZarinPal:VerifyPaymentUrl"]!;
+    private string PaymentAmount => _config["Payment:Amount"]!;
 
 
 
@@ -33,14 +35,19 @@ public class PaymentService {
     }
 
     public async Task<ServiceResult<string>> CreatePaymentAsync(CreatePaymentDto dto) {
-        var amount = 1000;
-        var description = "";
+        var user = await _userRepository.FindUser(dto.UserId);
+
+
+        var discount = await _context.Discounts.FirstOrDefaultAsync(d => d.Key == dto.Discount);
+        var amount= GetFinalAmount(discount) ;
+        var description = "هزینه ثبت نام در مسابقه بیراهه";
 
         var payment = new Payment
         {
             UserId = dto.UserId,
             Amount = amount,
-            Status = PaymentStatus.Pending
+            Status = PaymentStatus.Pending,
+            Authority = ""
         };
 
         await _paymentRepository.AddAsync(payment);
@@ -51,7 +58,7 @@ public class PaymentService {
             merchant_id = MerchantId,
             amount = amount,
             description = description,
-            callback_url = $"{CallbackUrl}?authority={{Authority}}"
+            callback_url = $"{CallbackUrl}?Authority={{Authority}}"
         };
 
         var response = await _httpClient.PostAsJsonAsync(ZarinPalUrl, request);
@@ -61,17 +68,16 @@ public class PaymentService {
         var result = await response.Content.ReadFromJsonAsync<ZarinpalRequestResponse>();
 
         if (result?.Data?.Code != 100)
-            return ServiceResult<string>.Fail($"Zarinpal error: {result?.Errors?.Message ?? "Unknown"}");
+            return ServiceResult<string>.Fail($"Zarinpal error: {result?.Errors }");
 
         payment.Authority = result.Data.Authority;
         await _context.SaveChangesAsync();
 
-        var redirectUrl = $"{RedirectToZarinPalUrl}/{result.Data.Authority}";
+        var redirectUrl = $"{RedirectToZarinPalUrl}{result.Data.Authority}";
         return ServiceResult<string>.Ok(redirectUrl);
     }
 
-    public async Task<ServiceResult<Payment>> VerifyPaymentAsync(VerifyPaymentDto dto)
-    {
+    public async Task<ServiceResult<Payment>> VerifyPaymentAsync(VerifyPaymentDto dto) {
         var payment = await _paymentRepository
             .GetByAuthorityAsync(dto.Authority);
 
@@ -116,5 +122,30 @@ public class PaymentService {
         payment.Status = PaymentStatus.Failed;
         await _context.SaveChangesAsync();
         return ServiceResult<Payment>.Fail($"Verification failed: {result?.Errors?.Message ?? "Unknown"}");
+    }
+
+    public async Task<ServiceResult<int>> CalculateAmount(string key) {
+        var amount = GetFinalAmount();
+        if (string.IsNullOrEmpty(key)) {
+            return ServiceResult<int>.Ok(amount);
+        }
+
+        var discount =await _paymentRepository.FindDiscount(key);
+        if (discount == null) {
+            return ServiceResult<int>.Ok(amount, "این کد تخفیف معتبر نیست!" , success: false);
+        }
+
+        amount = GetFinalAmount(discount);
+        return ServiceResult<int>.Ok(amount);
+    }
+
+    private int GetFinalAmount(Discount? discount = null) {
+        var amount = 2400000;
+        var finalAmount = amount;
+        if (discount != null) {
+            finalAmount = (2400000) * (100 - discount.Percent) / 100;
+        }
+
+        return finalAmount;
     }
 }

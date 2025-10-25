@@ -1,3 +1,4 @@
+using Birahe.EndPoint.Constants.Enums;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Enums;
@@ -13,16 +14,18 @@ namespace Birahe.EndPoint.Services;
 
 public class UserService {
     private readonly UserRepository _userRepository;
+    private readonly PaymentRepository _paymentRepository;
     private readonly ApplicationContext _context;
     private readonly IMapper _mapper;
     private readonly JwtService _jwtService;
 
     public UserService(UserRepository userRepository, ApplicationContext context, IMapper mapper,
-        JwtService jwtService) {
+        JwtService jwtService, PaymentRepository paymentRepository) {
         _userRepository = userRepository;
         _context = context;
         _mapper = mapper;
         _jwtService = jwtService;
+        _paymentRepository = paymentRepository;
     }
 
     public async Task<ServiceResult<int>> SignupAsync(SignUpDto signUpDto) {
@@ -34,7 +37,7 @@ public class UserService {
 
         User? exists = await _userRepository.CheckExistenceSignup(signUpDto.Username, signUpDto.TeamName);
         if (exists != null)
-            return ServiceResult<int>.Fail("این نام کاربری قبلاً استفاده شده است.");
+            return ServiceResult<int>.Fail(" نام کاربری یا نام تیم قبلاً استفاده شده است.");
 
         var duplicateStudentNos = signUpDto.Students
             .GroupBy(s => s.StudentNo)
@@ -46,16 +49,27 @@ public class UserService {
             return ServiceResult<int>.Fail("شماره دانشجویی تکراری در درخواست!");
 
         var studentNos = signUpDto.Students.Select(s => s.StudentNo).ToList();
-        bool anyExists = await _context.Students
-            .AnyAsync(s => studentNos.Contains(s.StudentNo));
+        var anyExists = await _context.Students
+            .IgnoreQueryFilters()
+            .FirstOrDefaultAsync(s => studentNos
+                .Contains(s.StudentNo));
 
-        if (anyExists)
-            return ServiceResult<int>.Fail("هر دانشجو میتواند حداکثر عضو یک تیم باشد!");
+
+        if (anyExists != null)
+            return ServiceResult<int>.Fail($"{anyExists.StudentNo}" + " قبلا در سیستم ثبت شده است ");
 
         var user = _mapper.Map<User>(signUpDto);
         user.Students = _mapper.Map<List<Student>>(signUpDto.Students);
 
         await _userRepository.AddUser(user);
+
+        // var payment = new Payment
+        // {
+        //     UserId = user.Id,
+        //     Status = PaymentStatus.Pending,
+        //     Authority = ""
+        // };
+        // await _paymentRepository.AddAsync(payment);
         var rows = await _context.SaveChangesAsync();
 
         if (rows <= 0)
@@ -139,5 +153,16 @@ public class UserService {
         }
 
         return ServiceResult.Ok("تغییر رمز عبور با موفقیت انجام شد!");
+    }
+
+    public async Task<ServiceResult<string>> GetContestStartTimeAsync() {
+        var config = await _context.ContestConfigs.FirstOrDefaultAsync(cc=> cc.Key == "Contest");
+        if (config == null) {
+            return ServiceResult<string>.Fail("هنوز زمان شروع مسابقه تایین نشده است", ErrorType.NotFound);
+        }
+
+        var result = config.CreationDateTime.ToString("yyyy-MM-ddTHH:mm:ssK");
+
+        return ServiceResult<string>.Ok(result);
     }
 }

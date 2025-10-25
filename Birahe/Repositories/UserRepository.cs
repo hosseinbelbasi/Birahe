@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Birahe.EndPoint.Constants.Enums;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
@@ -161,4 +164,6 @@ public class UserRepository {
         Update(user);
         return true;
     }
+
+
 }

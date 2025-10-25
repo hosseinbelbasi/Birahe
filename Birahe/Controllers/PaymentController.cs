@@ -27,4 +27,13 @@ public class PaymentController : ControllerBase {
         return this.MapServiceResult(result);
     }
 
+    [HttpPost("amount")]
+    public async Task<IActionResult> VerifyDiscountCode([FromBody] GetFinalAmountDto dto) {
+
+
+        var result = await _paymentService.CalculateAmount( dto.DiscountCode);
+
+        return this.MapServiceResult(result);
+    }
+
 }

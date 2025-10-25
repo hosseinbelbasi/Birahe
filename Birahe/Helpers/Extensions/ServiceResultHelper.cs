@@ -14,12 +14,11 @@ public static class ServiceResultHelper {
             ErrorType.NotFound => StatusCodes.Status404NotFound,
             ErrorType.Forbidden => StatusCodes.Status403Forbidden,
             ErrorType.ServerError => StatusCodes.Status500InternalServerError,
-            ErrorType.NoContent => StatusCodes.Status204NoContent,
             _ => StatusCodes.Status400BadRequest
         };
 
         var problem = new ProblemDetails {
-            Type = $"https://birahe.com/errors/{result.Error.ToString().ToLower()}",
+            Type = $"https://birahe.com/Errors/{result.Error.ToString().ToLower()}",
             Title = result.Message,
             Status = statusCode,
             Detail = result.Detail ?? "An error occurred.",
@@ -44,12 +43,11 @@ public static class ServiceResultHelper {
             ErrorType.NotFound => StatusCodes.Status404NotFound,
             ErrorType.Forbidden => StatusCodes.Status403Forbidden,
             ErrorType.ServerError => StatusCodes.Status500InternalServerError,
-            ErrorType.NoContent => StatusCodes.Status204NoContent,
             _ => StatusCodes.Status400BadRequest
         };
 
         var problem = new ProblemDetails {
-            Type = $"https://birahe.com/errors/{result.Error.ToString().ToLower()}",
+            Type = $"https://birahe.com/Errors/{result.Error.ToString().ToLower()}",
             Title = result.Message,
             Status = statusCode,
             Detail = result.Detail ?? "An error occurred.",

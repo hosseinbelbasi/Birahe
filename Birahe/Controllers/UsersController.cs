@@ -62,4 +62,10 @@ public class UsersController : ControllerBase {
         var result = await _userService.ChangePasswordAsync(currentUsername, changePasswordDto);
         return this.MapServiceResult(result);
     }
+
+    [HttpGet("contest/start")]
+    public async Task<IActionResult> GetContestStartTime() {
+        var result = await _userService.GetContestStartTimeAsync();
+        return this.MapServiceResult(result);
+    }
 }

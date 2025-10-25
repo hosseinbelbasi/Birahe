@@ -38,7 +38,8 @@ public static class DependencyInjection {
             .AddScoped<UserRepository>()
             .AddScoped<RiddleRepository>()
             .AddScoped<ContestRepository>()
-            .AddScoped<ContestConfigRepository>();
+            .AddScoped<ContestConfigRepository>()
+            .AddScoped<PaymentRepository>();
         return services;
     }
 
@@ -48,7 +49,8 @@ public static class DependencyInjection {
             .AddScoped<MediaService>()
             .AddScoped<UserService>()
             .AddScoped<AdminService>()
-            .AddScoped<ContestService>();
+            .AddScoped<ContestService>()
+            .AddScoped<PaymentService>();
         return services;
     }
 
