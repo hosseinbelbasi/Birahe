@@ -55,4 +55,6 @@ public class ApplicationContext : DbContext {
     public DbSet<ContestItem> ContestItems { get; set; }
     public DbSet<ContestConfig> ContestConfigs { get; set; }
     public DbSet<Payment> Payments { get; set; }
+
+    public DbSet<Discount> Discounts { get; set; }
 }

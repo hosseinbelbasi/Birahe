@@ -36,6 +36,15 @@ public class UserRepository {
         return user;
     }
 
+    public async Task<User?> CheckExistenceSignup(string username, string teamName) {
+        User? user = await _context
+            .Users
+            .IgnoreQueryFilters()
+            .Include(u => u.Students)
+            .FirstOrDefaultAsync(x => x.Username == username || x.TeamName == teamName);
+        return user;
+    }
+
     public async Task AddUser(User user) {
         await _context.Users.AddAsync(user);
     }

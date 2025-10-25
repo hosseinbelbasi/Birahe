@@ -25,16 +25,16 @@ public class UserService {
         _jwtService = jwtService;
     }
 
-    public async Task<ServiceResult<LoginResultDto>> SignupAsync(SignUpDto signUpDto) {
+    public async Task<ServiceResult<int>> SignupAsync(SignUpDto signUpDto) {
         if (signUpDto.Students.Count > 3)
-            return ServiceResult<LoginResultDto>.Fail("یک تیم میتواند حداکثر 3 دانشجو داشته باشد!");
+            return ServiceResult<int>.Fail("یک تیم میتواند حداکثر 3 دانشجو داشته باشد!");
 
         if (signUpDto.Students.Count == 0)
-            return ServiceResult<LoginResultDto>.Fail("حداقل یک دانشجو باید عضو تیم باشد!");
+            return ServiceResult<int>.Fail("حداقل یک دانشجو باید عضو تیم باشد!");
 
-        User? exists = await _userRepository.CheckExistence(signUpDto.Username);
+        User? exists = await _userRepository.CheckExistenceSignup(signUpDto.Username, signUpDto.TeamName);
         if (exists != null)
-            return ServiceResult<LoginResultDto>.Fail("این نام کاربری قبلاً استفاده شده است.");
+            return ServiceResult<int>.Fail("این نام کاربری قبلاً استفاده شده است.");
 
         var duplicateStudentNos = signUpDto.Students
             .GroupBy(s => s.StudentNo)
@@ -43,14 +43,14 @@ public class UserService {
             .ToList();
 
         if (duplicateStudentNos.Any())
-            return ServiceResult<LoginResultDto>.Fail("شماره دانشجویی تکراری در درخواست!");
+            return ServiceResult<int>.Fail("شماره دانشجویی تکراری در درخواست!");
 
         var studentNos = signUpDto.Students.Select(s => s.StudentNo).ToList();
         bool anyExists = await _context.Students
             .AnyAsync(s => studentNos.Contains(s.StudentNo));
 
         if (anyExists)
-            return ServiceResult<LoginResultDto>.Fail("هر دانشجو میتواند حداکثر عضو یک تیم باشد!");
+            return ServiceResult<int>.Fail("هر دانشجو میتواند حداکثر عضو یک تیم باشد!");
 
         var user = _mapper.Map<User>(signUpDto);
         user.Students = _mapper.Map<List<Student>>(signUpDto.Students);
@@ -59,20 +59,21 @@ public class UserService {
         var rows = await _context.SaveChangesAsync();
 
         if (rows <= 0)
-            return ServiceResult<LoginResultDto>.Fail("ثبت نام با خطا مواجه شد!", ErrorType.ServerError);
+            return ServiceResult<int>.Fail("ثبت نام با خطا مواجه شد!", ErrorType.ServerError);
 
-        var result = new LoginResultDto() {
-            UserDto = _mapper.Map<UserDto>(user),
-            Token = _jwtService.GenerateToken(user)
-        };
+        var result = user.Id;
 
-        return ServiceResult<LoginResultDto>.Ok(result, "ثبت نام با موفقیت انجام شد!");
+        return ServiceResult<int>.Ok(result, "ثبت نام با موفقیت انجام شد! بعد از پرداخت مبلغ حساب کاربری شما فعال خواهد شد");
     }
 
     public async Task<ServiceResult<LoginResultDto>> LoginAsync(LoginDto loginDto) {
         var user = await _userRepository.Login(loginDto.Username, loginDto.Password);
         if (user == null) {
             return ServiceResult<LoginResultDto>.Fail("نام کاربری یا رمز عبور اشتباه است!", ErrorType.Validation);
+        }
+
+        if (!user.IsActive) {
+            return ServiceResult<LoginResultDto>.Fail("ابتدا هزینه ثبت نام را پرداخت کنید !", ErrorType.Forbidden);
         }
 
         if (user.IsBanned) {
