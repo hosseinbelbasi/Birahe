@@ -59,6 +59,13 @@ public class UserRepository {
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
+    public async Task<User?> FindNotActiveUser(int id) {
+        return await _context
+            .Users
+            .IgnoreQueryFilters()
+            .FirstOrDefaultAsync(user => user.Id == id);
+    }
+
     public void Update(User user) {
         user.ModificationDateTime = DateTime.Now;
         _context.Users.Update(user);
@@ -146,22 +153,19 @@ public class UserRepository {
             .ToListAsync();
     }
 
-    public async Task<bool> ActivateUser(string authority) {
-        var payment = await _context.Payments.FirstOrDefaultAsync(p=> p.Authority == authority && p.Status == PaymentStatus.Pending);
-        if (payment == null || payment.UserId == null) {
-            return false;
-        }
+    public async Task<bool> ActivateUser(int userId)
+    {
+        var user = await FindNotActiveUser(userId);
 
-        var userId = payment.UserId ?? -1;
-
-        var user = await FindUser(userId);
-
-        if (user == null) {
+        if (user == null)
+        {
+            Console.WriteLine("log 2: user not found");
             return false;
         }
 
         user.IsActive = true;
-        Update(user);
+        Update(user); // your repository method to mark entity modified
+        await _context.SaveChangesAsync(); // persist change immediately
         return true;
     }
 

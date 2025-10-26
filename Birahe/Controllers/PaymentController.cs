@@ -21,8 +21,8 @@ public class PaymentController : ControllerBase {
         return this.MapServiceResult(result);
     }
 
-    [HttpGet("verify")]
-    public async Task<IActionResult> Verify([FromQuery] VerifyPaymentDto verifyPaymentDto) {
+    [HttpPost("verify")]
+    public async Task<IActionResult> Verify([FromBody] VerifyPaymentDto verifyPaymentDto) {
         var result = await _paymentService.VerifyPaymentAsync(verifyPaymentDto);
         return this.MapServiceResult(result);
     }

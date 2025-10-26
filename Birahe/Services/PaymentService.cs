@@ -5,6 +5,7 @@ using Birahe.EndPoint.Models.Dto.PaymentDto_s.Dto;
 using Birahe.EndPoint.Models.Dto.PaymentDto_s.ResponseModels;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace Birahe.EndPoint.Services;
@@ -15,6 +16,7 @@ public class PaymentService {
     private readonly PaymentRepository _paymentRepository;
     private readonly ApplicationContext _context;
     private readonly UserRepository _userRepository;
+    private readonly IMapper _mapper;
 
     private string MerchantId => _config["Zarinpal:MerchantId"]!;
     private string CallbackUrl => _config["Zarinpal:CallbackUrl"]!;
@@ -26,12 +28,13 @@ public class PaymentService {
 
 
 
-    public PaymentService(HttpClient httpClient, IConfiguration config, PaymentRepository paymentRepository, ApplicationContext context, UserRepository userRepository) {
+    public PaymentService(HttpClient httpClient, IConfiguration config, PaymentRepository paymentRepository, ApplicationContext context, UserRepository userRepository, IMapper mapper) {
         _httpClient = httpClient;
         _config = config;
         _paymentRepository = paymentRepository;
         _context = context;
         _userRepository = userRepository;
+        _mapper = mapper;
     }
 
     public async Task<ServiceResult<string>> CreatePaymentAsync(CreatePaymentDto dto) {
@@ -77,18 +80,18 @@ public class PaymentService {
         return ServiceResult<string>.Ok(redirectUrl);
     }
 
-    public async Task<ServiceResult<Payment>> VerifyPaymentAsync(VerifyPaymentDto dto) {
+    public async Task<ServiceResult<PaymentVerifiedDto>> VerifyPaymentAsync(VerifyPaymentDto dto) {
         var payment = await _paymentRepository
             .GetByAuthorityAsync(dto.Authority);
 
         if (payment == null)
-            return ServiceResult<Payment>.Fail("Payment not found.");
+            return ServiceResult<PaymentVerifiedDto>.Fail("Payment not found.");
 
         if (dto.Status != "OK")
         {
             payment.Status = PaymentStatus.Failed;
             await _context.SaveChangesAsync();
-            return ServiceResult<Payment>.Fail("Payment was canceled by user.");
+            return ServiceResult<PaymentVerifiedDto>.Fail("Payment was canceled by user.");
         }
 
         var request = new
@@ -100,7 +103,7 @@ public class PaymentService {
 
         var response = await _httpClient.PostAsJsonAsync(VerifyPaymentUrl, request);
         if (!response.IsSuccessStatusCode)
-            return ServiceResult<Payment>.Fail("Verification failed to connect.");
+            return ServiceResult<PaymentVerifiedDto>.Fail("Verification failed to connect.");
 
         var result = await response.Content.ReadFromJsonAsync<ZarinpalVerifyResponse>();
 
@@ -108,20 +111,22 @@ public class PaymentService {
         {
             payment.Status = PaymentStatus.Success;
             payment.RefId = result.Data.RefId.ToString();
-            var activated = await _userRepository.ActivateUser(payment.Authority);
+            var activated = await _userRepository.ActivateUser(payment.UserId);
             if (!activated)
             {
                 payment.Status = PaymentStatus.Failed;
                 await _context.SaveChangesAsync();
-                return ServiceResult<Payment>.Fail("Payment verified but user activation failed.");
+                return ServiceResult<PaymentVerifiedDto>.Fail("Payment verified but user activation failed.");
             }
             await _context.SaveChangesAsync();
-            return ServiceResult<Payment>.Ok(payment);
+
+            var paymentDto = _mapper.Map<PaymentVerifiedDto>(payment);
+            return ServiceResult<PaymentVerifiedDto>.Ok(paymentDto);
         }
 
         payment.Status = PaymentStatus.Failed;
         await _context.SaveChangesAsync();
-        return ServiceResult<Payment>.Fail($"Verification failed: {result?.Errors?.Message ?? "Unknown"}");
+        return ServiceResult<PaymentVerifiedDto>.Fail($"Verification failed: {result?.Errors }");
     }
 
     public async Task<ServiceResult<int>> CalculateAmount(string key) {

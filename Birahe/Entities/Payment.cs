@@ -3,7 +3,7 @@ using Birahe.EndPoint.Constants.Enums;
 namespace Birahe.EndPoint.Entities;
 
 public class Payment : BaseEntity {
-    public int? UserId { get; set; }
+    public int UserId { get; set; }
     public virtual User? User { get; set; }
     public string Authority { get; set; } = null!;
     public int Amount { get; set; }
