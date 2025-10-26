@@ -17,6 +17,6 @@ public class UserConfigs : IEntityTypeConfiguration<User> {
         builder.Property(x => x.SerialNumber).HasMaxLength(100);
         builder.Property(x => x.BanReason).HasMaxLength(1000);
 
-        builder.HasQueryFilter(x => x.RemoveTime.HasValue == false && x.IsBanned == false && x.IsActive);
+        builder.HasQueryFilter(x => x.RemoveTime.HasValue == false && x.IsBanned == false);
     }
 }

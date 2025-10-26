@@ -22,7 +22,6 @@ public class DataBaseInitializer {
                 Passwordhashed = "12345678".Hash(),
                 Role = Role.Admin,
                 TeamName = "Admin Team",
-                IsActive = true
             });
         }
 

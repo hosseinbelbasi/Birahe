@@ -1,6 +1,7 @@
 using Birahe.EndPoint.Helpers.Extensions;
 using Birahe.EndPoint.Models.Dto.PaymentDto_s.Dto;
 using Birahe.EndPoint.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Birahe.EndPoint.Controllers;
@@ -14,23 +15,30 @@ public class PaymentController : ControllerBase {
         _paymentService = paymentService;
     }
 
-
+    [Authorize(Roles = "paymentpending")]
     [HttpPost("create")]
     public async Task<IActionResult> CreatePaymentAsync([FromBody] CreatePaymentDto createPaymentDto) {
-        var result = await _paymentService.CreatePaymentAsync(createPaymentDto);
+        var userId = User.GetUserId();
+        if (userId == -1) {
+            return BadRequest();
+        }
+        var result = await _paymentService.CreatePaymentAsync(userId , createPaymentDto);
         return this.MapServiceResult(result);
     }
 
-    [HttpGet("verify")]
-    public async Task<IActionResult> Verify([FromQuery] VerifyPaymentDto verifyPaymentDto) {
-        var result = await _paymentService.VerifyPaymentAsync(verifyPaymentDto);
+    [Authorize(Roles = "paymentpending")]
+    [HttpPost("verify")]
+    public async Task<IActionResult> Verify([FromBody] VerifyPaymentDto verifyPaymentDto) {
+        var userId = User.GetUserId();
+        if (userId == -1) {
+            return BadRequest();
+        }
+        var result = await _paymentService.VerifyPaymentAsync(userId ,verifyPaymentDto);
         return this.MapServiceResult(result);
     }
 
     [HttpPost("amount")]
     public async Task<IActionResult> VerifyDiscountCode([FromBody] GetFinalAmountDto dto) {
-
-
         var result = await _paymentService.CalculateAmount( dto.DiscountCode);
 
         return this.MapServiceResult(result);

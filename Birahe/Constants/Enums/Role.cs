@@ -1,6 +1,7 @@
 namespace Birahe.EndPoint.Enums;
 
 public enum Role {
-    User = 0,
-    Admin = 1
+    PaymentPending = 0,
+    User = 1,
+    Admin = 2
 }

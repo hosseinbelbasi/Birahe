@@ -16,7 +16,7 @@ namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+[Authorize(Roles = "user")]
 // [ContestTimeAuthorize("Contest")]
 public class ContestController : Controller {
     private readonly ContestService _contestService;

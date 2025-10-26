@@ -42,7 +42,7 @@ public class ApplicationContext : DbContext {
             .WithMany(u=> u.Payments)
             .HasForeignKey(p => p.UserId)
             .IsRequired(false)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
 
         base.OnModelCreating(modelBuilder);

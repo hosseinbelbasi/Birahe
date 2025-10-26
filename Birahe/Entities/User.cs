@@ -12,7 +12,7 @@ public class User : BaseEntity {
 
     public string SerialNumber { get; set; }
 
-    public Role Role { get; set; } = Role.User;
+    public Role Role { get; set; } = Role.PaymentPending;
 
     public bool IsBanned { get; set; } = false;
 
@@ -27,7 +27,7 @@ public class User : BaseEntity {
 
     public virtual ICollection<Payment> Payments { get; set; }
 
-    public bool IsActive { get; set; } = false;
+
 
     public User() {
         SerialNumber = Guid.NewGuid().ToString("N").Substring(0, 10);

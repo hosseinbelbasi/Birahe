@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Birahe.EndPoint.Constants.Enums;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
+using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Models.Dto;
 using Birahe.EndPoint.Models.Dto.AdminDto_s;
 using Microsoft.EntityFrameworkCore;
@@ -56,6 +57,13 @@ public class UserRepository {
         return await _context
             .Users
             .Include(u => u.Students)
+            .FirstOrDefaultAsync(user => user.Id == id);
+    }
+
+    public async Task<User?> FindNotActiveUser(int id) {
+        return await _context
+            .Users
+            .IgnoreQueryFilters()
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
@@ -146,23 +154,50 @@ public class UserRepository {
             .ToListAsync();
     }
 
-    public async Task<bool> ActivateUser(string authority) {
-        var payment = await _context.Payments.FirstOrDefaultAsync(p=> p.Authority == authority && p.Status == PaymentStatus.Pending);
-        if (payment == null || payment.UserId == null) {
+    public async Task<bool> ActivateUser(int userId)
+    {
+        var user = await FindNotActiveUser(userId);
+
+        if (user == null)
+        {
+            Console.WriteLine("log 2: user not found");
             return false;
         }
 
-        var userId = payment.UserId ?? -1;
-
-        var user = await FindUser(userId);
-
-        if (user == null) {
-            return false;
-        }
-
-        user.IsActive = true;
-        Update(user);
+        user.Role = Role.User;
+        Update(user); // your repository method to mark entity modified
         return true;
+    }
+
+    public async Task LogicalDelete(int userId) {
+
+        var user = await _context.Users.Include(u=>u.Students).AsTracking().FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (user == null)
+            return;
+
+        user.Username += "(Removed)";
+        user.TeamName += "(Removed)";
+
+        var students = user.Students;
+        if (user.Students != null)
+        {
+            foreach (var s in user.Students)
+            {
+                s.StudentNo += "(Removed)";
+                s.RemoveTime = DateTime.Now;
+            }
+        }
+
+        user.RemoveTime = DateTime.Now;
+
+        Update(user);
+
+        // var deletedCount = await _context.Users
+        //     .Where(u => u.Id == userId)
+        //     .ExecuteDeleteAsync();
+        //
+        // return deletedCount > 0;
     }
 
 
