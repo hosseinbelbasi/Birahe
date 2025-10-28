@@ -8,6 +8,5 @@ public class DiscountConfigs : IEntityTypeConfiguration<Discount> {
         builder.HasIndex(d => d.Key).IsUnique();
 
         builder.Property(d => d.Title).HasMaxLength(50);
-
     }
 }

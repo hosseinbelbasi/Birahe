@@ -1,8 +1,48 @@
 {
   "Files": [
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\base.html",
-      "PackagePath": "staticwebassets\\base.html"
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\IRAN Rounded-D2Kyv3j2.ttf",
+      "PackagePath": "staticwebassets\\assets\\IRAN Rounded-D2Kyv3j2.ttf"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\IRANSans-CVci-d31.woff",
+      "PackagePath": "staticwebassets\\assets\\IRANSans-CVci-d31.woff"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\IRANSans_Bold-GlQYWplM.woff",
+      "PackagePath": "staticwebassets\\assets\\IRANSans_Bold-GlQYWplM.woff"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\Titr Zebr-CChnj0mS.ttf",
+      "PackagePath": "staticwebassets\\assets\\Titr Zebr-CChnj0mS.ttf"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\W tahoma-CKi-rIv6.ttf",
+      "PackagePath": "staticwebassets\\assets\\W tahoma-CKi-rIv6.ttf"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\fa-solid-900-f4MajOib.ttf",
+      "PackagePath": "staticwebassets\\assets\\fa-solid-900-f4MajOib.ttf"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\index-DnbETm8I.css",
+      "PackagePath": "staticwebassets\\assets\\index-DnbETm8I.css"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\index-DokLIYTY.js",
+      "PackagePath": "staticwebassets\\assets\\index-DokLIYTY.js"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\bg.webm",
+      "PackagePath": "staticwebassets\\bg.webm"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\birahe.html",
+      "PackagePath": "staticwebassets\\birahe.html"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\cpg.png",
+      "PackagePath": "staticwebassets\\cpg.png"
     },
     {
       "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\css\\site.css",
@@ -11,6 +51,10 @@
     {
       "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
     },
     {
       "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\js\\site.js",
@@ -319,6 +363,10 @@
     {
       "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\teaser.mp4",
       "PackagePath": "staticwebassets\\static\\teaser.mp4"
+    },
+    {
+      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\vite.svg",
+      "PackagePath": "staticwebassets\\vite.svg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Birahe.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -71,7 +71,8 @@ public class UserService {
             Token = _jwtService.GenerateToken(user)
         };
 
-        return ServiceResult<SignupResultDto>.Ok(result, "ثبت نام با موفقیت انجام شد! بعد از پرداخت مبلغ حساب کاربری شما فعال خواهد شد");
+        return ServiceResult<SignupResultDto>.Ok(result,
+            "ثبت نام با موفقیت انجام شد! بعد از پرداخت مبلغ حساب کاربری شما فعال خواهد شد");
     }
 
     public async Task<ServiceResult<LoginResultDto>> LoginAsync(LoginDto loginDto) {
@@ -150,12 +151,12 @@ public class UserService {
     }
 
     public async Task<ServiceResult<string>> GetContestStartTimeAsync() {
-        var config = await _context.ContestConfigs.FirstOrDefaultAsync(cc=> cc.Key == "Contest");
+        var config = await _context.ContestConfigs.FirstOrDefaultAsync(cc => cc.Key == "Contest");
         if (config == null) {
             return ServiceResult<string>.Fail("هنوز زمان شروع مسابقه تایین نشده است", ErrorType.NotFound);
         }
 
-        var result = config.CreationDateTime.ToString("yyyy-MM-ddTHH:mm:ssK");
+        var result = config.StartTime.ToString("yyyy-MM-ddTHH:mm:ssK");
 
         return ServiceResult<string>.Ok(result);
     }

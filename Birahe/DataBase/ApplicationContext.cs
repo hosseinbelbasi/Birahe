@@ -38,8 +38,8 @@ public class ApplicationContext : DbContext {
             .OnDelete(DeleteBehavior.Restrict);
         // Payment to User
         modelBuilder.Entity<Payment>()
-            .HasOne(p=> p.User)
-            .WithMany(u=> u.Payments)
+            .HasOne(p => p.User)
+            .WithMany(u => u.Payments)
             .HasForeignKey(p => p.UserId)
             .IsRequired(false)
             .OnDelete(DeleteBehavior.Cascade);

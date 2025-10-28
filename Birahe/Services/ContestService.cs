@@ -152,13 +152,13 @@ public class ContestService {
         // rate limiting for submitting answers
 
         var minInterval = TimeSpan.FromMinutes(5);
-        if (ciExists.LastTryDateTime.HasValue && DateTime.Now - ciExists.LastTryDateTime.Value < minInterval) {
+        if (ciExists.LastTryDateTime.HasValue && DateTime.UtcNow - ciExists.LastTryDateTime.Value < minInterval) {
             return ServiceResult.Fail(
                 $"لطفا قبل از ارسال جواب بعدی {minInterval.TotalSeconds} دقیقه صبر کنید."
             );
         }
 
-        ciExists.LastTryDateTime = DateTime.Now;
+        ciExists.LastTryDateTime = DateTime.UtcNow;
         ciExists.Tries += 1;
         ciExists.LastAnswer = submitAnswerDto.Answer;
 

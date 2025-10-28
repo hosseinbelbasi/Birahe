@@ -18,7 +18,7 @@ public static class ServiceResultHelper {
         };
 
         var problem = new ProblemDetails {
-            Type = $"https://birahe.com/Errors/{result.Error.ToString().ToLower()}",
+            Type = $"https://birahe.com/errors/{result.Error.ToString().ToLower()}",
             Title = result.Message,
             Status = statusCode,
             Detail = result.Detail ?? "An error occurred.",
@@ -47,7 +47,7 @@ public static class ServiceResultHelper {
         };
 
         var problem = new ProblemDetails {
-            Type = $"https://birahe.com/Errors/{result.Error.ToString().ToLower()}",
+            Type = $"https://birahe.com/errors/{result.Error.ToString().ToLower()}",
             Title = result.Message,
             Status = statusCode,
             Detail = result.Detail ?? "An error occurred.",

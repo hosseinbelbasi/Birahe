@@ -28,7 +28,7 @@ public class ContestRepository {
         var ci = new ContestItem() {
             User = user,
             Riddle = riddle,
-            OpeningDateTime = DateTime.Now,
+            OpeningDateTime = DateTime.UtcNow,
         };
 
         await _context.ContestItems.AddAsync(ci);
@@ -36,7 +36,7 @@ public class ContestRepository {
 
     public void OpenHint(ContestItem contestItem) {
         contestItem.HasOpenedHint = true;
-        contestItem.OpeningHintDateTime = DateTime.Now;
+        contestItem.OpeningHintDateTime = DateTime.UtcNow;
     }
 
     public async Task<List<RiddleWithStatusDto>?> GetAllRiddlesWithStatusAsync(int userId) {
@@ -90,8 +90,8 @@ public class ContestRepository {
         ci.Tries += 1;
         ci.IsSolved = success;
         ci.LastAnswer = answer;
-        ci.LastTryDateTime = DateTime.Now;
-        ci.SolvingDateTime = success ? DateTime.Now : null;
+        ci.LastTryDateTime = DateTime.UtcNow;
+        ci.SolvingDateTime = success ? DateTime.UtcNow : null;
 
         ci.User.SolvedRiddles++;
     }

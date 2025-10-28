@@ -57,6 +57,7 @@ public class UserRepository {
         return await _context
             .Users
             .Include(u => u.Students)
+            .Include(u => u.Payments)
             .FirstOrDefaultAsync(user => user.Id == id);
     }
 
@@ -68,7 +69,7 @@ public class UserRepository {
     }
 
     public void Update(User user) {
-        user.ModificationDateTime = DateTime.Now;
+        user.ModificationDateTime = DateTime.UtcNow;
         _context.Users.Update(user);
     }
 
@@ -80,7 +81,7 @@ public class UserRepository {
 
     public void ChangeUsername(User user, string newUsername) {
         user!.Username = newUsername;
-        user.ModificationDateTime = DateTime.Now;
+        user.ModificationDateTime = DateTime.UtcNow;
 
         Update(user);
     }
@@ -107,7 +108,7 @@ public class UserRepository {
     public void BanUser(User user, string banReason) {
         user.IsBanned = true;
         user.BanReason = banReason;
-        user.BanDateTime = DateTime.Now;
+        user.BanDateTime = DateTime.UtcNow;
 
         Update(user);
     }
@@ -154,12 +155,10 @@ public class UserRepository {
             .ToListAsync();
     }
 
-    public async Task<bool> ActivateUser(int userId)
-    {
+    public async Task<bool> ActivateUser(int userId) {
         var user = await FindNotActiveUser(userId);
 
-        if (user == null)
-        {
+        if (user == null) {
             Console.WriteLine("log 2: user not found");
             return false;
         }
@@ -170,8 +169,7 @@ public class UserRepository {
     }
 
     public async Task LogicalDelete(int userId) {
-
-        var user = await _context.Users.Include(u=>u.Students).AsTracking().FirstOrDefaultAsync(u => u.Id == userId);
+        var user = await _context.Users.Include(u => u.Students).AsTracking().FirstOrDefaultAsync(u => u.Id == userId);
 
         if (user == null)
             return;
@@ -180,16 +178,14 @@ public class UserRepository {
         user.TeamName += "(Removed)";
 
         var students = user.Students;
-        if (user.Students != null)
-        {
-            foreach (var s in user.Students)
-            {
+        if (user.Students != null) {
+            foreach (var s in user.Students) {
                 s.StudentNo += "(Removed)";
-                s.RemoveTime = DateTime.Now;
+                s.RemoveTime = DateTime.UtcNow;
             }
         }
 
-        user.RemoveTime = DateTime.Now;
+        user.RemoveTime = DateTime.UtcNow;
 
         Update(user);
 
@@ -199,6 +195,4 @@ public class UserRepository {
         //
         // return deletedCount > 0;
     }
-
-
 }

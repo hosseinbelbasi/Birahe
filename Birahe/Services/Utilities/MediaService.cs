@@ -69,18 +69,15 @@ public class MediaService {
         return ServiceResult<(byte[], string)>.Ok((bytes, contentType));
     }
 
-    private MediaType DetectMediaType(string ext) => ext switch
-    {
+    private MediaType DetectMediaType(string ext) => ext switch {
         ".jpg" or ".jpeg" or ".png" or ".webp" or ".gif" => MediaType.Image,
         ".mp3" or ".wav" or ".ogg" or ".m4a" or ".flac" or ".aac" => MediaType.Audio,
         _ => MediaType.Unknown
     };
 
-    private string GetContentType(string path)
-    {
+    private string GetContentType(string path) {
         var ext = Path.GetExtension(path).ToLowerInvariant();
-        return ext switch
-        {
+        return ext switch {
             ".jpg" or ".jpeg" => "image/jpeg",
             ".png" => "image/png",
             ".webp" => "image/webp",

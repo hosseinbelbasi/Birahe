@@ -6,8 +6,7 @@ namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
 [Authorize]
-// [ContestTimeAuthorize("FinalContest")]
+[ContestTimeAuthorize("FinalContest")]
 [Route("api/[controller]")]
 public class FinalContestController : ControllerBase {
-
 }

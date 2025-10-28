@@ -14,7 +14,7 @@ public static class ExceptionHandlerExtensions {
                 var exceptionMessage = exceptionHandlerFeature?.Error.Message ?? "An unexpected error occurred.";
 
                 var problem = new ProblemDetails {
-                    Type = "https://birahe.com/Errors/server-error",
+                    Type = "https://birahe.com/errors/server-error",
                     Title = "An unexpected error occurred",
                     Status = StatusCodes.Status500InternalServerError,
                     Detail = exceptionMessage, // optional: can keep generic if you don't want real error exposed

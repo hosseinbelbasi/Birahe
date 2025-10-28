@@ -2,7 +2,7 @@ namespace Birahe.EndPoint.Entities;
 
 public class BaseEntity {
     public BaseEntity() {
-        CreationDateTime = DateTime.Now;
+        CreationDateTime = DateTime.UtcNow;
     }
 
     public int Id { get; set; }

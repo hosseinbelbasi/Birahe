@@ -20,13 +20,11 @@ public class PaymentRepository {
     }
 
     public void Update(Payment payment) {
-        payment.ModificationDateTime = DateTime.Now;
+        payment.ModificationDateTime = DateTime.UtcNow;
         _context.Payments.Update(payment);
     }
 
     public async Task<Discount?> FindDiscount(string key) {
         return await _context.Discounts.FirstOrDefaultAsync(d => d.Key == key);
     }
-
-
 }

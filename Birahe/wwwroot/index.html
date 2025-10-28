@@ -9,960 +9,1023 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vazirmatn:wght@400;700&display=swap">
 
     <style>
-            
+
         @font-face {
-          font-family: 'Zebr';
-          src: url('static/fonts/TitrZebr.woff2') format('woff2'),
-               url('static/fonts/TitrZebr.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
+            font-family: 'Zebr';
+            src: url('static/fonts/TitrZebr.woff2') format('woff2'),
+            url('static/fonts/TitrZebr.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
+
         @font-face {
-          font-family: 'IranRounded';
-          src: url('static/fonts/IRANRounded.woff2') format('woff2'),
-               url('static/fonts/IRANRounded.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
+            font-family: 'IranRounded';
+            src: url('static/fonts/IRANRounded.woff2') format('woff2'),
+            url('static/fonts/IRANRounded.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
-        
+
         .teaser {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
         }
-        
+
         .teaser-player {
-            max-width: 1040px;      
-            margin: 2rem auto;      
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            max-width: 1040px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             border-radius: 8px;
             overflow: hidden;
-          }
-          .teaser-player video {
-            width: 100%;            
-            height: auto;           
-            display: block;
-          }
-        .logo-section {
-          background-color: black;
-          padding: 40px 0 200px; 
-          text-align: center;
-          position: relative;
         }
-        
-        .site-logo {
-          max-width: 700px;
-          width: 80%;
-          height: auto;
-          display: inline-block;
-          transition: transform 0.3s ease;
-          margin-bottom: 40px;
-        }
-        
-        .site-logo:hover {
-          transform: scale(1.05);
-        }
-        
-        .photo-arrange {
-          max-width: 700px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: center;
-          gap: 60px; 
-        }
-        
-        .photo {
-          width: 90px;
-          height: auto;
-          position: relative;
-          background: none; 
-          transform-origin: center bottom;
-          transition: transform 0.3s ease;
-          cursor: pointer;
-        }
-        
-        .photo-arrange img:nth-child(1) {
-          transform: translateY(-60px) rotate(-20deg);
-        }
-        
-        .photo-arrange img:nth-child(2) {
-          transform: translateY(-40px) rotate(-10deg);
-        }
-        
-        .photo-arrange img:nth-child(3) {
-          transform: translateY(0) rotate(5deg);
-        }
-        
-        .photo-arrange img:nth-child(4) {
-          transform: translateY(-40px) rotate(15deg);
-        }
-        
-        .photo-arrange img:nth-child(5) {
-          transform: translateY(-60px) rotate(-5deg);
-        }
-        
-        .photo:hover {
-          transform: scale(1.1);
-          z-index: 10;
-        }
-        
-        
-        @media (max-width: 767px) {
-          .photo-arrange {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-          }
-          .photo {
-            width : 60px !important;
-          }
-          
-          .photo-arrange img:nth-child(2),
-          .photo-arrange img:nth-child(3),
-          .photo-arrange img:nth-child(4) {
-            flex: 0 0 auto;
-            order: 2;
-            margin: 0 10px;
-          }
-      
-      
-          .photo-arrange img:nth-child(1),
-          .photo-arrange img:nth-child(5) {
-            flex: 0 0 auto;
-            order: 1;
-            margin-top: 30px;
-          }
-          .photo-arrange img:nth-child(5){
-            margin-right : 20px;
-          }
-      
-          .photo-arrange img:nth-child(2) {
-            transform: rotate(-10deg);
-          }
-      
-          .photo-arrange img:nth-child(3) {
-            transform: rotate(5deg);
-          }
-      
-          .photo-arrange img:nth-child(4) {
-            transform: rotate(15deg);
-          }
-      
-          
-          .photo-arrange img:nth-child(1) {
-            transform: rotate(-15deg);
-          }
-      
-          .photo-arrange img:nth-child(5) {
-            transform: rotate(15deg);
-          }
-      
-          .site-logo {
-            width: 70%;
-            max-width: 300px;
-            margin-bottom: 30px;
-          }
-        }
-        
-        
-        
-        .prize-section {
-          padding: 60px 20px;
-          background-color: #000;
-          color: #ff2b2b;
-          text-align: center;
-          font-family: 'IRANRounded', sans-serif;
-        }
-        
-        .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
-          margin-bottom: 20px;
-          color: #ff2b2b;
-        }
-        
-        .prize-item.main-prize {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-bottom: 50px;
-        }
-        
-        .prize-item.main-prize .prize-img img {
-          width: 150px;
-          margin-bottom: 10px;
-        }
-        
-        .amount {
-          font-size: 2rem;
-          font-weight: 800;
-          margin-bottom: 5px;
-        }
-        
-        .label {
-          font-size: 1rem;
-          color: #e6e6e6;
-        }
-        
-        .prize-sub-container {
-          display: flex;
-          flex-direction: row; 
-          gap: 200px; 
-          justify-content: center; 
-          margin-top: 20px;
-        }
-        
-        .prize-item.sub-prize {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .prize-item.sub-prize .prize-img img {
-          width: 100px;
-          height: 100px;
-          object-fit: cover;
-          margin-bottom: 8px;
-        }
-        
-        
-        .prize-center-img {
-          margin: 30px 0;
-          display: flex;
-          justify-content: center;
-        }
-        
-        .prize-center-img img {
-          width: 500px;
-          height: 500px;
-          object-fit: cover;
-        }
-        
-        .tagline {
-          margin-top: 30px;
-          font-size: 1.2rem;
-          color: #ffdede;
-          font-weight: 600;
-          padding: 10px 20px;
-          border-radius: 20px;
-          background: rgba(255, 43, 43, 0.08);
-        }
-        
-        @media (max-width: 768px) {
-          .prize-sub-container {
-            flex-direction: column; 
-            gap: 40px; 
-          }
-          .prize-item.main-prize .prize-img img {
-            width: 120px;
-          }
-          .prize-item.sub-prize .prize-img img {
-            width: 90px;
-            height: 90px;
-          }
-          .prize-center-img img {
-            width: 340px;
-            height: 340px;
-          }
-          .amount {
-            font-size: 1.6rem;
-          }
-          .tagline {
-            font-size: 1rem;
-            padding: 8px 15px;
-          }
-        }
-        
-        @media (max-width: 360px) {
-          .prize-item.main-prize .prize-img img {
-            width: 100px;
-          }
-          .prize-item.sub-prize .prize-img img {
-            width: 80px;
-            height: 80px;
-          }
-          .prize-center-img img {
-            width: 280px;
-            height: 280px;
-          }
-          .amount {
-            font-size: 1.4rem;
-          }
-          .tagline {
-            font-size: 0.95rem;
-            padding: 6px 12px;
-          }
-        }
-        
-        
-        
-        .competition-info {
-        background-color: #000;
-        color: #fff;
-        padding: 80px 20px;
-        font-family: 'IRANRounded', sans-serif;
-        text-align: center;
-        }
-        
-        
-        .info-title {
-        font-family : 'Zebr','Zebr';
-        font-size: 2.8rem;
-        color: #fff;
-        margin-bottom: 50px;
-        text-shadow: 0 0 15px #ffffff55;
-        }
-        
-        
-        
-        .description-section {
-          position: relative;
-          background-color: #0a0a0a;
-          color: #fff;
-          padding: 60px 20px;
-          font-family: 'IRANRounded', sans-serif;
-          overflow: hidden;
-        }
-        
-        .description-container {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 20px;
-          max-width: 1000px;
-          margin: 0 auto;
-          position: relative;
-        }
-        .description-image {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          z-index: 1;
-          transition: transform 0.5s ease;
-        }
-        
-        .description-image img {
-          width: 100%;
-          max-width: 400px;
-          border-radius: 12px;
-          transform: rotate(-3deg) translateY(-10px);
-          box-shadow: 0 8px 30px rgba(255,255,255,0.15);
-        }
-        
-        .description-image img:hover {
-          transform: rotate(0deg) translateY(-5px);
-        }
-        .description-text {
-          flex: 1;
-          background: rgba(0,0,0,0.65);
-          padding: 30px 25px;
-          border-radius: 12px;
-          z-index: 2;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .description-text p {
-          font-size: 16px;
-          line-height: 1.6;
-          margin-bottom: 15px;
-          color: #fff;
-          min-height: 24px;
-        }
-        
-        .description-text p.highlight {
-          color: #ff2b2b;
-          font-weight: 700;
-          text-shadow: 0 0 10px #ff2b2b88;
-        }
-        
-        .description-text .glow {
-          color: #ff4040;
-          text-shadow: 0 0 12px #ff4040aa, 0 0 25px #ff2b2b55;
-          font-weight: 700;
-        }
-        
-        @media (max-width: 768px) {
-          .description-container {
-            flex-direction: column;
-            text-align: center;
-          }
-      
-          .description-image img {
-            max-width: 80%;
-            transform: rotate(0deg) translateY(0);
-          }
-      
-          .description-text {
-            padding: 20px 15px;
-          }
-      
-          .description-text p {
-            font-size: 15px;
-          }
-        }
-        
-        @media (max-width: 360px) {
-          .description-image img {
-            max-width: 75%;
-          }
-      
-          .description-text {
-            padding: 15px 10px;
-          }
-      
-          .description-text p {
-            font-size: 14px;
-          }
-        }
-        
-        
-        .btn.text-danger {
-        color: #dc3545 !important;
-        border: 1px solid #dc3545;
-        transition: background-color 0.3s, color 0.3s;
-        }
-        .btn.text-danger:hover {
-        background-color: #dc3545;
-        color: white !important;
-        }
-        .nav-link {
-        transition: color 0.3s;
-        }
-        .nav-link:hover {
-        color: #dc3545 !important;
-        }
-        
-        #navbarNav {
-        direction: rtl;
-        }
-        html{
-        scroll-behaviour : smooth;
-        }
-        .navbar-nav {
-        padding-left: 0;
-        text-align: right;
-        }
-        
-        
-        
-        
-        @media (max-width: 991.98px) {
-        #navbarNav {
-        width: 100%;
-        margin-top: 0.5rem;
-        }
-        }
-        body {
-        background-color: black !important;
-        color: #fff;
-        font-family: '/Zebr', sans-serif;
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
-        }
-        
-        .timeline {
-        position: relative;
-        max-width: 900px;
-        margin: 3rem auto;
-        padding: 2rem 0;
-        }
-        
-        .timeline::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        width: 4px;
-        background: white;
-        transform: translateX(-50%);
-        border-radius: 2px;
-        box-shadow: 0 0 10px #fff8;
-        z-index: 0;
-        }
-        
-        .timeline-item {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 2.5rem 0;
-        width: 100%;
-        padding: 0 5px;
-        box-sizing: border-box;
-        }
-        
-        .left-text {
-        flex: 1 1 auto;
-        max-width: 45%;
-        text-align: right;
-        color: white;
-        font-weight: 700;
-        font-size: 1.3rem;
-        padding-right: 10px;
-        user-select: none;
-        white-space: nowrap;
-        }
-        
-        .circle {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        background-color: #ff2b2b;
-        border-radius: 50%;
-        box-shadow: 0 0 12px rgba(255, 43, 43, 0.8), 0 0 25px rgba(255, 43, 43, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 20px;
-        z-index: 10;
-        }
-        
-        .right-text {
-        flex: 0 0 auto;
-        max-width: 45px;
-        text-align: left;
-        color: white;
-        font-weight: 700;
-        font-size: 0.5rem;
-        user-select: none;
-        white-space: nowrap;
-        padding-left: 10px;
-        }
-        
-        .timeline-item:nth-child(2) .left-text{
-        margin-left : 50px !important;
-        }
-        .timeline-item:nth-child(2) .right-text{
-        margin-right : 10px !important;
-        margin-left : 100px !important;
-        
-        }
-        
-        .timeline-item:nth-child(3) .right-text{
-        margin-left : 100px !important;
-        }
-        .timeline-item:nth-child(3) .left-text{
-        
-        margin-left : 40px !important;
-        margin-right : 20px !important;
-        }
-        .timeline-item:nth-child(4) .right-text{
-        margin-left : 60px !important;
-        margin-right : 10px !important;
-        
-        }
-        @media (max-width: 600px) {
-        .timeline {
-        max-width: 320px; 
-        margin: 2rem auto;
-        padding: 1rem 0;
-        }
-        
-        .timeline::before {
-        width: 3px;
-        box-shadow: 0 0 8px #fff8;
-        }
-        
-        .timeline-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 1.5rem 0;
-        padding: 0 5px;
-        position: relative;
-        }
-        
-        .circle {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 0 8px rgba(255, 43, 43, 0.7),
-        inset 0 0 6px rgba(255, 255, 255, 0.5);
-        z-index: 10;
-        }
-        .timeline-item:nth-child(1) .right-text,
-        .timeline-item:nth-child(2) .right-text {
-        margin-left: 42px !important;
-        }
-        
-        
-        .timeline-item:nth-child(1) .left-text{
-          margin-right : 45px !important;
-        }
-        .timeline-item:nth-child(2) .right-text{
-        margin-right : 45px !important;
-        }
-        .timeline-item:nth-child(2) .left-text{
-        margin-left : 25px !important;
-        margin-right : 5px !important;
-        
-        }
-        .timeline-item:nth-child(3) .right-text{
-        margin-left : 60px !important;
-        }
-        .timeline-item:nth-child(3) .left-text{
-        margin-right : 80px !important;
-        }
-        .timeline-item:nth-child(4) .right-text{
-        margin-right : 5px !important;
-        }
-        .timeline-item:nth-child(4) .left-text{
-        margin-right : 90px !important;
-        }
-        .timeline-item:nth-child(2) .left-text,
-        .timeline-item:nth-child(3) .left-text,
-        .timeline-item:nth-child(4) .left-text {
-        margin-right: 60px ;
-        }
-        
-        
-        .timeline-item:nth-child(2) .right-text{
-        margin-right : 18px !important;
-        margin-left : 30px !important;
-        }
-        
-        .timeline-item:nth-child(3) .left-text{
-        margin-left : 30px !important;
-        margin-right : 90px !important;
-        }
-        .timeline-item:nth-child(3) .right-text{
-          margin-left : 90px !important;
-        }
-        .timeline-item:nth-child(4) .left-text{
-        margin-left : 19px !important;
-        }
-        .timeline-item:nth-child(4) .right-text{
-        margin-left : 100px !important;
-        }
-        .left-text {
-        flex: 1 1 auto;
-        max-width: 38%; 
-        padding-left: 55px; 
-        font-size: 0.9rem;
-        text-align: right;
-        white-space: normal; 
-        color: white;
-        font-weight: 600;
-        user-select: none;
-        }
-        
-        .right-text {
-        flex: 0 0 auto;
-        max-width: 60px; 
-        padding-left: 10px;
-        font-size: 0.1rem !important;
-        text-align: left;
-        color: white;
-        font-weight: 600;
-        white-space: normal; 
-        user-select: none;
-        }
-        
-        
-        .left-text.ms-2,
-        .right-text.ms-5 {
-        margin: 0 !important;
-        padding: 0 !important;
-        }
-        }
-        
-        #countdown-section {
-          background-color: #000;
-          padding: 80px 20px;
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-        }
-        
-        .timer-container {
-          color: #fff;
-          font-family: 'Vazirmatn', sans-serif;
-        }
-        
-        .timer-title {
-          font-family : 'Zebr' !important;
-          font-size: 2rem;
-          color: white;
-          margin-bottom: 40px;
-        }
-        
-        .countdown {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 40px;
-          flex-wrap: wrap;
-        }
-        
-        .time-box {
-          background-color: #111;
-          border: 5px solid #ff2b2b;
-          border-radius: 14px;
-          width: 120px;
-          height: 120px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 0 25px #ff2b2b99, inset 0 0 10px #ff2b2b55;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .time-box:hover {
-          transform: scale(1.05);
-          box-shadow: 0 0 35px #ff2b2bcc, inset 0 0 15px #ff2b2b66;
-        }
-        
-        .time {
-          font-size: 2.5rem;
-          font-weight: bold;
-          color: #ff4040;
-          text-shadow: 0 0 25px #ff2b2b;
-        }
-        
-        .label {
-          font-family : 'IRANRounded' !important;
-          font-size: 1rem;
-          color: #eaeaea;
-          margin-top: 5px;
-        }
-        
-        .motivation {
-          margin-top: 35px;
-          font-size: 1.15rem;
-          font-family : 'IRANRounded' !important;
-          color: #ffcccc;
-          text-shadow: 0 0 10px #ff2b2b55;
-          font-weight: 600;
-          animation: fadeIn 2s ease-in-out;
-        }
-        
-        .start-message {
-          color: #ff2b2b;
-          font-size: 2rem;
-          font-weight: bold;
-          text-shadow: 0 0 30px #ff2b2b, 0 0 10px #ff2b2b88;
-          animation: blink 1.2s infinite ease-in-out;
-          margin-top: 25px;
-        }
-        
-        @keyframes glowPulse {
-          0%, 100% { text-shadow: 0 0 15px #ff2b2b, 0 0 25px #ff2b2b44; }
-          50% { text-shadow: 0 0 35px #ff2b2b, 0 0 50px #ff2b2b88; }
-        }
-        
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes blink {
-          0%, 100% { opacity: 1; text-shadow: 0 0 30px #ff2b2b, 0 0 60px #ff0000; }
-          50% { opacity: 0.6; text-shadow: 0 0 15px #ff2b2b, 0 0 25px #ff5555; }
-        }
-        @media (max-width: 768px) {
-          .time-box {
-            width: 90px;
-            height: 90px;
-            border-width: 4px;
-          }
-          .time {
-            font-size: 2rem;
-          }
-          .label {
-            font-size: 0.9rem;
-          }
-          .timer-title {
-            font-size: 1.4rem;
-          }
-          .motivation {
-            font-size: 1rem;
-          }
-          .start-message {
-            font-size: 1.5rem;
-          }
-        }
-        
-        
-        .red-black-accordion .accordion-item {
-          background-color: #000;
-          margin-bottom: 1rem;
-          border: none;
-        }
-        
-        .red-black-accordion .accordion-button {
-          background-color: #000;
-          color: white;
-          font-weight: 500;
-          transition: all 0.3s ease;
-          box-shadow: none;
-          border: none;
-          text-align: right;        
-          padding-right: 1.5rem;    
-          padding-left: 2.5rem;     
-          direction: rtl;           
-        }
-        .accordion-item:nth-child(4) .accordion-button{
-            padding-right: 0.7rem !important;    
-        
-        }
-        
-        .red-black-accordion .accordion-button:hover {
-          color: #dc3545;
-          background-color: #111;
-        }
-        
-        .red-black-accordion .accordion-button:not(.collapsed) {
-          color: #dc3545;
-          background-color: #111;
-          box-shadow: 0 0 10px rgba(220, 53, 69, 0.6);
-        }
-        
-        .red-black-accordion .accordion-button:focus {
-          box-shadow: none;
-        }
-        .red-black-accordion .accordion-button::after {
-          margin-left: auto;
-          margin-right: 0;
-          transform: rotate(0deg);
-        }
-        
-        .red-black-accordion .accordion-button:not(.collapsed)::after {
-          transform: rotate(180deg);
-        }
-        
-        .red-black-accordion .accordion-body {
-          color: white;
-          background-color: #000;
-          padding: 1.25rem;
-          text-align: right;
-          direction: rtl;
-        }
-        
-        .faq-line {
-          border: none;
-          height: 1px;
-          background-color: transparent;
-          margin: 1rem 0;
-        }
-        .red-section {
-        background-color: red;
-        color: #f8f9fa; 
-        text-align: center;
-        padding: 3rem 1rem;
-        }
-        .footer-section {
-          background-color: #000;
-          color: #fff;
-          padding: 2rem 1rem;
-          font-family: 'IRANRounded', sans-serif;
-        }
-        
-        .footer-logos-container {
-          gap: 10px; 
-          flex-wrap: nowrap;
-          display: flex; 
-        }
-        
-        .footer-logo-part {
-          max-width: 70px; 
-          height: auto;
-          display: inline-block;
-        }
-        
-        
-        .footer-logo {
-          max-width: 300px;
-          height: auto;
-        }
-        
-        @media (max-width: 344px) {
-          .footer-logo {
-            width: 300px;
+
+        .teaser-player video {
+            width: 100%;
             height: auto;
-          }
+            display: block;
         }
-        
-        .footer-text {
-          color: #fff;
-          font-size: 0.95rem;
-          margin: 0;
+
+        .logo-section {
+            background-color: black;
+            padding: 40px 0 200px;
+            text-align: center;
+            position: relative;
         }
-        
-        .footer-text2 {
-          margin-left: 1rem;
+
+        .site-logo {
+            max-width: 700px;
+            width: 80%;
+            height: auto;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin-bottom: 40px;
         }
-        
-        .footer-link {
-          color: #fff;
-          text-decoration: none;
-          margin: 0 0.5rem;
-          font-size: 0.9rem;
-          display: inline-block;
-          transition: color 0.3s ease, text-shadow 0.3s ease;
+
+        .site-logo:hover {
+            transform: scale(1.05);
         }
-        
-        .footer-link:hover {
-          color: #dc3545;
-          text-shadow: 0 0 6px rgba(220, 53, 69, 0.5);
+
+        .photo-arrange {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
         }
-        
-        .footer-link i {
-          margin-left: 0.3rem;
+
+        .photo {
+            width: 90px;
+            height: auto;
+            position: relative;
+            background: none;
+            transform-origin: center bottom;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
-        
-        
-        
+
+        .photo-arrange img:nth-child(1) {
+            transform: translateY(-60px) rotate(-20deg);
+        }
+
+        .photo-arrange img:nth-child(2) {
+            transform: translateY(-40px) rotate(-10deg);
+        }
+
+        .photo-arrange img:nth-child(3) {
+            transform: translateY(0) rotate(5deg);
+        }
+
+        .photo-arrange img:nth-child(4) {
+            transform: translateY(-40px) rotate(15deg);
+        }
+
+        .photo-arrange img:nth-child(5) {
+            transform: translateY(-60px) rotate(-5deg);
+        }
+
+        .photo:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+
         @media (max-width: 767px) {
-          .footer-logos-container {
-            justify-content: center !important;
-            margin-bottom: 20px;
-            flex-wrap: nowrap;
-          }
-      
-          .footer-logo-part {
-            max-width: 100px; 
-          }
+            .photo-arrange {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 40px;
+            }
+
+            .photo {
+                width: 60px !important;
+            }
+
+            .photo-arrange img:nth-child(2),
+            .photo-arrange img:nth-child(3),
+            .photo-arrange img:nth-child(4) {
+                flex: 0 0 auto;
+                order: 2;
+                margin: 0 10px;
+            }
+
+
+            .photo-arrange img:nth-child(1),
+            .photo-arrange img:nth-child(5) {
+                flex: 0 0 auto;
+                order: 1;
+                margin-top: 30px;
+            }
+
+            .photo-arrange img:nth-child(5) {
+                margin-right: 20px;
+            }
+
+            .photo-arrange img:nth-child(2) {
+                transform: rotate(-10deg);
+            }
+
+            .photo-arrange img:nth-child(3) {
+                transform: rotate(5deg);
+            }
+
+            .photo-arrange img:nth-child(4) {
+                transform: rotate(15deg);
+            }
+
+
+            .photo-arrange img:nth-child(1) {
+                transform: rotate(-15deg);
+            }
+
+            .photo-arrange img:nth-child(5) {
+                transform: rotate(15deg);
+            }
+
+            .site-logo {
+                width: 70%;
+                max-width: 300px;
+                margin-bottom: 30px;
+            }
         }
-        
+
+
+        .prize-section {
+            padding: 60px 20px;
+            background-color: #000;
+            color: #ff2b2b;
+            text-align: center;
+            font-family: 'IRANRounded', sans-serif;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ff2b2b;
+        }
+
+        .prize-item.main-prize {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .prize-item.main-prize .prize-img img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .amount {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .label {
+            font-size: 1rem;
+            color: #e6e6e6;
+        }
+
+        .prize-sub-container {
+            display: flex;
+            flex-direction: row;
+            gap: 200px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .prize-item.sub-prize {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .prize-item.sub-prize .prize-img img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+
+
+        .prize-center-img {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .prize-center-img img {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .tagline {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #ffdede;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: rgba(255, 43, 43, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .prize-sub-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .prize-item.main-prize .prize-img img {
+                width: 120px;
+            }
+
+            .prize-item.sub-prize .prize-img img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .prize-center-img img {
+                width: 340px;
+                height: 340px;
+            }
+
+            .amount {
+                font-size: 1.6rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .prize-item.main-prize .prize-img img {
+                width: 100px;
+            }
+
+            .prize-item.sub-prize .prize-img img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .prize-center-img img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .amount {
+                font-size: 1.4rem;
+            }
+
+            .tagline {
+                font-size: 0.95rem;
+                padding: 6px 12px;
+            }
+        }
+
+
+        .competition-info {
+            background-color: #000;
+            color: #fff;
+            padding: 80px 20px;
+            font-family: 'IRANRounded', sans-serif;
+            text-align: center;
+        }
+
+
+        .info-title {
+            font-family: 'Zebr', 'Zebr';
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px #ffffff55;
+        }
+
+
+        .description-section {
+            position: relative;
+            background-color: #0a0a0a;
+            color: #fff;
+            padding: 60px 20px;
+            font-family: 'IRANRounded', sans-serif;
+            overflow: hidden;
+        }
+
+        .description-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .description-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .description-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            transform: rotate(-3deg) translateY(-10px);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .description-image img:hover {
+            transform: rotate(0deg) translateY(-5px);
+        }
+
+        .description-text {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.65);
+            padding: 30px 25px;
+            border-radius: 12px;
+            z-index: 2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .description-text p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #fff;
+            min-height: 24px;
+        }
+
+        .description-text p.highlight {
+            color: #ff2b2b;
+            font-weight: 700;
+            text-shadow: 0 0 10px #ff2b2b88;
+        }
+
+        .description-text .glow {
+            color: #ff4040;
+            text-shadow: 0 0 12px #ff4040aa, 0 0 25px #ff2b2b55;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .description-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .description-image img {
+                max-width: 80%;
+                transform: rotate(0deg) translateY(0);
+            }
+
+            .description-text {
+                padding: 20px 15px;
+            }
+
+            .description-text p {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .description-image img {
+                max-width: 75%;
+            }
+
+            .description-text {
+                padding: 15px 10px;
+            }
+
+            .description-text p {
+                font-size: 14px;
+            }
+        }
+
+
+        .btn.text-danger {
+            color: #dc3545 !important;
+            border: 1px solid #dc3545;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn.text-danger:hover {
+            background-color: #dc3545;
+            color: white !important;
+        }
+
+        .nav-link {
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #dc3545 !important;
+        }
+
+        #navbarNav {
+            direction: rtl;
+        }
+
+        html {
+            scroll-behaviour: smooth;
+        }
+
+        .navbar-nav {
+            padding-left: 0;
+            text-align: right;
+        }
+
+
+        @media (max-width: 991.98px) {
+            #navbarNav {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+        }
+
+        body {
+            background-color: black !important;
+            color: #fff;
+            font-family: '/Zebr', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: white;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px #fff8;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2.5rem 0;
+            width: 100%;
+            padding: 0 5px;
+            box-sizing: border-box;
+        }
+
+        .left-text {
+            flex: 1 1 auto;
+            max-width: 45%;
+            text-align: right;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding-right: 10px;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .circle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: #ff2b2b;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(255, 43, 43, 0.8), 0 0 25px rgba(255, 43, 43, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            z-index: 10;
+        }
+
+        .right-text {
+            flex: 0 0 auto;
+            max-width: 45px;
+            text-align: left;
+            color: white;
+            font-weight: 700;
+            font-size: 0.5rem;
+            user-select: none;
+            white-space: nowrap;
+            padding-left: 10px;
+        }
+
+        .timeline-item:nth-child(2) .left-text {
+            margin-left: 50px !important;
+        }
+
+        .timeline-item:nth-child(2) .right-text {
+            margin-right: 10px !important;
+            margin-left: 100px !important;
+
+        }
+
+        .timeline-item:nth-child(3) .right-text {
+            margin-left: 100px !important;
+        }
+
+        .timeline-item:nth-child(3) .left-text {
+
+            margin-left: 40px !important;
+            margin-right: 20px !important;
+        }
+
+        .timeline-item:nth-child(4) .right-text {
+            margin-left: 60px !important;
+            margin-right: 10px !important;
+
+        }
+
+        @media (max-width: 600px) {
+            .timeline {
+                max-width: 320px;
+                margin: 2rem auto;
+                padding: 1rem 0;
+            }
+
+            .timeline::before {
+                width: 3px;
+                box-shadow: 0 0 8px #fff8;
+            }
+
+            .timeline-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 1.5rem 0;
+                padding: 0 5px;
+                position: relative;
+            }
+
+            .circle {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 8px rgba(255, 43, 43, 0.7),
+                inset 0 0 6px rgba(255, 255, 255, 0.5);
+                z-index: 10;
+            }
+
+            .timeline-item:nth-child(1) .right-text,
+            .timeline-item:nth-child(2) .right-text {
+                margin-left: 42px !important;
+            }
+
+
+            .timeline-item:nth-child(1) .left-text {
+                margin-right: 45px !important;
+            }
+
+            .timeline-item:nth-child(2) .right-text {
+                margin-right: 45px !important;
+            }
+
+            .timeline-item:nth-child(2) .left-text {
+                margin-left: 25px !important;
+                margin-right: 5px !important;
+
+            }
+
+            .timeline-item:nth-child(3) .right-text {
+                margin-left: 60px !important;
+            }
+
+            .timeline-item:nth-child(3) .left-text {
+                margin-right: 80px !important;
+            }
+
+            .timeline-item:nth-child(4) .right-text {
+                margin-right: 5px !important;
+            }
+
+            .timeline-item:nth-child(4) .left-text {
+                margin-right: 90px !important;
+            }
+
+            .timeline-item:nth-child(2) .left-text,
+            .timeline-item:nth-child(3) .left-text,
+            .timeline-item:nth-child(4) .left-text {
+                margin-right: 60px;
+            }
+
+
+            .timeline-item:nth-child(2) .right-text {
+                margin-right: 18px !important;
+                margin-left: 30px !important;
+            }
+
+            .timeline-item:nth-child(3) .left-text {
+                margin-left: 30px !important;
+                margin-right: 90px !important;
+            }
+
+            .timeline-item:nth-child(3) .right-text {
+                margin-left: 90px !important;
+            }
+
+            .timeline-item:nth-child(4) .left-text {
+                margin-left: 19px !important;
+            }
+
+            .timeline-item:nth-child(4) .right-text {
+                margin-left: 100px !important;
+            }
+
+            .left-text {
+                flex: 1 1 auto;
+                max-width: 38%;
+                padding-left: 55px;
+                font-size: 0.9rem;
+                text-align: right;
+                white-space: normal;
+                color: white;
+                font-weight: 600;
+                user-select: none;
+            }
+
+            .right-text {
+                flex: 0 0 auto;
+                max-width: 60px;
+                padding-left: 10px;
+                font-size: 0.1rem !important;
+                text-align: left;
+                color: white;
+                font-weight: 600;
+                white-space: normal;
+                user-select: none;
+            }
+
+
+            .left-text.ms-2,
+            .right-text.ms-5 {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+
+        #countdown-section {
+            background-color: #000;
+            padding: 80px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .timer-container {
+            color: #fff;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .timer-title {
+            font-family: 'Zebr' !important;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background-color: #111;
+            border: 5px solid #ff2b2b;
+            border-radius: 14px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 25px #ff2b2b99, inset 0 0 10px #ff2b2b55;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px #ff2b2bcc, inset 0 0 15px #ff2b2b66;
+        }
+
+        .time {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff4040;
+            text-shadow: 0 0 25px #ff2b2b;
+        }
+
+        .label {
+            font-family: 'IRANRounded' !important;
+            font-size: 1rem;
+            color: #eaeaea;
+            margin-top: 5px;
+        }
+
+        .motivation {
+            margin-top: 35px;
+            font-size: 1.15rem;
+            font-family: 'IRANRounded' !important;
+            color: #ffcccc;
+            text-shadow: 0 0 10px #ff2b2b55;
+            font-weight: 600;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .start-message {
+            color: #ff2b2b;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 0 30px #ff2b2b, 0 0 10px #ff2b2b88;
+            animation: blink 1.2s infinite ease-in-out;
+            margin-top: 25px;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 0 0 15px #ff2b2b, 0 0 25px #ff2b2b44;
+            }
+            50% {
+                text-shadow: 0 0 35px #ff2b2b, 0 0 50px #ff2b2b88;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 30px #ff2b2b, 0 0 60px #ff0000;
+            }
+            50% {
+                opacity: 0.6;
+                text-shadow: 0 0 15px #ff2b2b, 0 0 25px #ff5555;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .time-box {
+                width: 90px;
+                height: 90px;
+                border-width: 4px;
+            }
+
+            .time {
+                font-size: 2rem;
+            }
+
+            .label {
+                font-size: 0.9rem;
+            }
+
+            .timer-title {
+                font-size: 1.4rem;
+            }
+
+            .motivation {
+                font-size: 1rem;
+            }
+
+            .start-message {
+                font-size: 1.5rem;
+            }
+        }
+
+
+        .red-black-accordion .accordion-item {
+            background-color: #000;
+            margin-bottom: 1rem;
+            border: none;
+        }
+
+        .red-black-accordion .accordion-button {
+            background-color: #000;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            border: none;
+            text-align: right;
+            padding-right: 1.5rem;
+            padding-left: 2.5rem;
+            direction: rtl;
+        }
+
+        .accordion-item:nth-child(4) .accordion-button {
+            padding-right: 0.7rem !important;
+
+        }
+
+        .red-black-accordion .accordion-button:hover {
+            color: #dc3545;
+            background-color: #111;
+        }
+
+        .red-black-accordion .accordion-button:not(.collapsed) {
+            color: #dc3545;
+            background-color: #111;
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.6);
+        }
+
+        .red-black-accordion .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .red-black-accordion .accordion-button::after {
+            margin-left: auto;
+            margin-right: 0;
+            transform: rotate(0deg);
+        }
+
+        .red-black-accordion .accordion-button:not(.collapsed)::after {
+            transform: rotate(180deg);
+        }
+
+        .red-black-accordion .accordion-body {
+            color: white;
+            background-color: #000;
+            padding: 1.25rem;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .faq-line {
+            border: none;
+            height: 1px;
+            background-color: transparent;
+            margin: 1rem 0;
+        }
+
+        .red-section {
+            background-color: red;
+            color: #f8f9fa;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .footer-section {
+            background-color: #000;
+            color: #fff;
+            padding: 2rem 1rem;
+            font-family: 'IRANRounded', sans-serif;
+        }
+
+        .footer-logos-container {
+            gap: 10px;
+            flex-wrap: nowrap;
+            display: flex;
+        }
+
+        .footer-logo-part {
+            max-width: 70px;
+            height: auto;
+            display: inline-block;
+        }
+
+
+        .footer-logo {
+            max-width: 300px;
+            height: auto;
+        }
+
+        @media (max-width: 344px) {
+            .footer-logo {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        .footer-text {
+            color: #fff;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .footer-text2 {
+            margin-left: 1rem;
+        }
+
+        .footer-link {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #dc3545;
+            text-shadow: 0 0 6px rgba(220, 53, 69, 0.5);
+        }
+
+        .footer-link i {
+            margin-left: 0.3rem;
+        }
+
+
+        @media (max-width: 767px) {
+            .footer-logos-container {
+                justify-content: center !important;
+                margin-bottom: 20px;
+                flex-wrap: nowrap;
+            }
+
+            .footer-logo-part {
+                max-width: 100px;
+            }
+        }
+
         .break {
-        width: 100%;
-        height: 1px;
-        background-color: white;
-        margin: 1rem 0;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+            margin: 1rem 0;
         }
 
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 </head>
 <body>
-    <header style="font-family: 'IRANRounded';">
+<header style="font-family: 'IRANRounded';">
     <nav class="navbar navbar-dark bg-black py-3">
         <div class="container-fluid d-flex align-items-center justify-content-between">
 
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="تغییر ناوبری">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="تغییر ناوبری">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="#" class="btn text-danger">ثبت نام/ورود</a>
+            <a href="/birahe.html" class="btn text-danger">ثبت نام/ورود</a>
 
         </div>
 
@@ -994,25 +1057,25 @@
 </header>
 
 <section class="logo-section">
-  <div class="container">
-    <img src="./static/fonts/logo.png" alt="Logo" class="site-logo">
-    
-    <div class="photo-arrange">
-      <img src="./static/fonts/8.png" alt="Photo 1" class="photo">
-      <img src="./static/fonts/9.png" alt="Photo 2" class="photo">
-      <img src="./static/fonts/10.png" alt="Photo 3" class="photo">
-      <img src="./static/fonts/11.png" alt="Photo 4" class="photo">
-      <img src="./static/fonts/12.png" alt="Photo 5" class="photo">
+    <div class="container">
+        <img src="./static/fonts/logo.png" alt="Logo" class="site-logo">
+
+        <div class="photo-arrange">
+            <img src="./static/fonts/8.png" alt="Photo 1" class="photo">
+            <img src="./static/fonts/9.png" alt="Photo 2" class="photo">
+            <img src="./static/fonts/10.png" alt="Photo 3" class="photo">
+            <img src="./static/fonts/11.png" alt="Photo 4" class="photo">
+            <img src="./static/fonts/12.png" alt="Photo 5" class="photo">
+        </div>
     </div>
-  </div>
 </section>
 <div class="break"></div>
 
 <section class="teaser-player">
-<h2 class="info-title d-flex justify-content-center">تیزر مسابقه</h2>
-  <video controls>
-    <source src="./static/teaser.mp4" type="video/mp4" />
-  </video>
+    <h2 class="info-title d-flex justify-content-center">تیزر مسابقه</h2>
+    <video controls>
+        <source src="./static/teaser.mp4" type="video/mp4"/>
+    </video>
 </section>
 
 <div class="break"></div>
@@ -1025,25 +1088,28 @@
 <br>
 <div class="break"></div>
 <section id="description" class="description-section">
-  <h2 class="d-flex justify-content-center" style="padding: 50px 10px;background-color: rgb(10, 10, 10);color: white;text-align: center; font-family: 'Zebr';">
-    توضیحات
-  </h2>
+    <h2 class="d-flex justify-content-center"
+        style="padding: 50px 10px;background-color: rgb(10, 10, 10);color: white;text-align: center; font-family: 'Zebr';">
+        توضیحات
+    </h2>
 
-  <div class="container description-container">
-    <div class="description-image">
-      <img src="./static/fonts/14.png" alt="توضیحات مسابقه">
-    </div>
+    <div class="container description-container">
+        <div class="description-image">
+            <img src="./static/fonts/14.png" alt="توضیحات مسابقه">
+        </div>
 
-    <div class="description-text">
-      <p class="highlight" data-text="مسابقه‌«بیراهه» : اولین نسخه از سری فعالیت‌های مسابقه‌محور تعاملی انجمن علمی علوم کامپیوتر و گروه فاز است."></p>
-      <p data-text="در این تجربه‌ی متفاوت، تیم‌های دو یا سه‌نفره وارد داستانی رازآلود می‌شوند؛ روایتی که در دل دانشگاه جریان دارد و هر گوشه‌اش پر از رمز و سرنخ است."></p>
-      <p class="highlight" data-text="چیزهایی هست که هیچ‌کس واقعاً به آن‌ها نگاه نکرده: یک تکه کاغذ جا مانده روی نیمکت، صدای عجیبی که ناگهان سکوت را می‌شکند، یا ردپایی از کسی که انگار دیگر هرگز بازنمی‌گردد."></p>
-      <p data-text="تنها نشانه‌هایی باقی مانده ردی از حقیقت پنهان میان صداها، سایه‌ها و مسیرهای فراموش‌شده."></p>
-      <p data-text="شما باید این سرنخ‌ها را دنبال کنید، معماها را حل کنید و پرده از راز نهفته در دل بیراهه بردارید."></p>
-      <p class="highlight" data-text="اما مراقب باشید: در بیراهه، هیچ چیز آن‌طور که به نظر می‌رسد نیست."></p>
-      <p data-text="آیا آماده‌ای در بیراهه قدم بگذاری؟"></p>
+        <div class="description-text">
+            <p class="highlight"
+               data-text="مسابقه‌«بیراهه» : اولین نسخه از سری فعالیت‌های مسابقه‌محور تعاملی انجمن علمی علوم کامپیوتر و گروه فاز است."></p>
+            <p data-text="در این تجربه‌ی متفاوت، تیم‌های دو یا سه‌نفره وارد داستانی رازآلود می‌شوند؛ روایتی که در دل دانشگاه جریان دارد و هر گوشه‌اش پر از رمز و سرنخ است."></p>
+            <p class="highlight"
+               data-text="چیزهایی هست که هیچ‌کس واقعاً به آن‌ها نگاه نکرده: یک تکه کاغذ جا مانده روی نیمکت، صدای عجیبی که ناگهان سکوت را می‌شکند، یا ردپایی از کسی که انگار دیگر هرگز بازنمی‌گردد."></p>
+            <p data-text="تنها نشانه‌هایی باقی مانده ردی از حقیقت پنهان میان صداها، سایه‌ها و مسیرهای فراموش‌شده."></p>
+            <p data-text="شما باید این سرنخ‌ها را دنبال کنید، معماها را حل کنید و پرده از راز نهفته در دل بیراهه بردارید."></p>
+            <p class="highlight" data-text="اما مراقب باشید: در بیراهه، هیچ چیز آن‌طور که به نظر می‌رسد نیست."></p>
+            <p data-text="آیا آماده‌ای در بیراهه قدم بگذاری؟"></p>
+        </div>
     </div>
-  </div>
 </section>
 <div class="break"></div>
 
@@ -1072,11 +1138,11 @@
         </div>
 
         <div class="timeline-item">
-            <span class="left-text"style="font-family: 'IRANRounded';">مرحله نهایی</span>
+            <span class="left-text" style="font-family: 'IRANRounded';">مرحله نهایی</span>
             <div class="circle">
                 <i class="fas fa-fire"></i>
             </div>
-            <div class="right-text"style="font-family: 'IRANRounded';">
+            <div class="right-text" style="font-family: 'IRANRounded';">
                 <h5>۱۶ آبان</h5>
             </div>
         </div>
@@ -1095,74 +1161,71 @@
 </div>
 
 
-
 <div class="break"></div>
 <section id="countdown-section">
-  <div class="timer-container">
-    <h1 class="timer-title">تا شروع مرحله مقدماتی</h1>
+    <div class="timer-container">
+        <h1 class="timer-title">تا شروع مرحله مقدماتی</h1>
 
-    <div id="countdown" class="countdown" dir="ltr">
-      <div class="time-box">
-        <span id="days" class="time">00</span>
-        <span class="label">روز</span>
-      </div>
-      <div class="time-box">
-        <span id="hours" class="time">00</span>
-        <span class="label">ساعت</span>
-      </div>
-      <div class="time-box">
-        <span id="minutes" class="time">00</span>
-        <span class="label">دقیقه</span>
-      </div>
-      <div class="time-box">
-        <span id="seconds" class="time">00</span>
-        <span class="label">ثانیه</span>
-      </div>
+        <div id="countdown" class="countdown" dir="ltr">
+            <div class="time-box">
+                <span id="days" class="time">00</span>
+                <span class="label">روز</span>
+            </div>
+            <div class="time-box">
+                <span id="hours" class="time">00</span>
+                <span class="label">ساعت</span>
+            </div>
+            <div class="time-box">
+                <span id="minutes" class="time">00</span>
+                <span class="label">دقیقه</span>
+            </div>
+            <div class="time-box">
+                <span id="seconds" class="time">00</span>
+                <span class="label">ثانیه</span>
+            </div>
+        </div>
+
+        <p class="motivation">هر ثانیه، یک قدم نزدیک‌تر به رقابت...</p>
     </div>
-
-    <p class="motivation">هر ثانیه، یک قدم نزدیک‌تر به رقابت...</p>
-  </div>
 </section>
 <div class="break"></div>
 
 <section id="javayez" class="prize-section">
-  <div class="container">
+    <div class="container">
 
-    <h1 class="section-title" style="color : white; font-family : 'Zebr';">جوایز مسابقه</h1>
-    <div class="prize-center-img">
-      <img src="./static/fonts/IMG_6379.png" alt="جایزه ویژه">
-    </div>
-    <div class="prize-item main-prize">
-      <div class="prize-img">
-        <img src="./static/fonts/15.png" alt="جایزه بزرگ">
-      </div>
-      <span class="amount">۱۰ میلیون تومان</span>
-      <p class="label">جایزه بزرگ مسابقه</p>
-    </div>
-
-    <div class="prize-sub-container">
-      <div class="prize-item sub-prize">
-        <div class="prize-img">
-          <img src="./static/fonts/16.png" alt="جایزه ۲ میلیون">
+        <h1 class="section-title" style="color : white; font-family : 'Zebr';">جوایز مسابقه</h1>
+        <div class="prize-center-img">
+            <img src="./static/fonts/IMG_6379.png" alt="جایزه ویژه">
         </div>
-        <span class="amount">۲ میلیون تومان</span>
-        <p class="label">جایزه برترین تیم ورودی ۱۴۰۴</p>
-      </div>
-      <div class="prize-item sub-prize">
-        <div class="prize-img">
-          <img src="./static/fonts/17.png" alt="جایزه ۱ میلیون">
+        <div class="prize-item main-prize">
+            <div class="prize-img">
+                <img src="./static/fonts/15.png" alt="جایزه بزرگ">
+            </div>
+            <span class="amount">۱۰ میلیون تومان</span>
+            <p class="label">جایزه بزرگ مسابقه</p>
         </div>
-        <span class="amount">۱ میلیون تومان</span>
-        <p class="label">جایزه بهترین تصویر ثبت‌شده</p>
-      </div>
+
+        <div class="prize-sub-container">
+            <div class="prize-item sub-prize">
+                <div class="prize-img">
+                    <img src="./static/fonts/16.png" alt="جایزه ۲ میلیون">
+                </div>
+                <span class="amount">۲ میلیون تومان</span>
+                <p class="label">جایزه برترین تیم ورودی ۱۴۰۴</p>
+            </div>
+            <div class="prize-item sub-prize">
+                <div class="prize-img">
+                    <img src="./static/fonts/17.png" alt="جایزه ۱ میلیون">
+                </div>
+                <span class="amount">۱ میلیون تومان</span>
+                <p class="label">جایزه بهترین تصویر ثبت‌شده</p>
+            </div>
+        </div>
+
+
+        <p class="tagline">هر معما، یک قدم به جایزه نزدیک‌تر</p>
+
     </div>
-
-    
-    
-
-    <p class="tagline">هر معما، یک قدم به جایزه نزدیک‌تر</p>
-
-  </div>
 </section>
 
 <div class="break"></div>
@@ -1177,8 +1240,9 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1"
-                    aria-expanded="false" aria-controls="q1" style="font-family: 'IRANRounded';">
-                    ۱. چگونه می‌توان در مسابقه «بیراهه» شرکت کرد؟ </button>
+                        aria-expanded="false" aria-controls="q1" style="font-family: 'IRANRounded';">
+                    ۱. چگونه می‌توان در مسابقه «بیراهه» شرکت کرد؟
+                </button>
             </h2>
             <div id="q1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
@@ -1197,8 +1261,9 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2"
-                    aria-expanded="false" aria-controls="q2" style="font-family: 'IRANRounded';">
-                    ۲. هزینه‌ی ثبت‌نام در مسابقه «بیراهه» چقدر است؟ </button>
+                        aria-expanded="false" aria-controls="q2" style="font-family: 'IRANRounded';">
+                    ۲. هزینه‌ی ثبت‌نام در مسابقه «بیراهه» چقدر است؟
+                </button>
             </h2>
             <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
@@ -1217,13 +1282,13 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3"
-                    aria-expanded="false" aria-controls="q3" style="font-family: 'IRANRounded';">
+                        aria-expanded="false" aria-controls="q3" style="font-family: 'IRANRounded';">
                     ۳. مهلت ثبت‌نام در مسابقه «بیراهه» تا چه زمانی است؟
                 </button>
             </h2>
             <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    <hr class="faq-line"style="font-family: 'IRANRounded';">
+                    <hr class="faq-line" style="font-family: 'IRANRounded';">
                     فرآیند ثبت‌نام در مسابقه «بیراهه» از تاریخ ۵ آبان آغاز می‌شود و تا ساعت ۲۳:۵۹ روز ١٠ آبان ادامه دارد
                     <hr class="faq-line">
                 </div>
@@ -1234,12 +1299,13 @@
         <div class="accordion-item container">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4"
-                    aria-expanded="false" aria-controls="q4"style="font-family: 'IRANRounded';">
-                    ۴. هر تیم چند نفر می‌تواند باشد و شرایط جوایز چگونه است؟ </button>
+                        aria-expanded="false" aria-controls="q4" style="font-family: 'IRANRounded';">
+                    ۴. هر تیم چند نفر می‌تواند باشد و شرایط جوایز چگونه است؟
+                </button>
             </h2>
             <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    <hr class="faq-line"style="font-family: 'IRANRounded';">
+                    <hr class="faq-line" style="font-family: 'IRANRounded';">
                     تیم‌های شرکت‌کننده می‌توانند دو یا سه نفره باشند.
 
                     در بخش جوایز، علاوه بر جوایز اصلی، جایزه‌ای ویژه برای برترین تیم ورودی ۱۴۰۴ در نظر گرفته شده است.
@@ -1252,13 +1318,13 @@
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5"
-                    aria-expanded="false" aria-controls="q5"style="font-family: 'IRANRounded';">
+                        aria-expanded="false" aria-controls="q5" style="font-family: 'IRANRounded';">
                     ۵. چطور می‌توانم با تیم پشتیبانی در ارتباط باشم؟
                 </button>
             </h2>
             <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    <hr class="faq-line"style="font-family: 'IRANRounded';">
+                    <hr class="faq-line" style="font-family: 'IRANRounded';">
                     در صورت بروز هرگونه مشکل، ابهام یا نیاز به راهنمایی در فرآیند ثبت‌نام و شرکت در مسابقه، می‌توانید از
                     طریق حساب رسمی تلگرام پشتیبانی به آدرس
                     FAZ_group_support@
@@ -1272,66 +1338,69 @@
 </section>
 <div class="break"></div>
 <footer dir="ltr" class="footer-section" id="foot">
-  <div class="container">
-    <div class="row text-center text-md-start align-items-center gy-4">
+    <div class="container">
+        <div class="row text-center text-md-start align-items-center gy-4">
 
-      <div class="col-12 col-md-4 footer-logos-container d-flex justify-content-center justify-content-md-start">
-        <img src="./static/fonts/18.png" alt="Part 1" class="footer-logo-part">
-        <img src="./static/fonts/19.png" alt="Part 2" class="footer-logo-part mx-2">
-        <img src="./static/fonts/20.png" alt="Part 3" class="footer-logo-part">
-      </div>
+            <div class="col-12 col-md-4 footer-logos-container d-flex justify-content-center justify-content-md-start">
+                <img src="./static/fonts/18.png" alt="Part 1" class="footer-logo-part">
+                <img src="./static/fonts/19.png" alt="Part 2" class="footer-logo-part mx-2">
+                <img src="./static/fonts/20.png" alt="Part 3" class="footer-logo-part">
+            </div>
 
-      <div class="col-12 col-md-4">
-        <p class="footer-text mb-0 text-center" style="font-family: 'IRANRounded';">
-          ما گروه فاز هستیم؛ تیمی دانشجویی که به‌تازگی فعالیت خود را آغاز کرده و هدفمان خلق تجربه‌های خلاقانه
-          و متفاوت در زمینه‌های مختلف کامپیوتر است. این گروه قصد دارد با برنامه‌های متنوع و نوآورانه، یک محیط
-          آموزشی پویا و تعاملی در دانشگاه رقم بزند تا دانشجویان بتوانند مهارت‌های عملی و خلاقیت خود را در آن
-          توسعه دهند. مسابقه‌ی بیراهه یکی از اولین تجربه‌ی ما است ؛ یک بازی رازآلود و تعاملی که با حمایت معاونت فرهنگی
-          دانشگاه کاشان طراحی و اجرا شد 
-        </p>
-      </div>
+            <div class="col-12 col-md-4">
+                <p class="footer-text mb-0 text-center" style="font-family: 'IRANRounded';">
+                    ما گروه فاز هستیم؛ تیمی دانشجویی که به‌تازگی فعالیت خود را آغاز کرده و هدفمان خلق تجربه‌های خلاقانه
+                    و متفاوت در زمینه‌های مختلف کامپیوتر است. این گروه قصد دارد با برنامه‌های متنوع و نوآورانه، یک محیط
+                    آموزشی پویا و تعاملی در دانشگاه رقم بزند تا دانشجویان بتوانند مهارت‌های عملی و خلاقیت خود را در آن
+                    توسعه دهند. مسابقه‌ی بیراهه یکی از اولین تجربه‌ی ما است ؛ یک بازی رازآلود و تعاملی که با حمایت
+                    معاونت فرهنگی
+                    دانشگاه کاشان طراحی و اجرا شد
+                </p>
+            </div>
 
-      <div class="col-12 col-md-4 text-center text-md-end">
-        <h5 class="footer-heading mb-2" style="font-family: 'IRANRounded';">:ارتباط با ما</h5>
+            <div class="col-12 col-md-4 text-center text-md-end">
+                <h5 class="footer-heading mb-2" style="font-family: 'IRANRounded';">:ارتباط با ما</h5>
 
-        <div class="d-flex flex-column align-items-center align-items-md-end">
-          <a href="https://t.me/FAZ_group" target="_blank" class="footer-link mb-1" style="font-family: 'IRANRounded';">
-            <i class="fab fa-telegram"></i> تلگرام
-          </a>
-          <a href="https://www.instagram.com/fazgroup_ir?igsh=eng4bzUydnYybm02" target="_blank" class="footer-link" style="font-family: 'IRANRounded';">
-            <i class="fab fa-instagram"></i> اینستاگرام
-          </a>
+                <div class="d-flex flex-column align-items-center align-items-md-end">
+                    <a href="https://t.me/FAZ_group" target="_blank" class="footer-link mb-1"
+                       style="font-family: 'IRANRounded';">
+                        <i class="fab fa-telegram"></i> تلگرام
+                    </a>
+                    <a href="https://www.instagram.com/fazgroup_ir?igsh=eng4bzUydnYybm02" target="_blank"
+                       class="footer-link" style="font-family: 'IRANRounded';">
+                        <i class="fab fa-instagram"></i> اینستاگرام
+                    </a>
+                </div>
+
+                <p class="footer-text mb-2">
+                    <a href="https://t.me/FAZ_group_support" target="_blank" class="footer-link">@FAZ_group_support</a>
+                </p>
+
+                <p class="footer-text2 mb-0 text-center" style="font-family: 'IRANRounded';">
+                    گروه پشتیبانی فاز - همه حقوق محفوظ است
+                </p>
+            </div>
+
         </div>
-
-        <p class="footer-text mb-2">
-          <a href="https://t.me/FAZ_group_support" target="_blank" class="footer-link">@FAZ_group_support</a>
-        </p>
-
-        <p class="footer-text2 mb-0 text-center" style="font-family: 'IRANRounded';">
-          گروه پشتیبانی فاز - همه حقوق محفوظ است
-        </p>
-      </div>
-
     </div>
-  </div>
 </footer>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-  const paragraphs = document.querySelectorAll(".description-text p[data-text]");
-  
-    paragraphs.forEach(p => {
-        const text = p.getAttribute("data-text");
-        let index = 0;
-    
-        function typeChar() {
-              if(index < text.length) {
-                p.textContent += text.charAt(index);
-                index++;
-                setTimeout(typeChar, 35);
-              }
-        }
-    
+        const paragraphs = document.querySelectorAll(".description-text p[data-text]");
+
+        paragraphs.forEach(p => {
+            const text = p.getAttribute("data-text");
+            let index = 0;
+
+            function typeChar() {
+                if (index < text.length) {
+                    p.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeChar, 35);
+                }
+            }
+
             typeChar();
         });
     });
@@ -1341,35 +1410,35 @@
     document.getElementById("minutes").textContent = "0";
     document.getElementById("seconds").textContent = "0";
 
-  fetch("./api/users/contest/start", { method: "GET" })
-      .then(v => v.json())
-      .then(v => {
-          console.log(v);
-          let targetDate = new Date(v.data + "Z").getTime();
+    fetch("./api/users/contest/start", {method: "GET"})
+        .then(v => v.json())
+        .then(v => {
+            console.log(v);
+            let targetDate = new Date(v.data + "Z").getTime();
 
-          const timer = setInterval(() => {
-              const now = new Date().getTime();
-              const distance = targetDate - now;
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
 
-              if (distance <= 0) {
-                  clearInterval(timer);
-                  const countdown = document.getElementById("countdown");
-                  countdown.innerHTML = "<p class='start-message'>مسابقه شروع شد!</p>";
-                  document.querySelector(".motivation").textContent = "بازی آغاز شد، موفق باشی قهرمان!";
-                  return;
-              }
+                if (distance <= 0) {
+                    clearInterval(timer);
+                    const countdown = document.getElementById("countdown");
+                    countdown.innerHTML = "<p class='start-message'>مسابقه شروع شد!</p>";
+                    document.querySelector(".motivation").textContent = "بازی آغاز شد، موفق باشی قهرمان!";
+                    return;
+                }
 
-              const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-              const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-              document.getElementById("days").textContent = days.toString().padStart(2, "0");
-              document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-              document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-              document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
-          }, 1000);
-      });
+                document.getElementById("days").textContent = days.toString().padStart(2, "0");
+                document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+                document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+                document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+            }, 1000);
+        });
 </script>
 </body>
 </html>

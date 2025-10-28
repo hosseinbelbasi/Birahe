@@ -29,11 +29,11 @@ public class RiddleRepository {
 
     public void EditRiddle(Riddle toEdit, Riddle riddle) {
         riddle.Adapt(toEdit);
-        toEdit!.ModificationDateTime = DateTime.Now;
+        toEdit!.ModificationDateTime = DateTime.UtcNow;
     }
 
     public void RemoveRiddle(Riddle riddle) {
-        riddle!.RemoveTime = DateTime.Now;
+        riddle!.RemoveTime = DateTime.UtcNow;
     }
 
     public async Task<List<Riddle>> GetRiddles() {

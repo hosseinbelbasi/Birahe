@@ -153,6 +153,7 @@ public class AdminService {
             if (!result.Success) {
                 return ServiceResult.Fail(result.Message, result.Error);
             }
+
             var (fileName, mediaType) = result.Data;
 
             riddle.RewardMediaType = mediaType;
@@ -192,9 +193,6 @@ public class AdminService {
 
         return ServiceResult<(byte[], string)>.Ok(result.Data);
     }
-
-
-
 
 
     // =======================User business===================

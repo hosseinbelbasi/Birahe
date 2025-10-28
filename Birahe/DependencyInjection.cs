@@ -50,7 +50,8 @@ public static class DependencyInjection {
             .AddScoped<UserService>()
             .AddScoped<AdminService>()
             .AddScoped<ContestService>()
-            .AddScoped<PaymentService>();
+            .AddScoped<PaymentService>()
+            .AddScoped<PendingPaymentCleanupService>();
         return services;
     }
 

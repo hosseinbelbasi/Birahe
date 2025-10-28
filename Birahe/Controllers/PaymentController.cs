@@ -22,26 +22,29 @@ public class PaymentController : ControllerBase {
         if (userId == -1) {
             return BadRequest();
         }
-        var result = await _paymentService.CreatePaymentAsync(userId , createPaymentDto);
+
+        var result = await _paymentService.CreatePaymentAsync(userId, createPaymentDto);
         return this.MapServiceResult(result);
     }
 
-    [Authorize(Roles = "paymentpending")]
     [HttpPost("verify")]
     public async Task<IActionResult> Verify([FromBody] VerifyPaymentDto verifyPaymentDto) {
-        var userId = User.GetUserId();
-        if (userId == -1) {
-            return BadRequest();
+        try
+        {
+            var result = await _paymentService.VerifyPaymentAsync(verifyPaymentDto);
+            return this.MapServiceResult(result);
         }
-        var result = await _paymentService.VerifyPaymentAsync(userId ,verifyPaymentDto);
-        return this.MapServiceResult(result);
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex);
+            return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
+        }
     }
 
     [HttpPost("amount")]
     public async Task<IActionResult> VerifyDiscountCode([FromBody] GetFinalAmountDto dto) {
-        var result = await _paymentService.CalculateAmount( dto.DiscountCode);
+        var result = await _paymentService.CalculateAmount(dto.DiscountCode);
 
         return this.MapServiceResult(result);
     }
-
 }

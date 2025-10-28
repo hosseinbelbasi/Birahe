@@ -23,20 +23,18 @@ builder.Services.AddDependencyInjection();
 
 
 // swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddFluentValidationRulesToSwagger();
+// builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddSwaggerGen();
+// builder.Services.AddFluentValidationRulesToSwagger();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy.WithOrigins("http://localhost:5173") // your frontend URL
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-    });
-});
+// builder.Services.AddCors(options => {
+//     options.AddPolicy("AllowFrontend", policy => {
+//         policy.WithOrigins("http://localhost:5173") // your frontend URL
+//             .AllowAnyHeader()
+//             .AllowAnyMethod()
+//             .AllowCredentials();
+//     });
+// });
 
 
 var app = builder.Build();
@@ -45,25 +43,37 @@ if (!app.Environment.IsDevelopment()) {
     app.UseProblemDetailsExceptionHandler();
 }
 
-if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI(c => {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
-        c.RoutePrefix = string.Empty; // Swagger at root: http://localhost:5000/
-    });
-}
+// if (app.Environment.IsDevelopment()) {
+//     app.UseSwagger();
+//     app.UseSwaggerUI(c => {
+//         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+//         c.RoutePrefix = "api"; // Swagger at root: http://localhost:5000/
+//     });
+// }
 
 
 app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.UseRouting();
+//app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("AllowFrontend");
+// app.UseCors("AllowFrontend");
 
 app.MapControllers();
+
+app.MapGet("/", async context => {
+    context.Response.ContentType = "text/html";
+    await context.Response.SendFileAsync("wwwroot/Index.html");
+});
+
+
+app.MapFallback(context => {
+    context.Response.ContentType = "text/html";
+    return context.Response.SendFileAsync("wwwroot/Birahe.html");
+});
 
 using (var scope = app.Services.CreateScope()) {
     var dbInitializer = scope.ServiceProvider.GetRequiredService<DataBaseInitializer>();

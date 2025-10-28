@@ -1,3 +1,4 @@
+using Birahe.EndPoint.ControllerAttributes;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Helpers.Extensions;
@@ -23,6 +24,7 @@ public class UsersController : ControllerBase {
         _userService = userService;
     }
 
+    // [ContestTimeAuthorize("`")]
     [HttpPost("signup")]
     [AllowAnonymous]
     public async Task<IActionResult> Signup([FromBody] SignUpDto signUpDto) {
