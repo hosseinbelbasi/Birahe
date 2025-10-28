@@ -29,16 +29,8 @@ public class PaymentController : ControllerBase {
 
     [HttpPost("verify")]
     public async Task<IActionResult> Verify([FromBody] VerifyPaymentDto verifyPaymentDto) {
-        try
-        {
-            var result = await _paymentService.VerifyPaymentAsync(verifyPaymentDto);
-            return this.MapServiceResult(result);
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex);
-            return StatusCode(500, new { message = "Internal server error", detail = ex.Message });
-        }
+        var result = await _paymentService.VerifyPaymentAsync(verifyPaymentDto);
+        return this.MapServiceResult(result);
     }
 
     [HttpPost("amount")]

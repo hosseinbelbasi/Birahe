@@ -8,7 +8,6 @@ using Birahe.EndPoint.Models.Dto.PaymentDto_s.ResponseModels;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
 using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Birahe.EndPoint.Services;
@@ -73,8 +72,8 @@ public class PaymentService {
 
         var request = new {
             merchant_id = MerchantId,
-            amount = amount,
-            description = description,
+            amount,
+            description,
             callback_url = $"{CallbackUrl}"
         };
 
@@ -101,9 +100,10 @@ public class PaymentService {
             await _userRepository.LogicalDelete(id);
             await _context.SaveChangesAsync();
             var errorMessage = "";
-            if (result?.errors != null) {
-                foreach (var error in result?.errors) {
-                    errorMessage += error?.message + "\n";
+            if (result!= null && result.errors != null) {
+                foreach (var error in result.errors) {
+
+                    errorMessage += error.message + "\n";
                 }
             }
 
@@ -171,25 +171,7 @@ public class PaymentService {
 
         var result = await response.Content.ReadFromJsonAsync<ZarinpalVerifyResponse>();
 
-        /*if (result?.data?.code == 100)
-        {
-            payment.Status = PaymentStatus.Success;
-            payment.ref_id = result.data.ref_id.ToString();
-            var activated = await _userRepository.ActivateUser(payment.UserId);
-            if (!activated)
-            {
-                payment.Status = PaymentStatus.Failed;
-                await _context.SaveChangesAsync();
-                return ServiceResult<PaymentVerifiedDto>.Fail("Payment verified but user activation failed.");
-            }
-            await _context.SaveChangesAsync();
 
-            var paymentDto = _mapper.Map<PaymentVerifiedDto>(payment);
-            return ServiceResult<PaymentVerifiedDto>.Ok(paymentDto);
-        }*/
-        /*payment.Status = PaymentStatus.Failed;
-        await _context.SaveChangesAsync();
-        return ServiceResult<PaymentVerifiedDto>.Fail($"Verification failed: {result?.errors }");*/
 
         if (result?.data?.code == 101) {
             return ServiceResult<PaymentVerifiedDto>.Ok(null, "این پرداخت قبلا تایید شده است");
@@ -198,7 +180,7 @@ public class PaymentService {
         if (result?.data?.code != 100) {
             payment.Status = PaymentStatus.Failed;
             payment.ModificationDateTime = DateTime.UtcNow;
-            payment.RefId = result?.data?.ref_id?.ToString();
+            payment.RefId = result?.data?.ref_id;
             Console.WriteLine("payment" + payment.RefId);
             Console.WriteLine("result" + payment.RefId);
 
@@ -210,7 +192,7 @@ public class PaymentService {
         }
 
         payment.Status = PaymentStatus.Success;
-        payment.RefId = result.data.ref_id?.ToString();
+        payment.RefId = result.data.ref_id;
 
         var activated = await _userRepository.ActivateUser(userId);
         if (!activated) {
@@ -222,8 +204,8 @@ public class PaymentService {
         }
 
         await _context.SaveChangesAsync();
-        payment.RefId = result?.data?.ref_id?.ToString();
-        Console.WriteLine("=====================" + payment.RefId + "=====================");
+        payment.RefId = result.data?.ref_id;
+        Console.WriteLine("=====================" + (payment.RefId) + "=====================");
         var paymentDto2 = _mapper.Map<PaymentVerifiedDto>(payment);
         return ServiceResult<PaymentVerifiedDto>.Ok(paymentDto2);
     }

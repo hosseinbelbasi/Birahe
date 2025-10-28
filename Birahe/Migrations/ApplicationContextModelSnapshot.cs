@@ -161,8 +161,8 @@ namespace Birahe.EndPoint.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<long>("Amount")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Authority")
                         .IsRequired()

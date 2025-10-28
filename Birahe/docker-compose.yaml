@@ -1,12 +1,14 @@
 ﻿version: '3.9'
 
+
 services:
   web:
     build: .
     ports:
-      - "80:5000"   # host:container
+      - "5000:80"   # host:container
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__DefaultConnection=Server=db;Database=Birahe;User Id=sa;Password=@6eGM92c5nec:p9.;Encrypt=False;TrustServerCertificate=True;
     depends_on:
       - db

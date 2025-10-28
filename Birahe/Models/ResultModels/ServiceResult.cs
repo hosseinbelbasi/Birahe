@@ -10,7 +10,7 @@ public class ServiceResult<T> {
 
     public string? Detail { get; set; } = null;
 
-    public static ServiceResult<T> Ok(T data, string? message = null, bool success = true) =>
+    public static ServiceResult<T> Ok(T? data, string? message = null, bool success = true) =>
         new ServiceResult<T> { Success = success, Data = data, Message = message };
 
     public static ServiceResult<T> Fail(string message, ErrorType error = ErrorType.Validation) =>
