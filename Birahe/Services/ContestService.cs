@@ -164,7 +164,7 @@ public class ContestService {
 
         // end of rate limit
 
-        var success = riddle.Asnwer == submitAnswerDto.Answer;
+        var success = riddle.Answer == submitAnswerDto.Answer;
         _contestRepository.SubmitAnswer(ciExists, submitAnswerDto.Answer, success);
 
         if (!success) {

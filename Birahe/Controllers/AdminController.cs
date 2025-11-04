@@ -107,13 +107,19 @@ public class AdminController : Controller {
 
     [HttpPost("contest/config")]
     public async Task<IActionResult> SetContestStartTime([FromBody] SetContestConfigDto setContestConfigDto) {
-        var result = await _adminService.SetContestStartTimeAsync(setContestConfigDto);
+        var result = await _adminService.SetContestConfigAsync(setContestConfigDto);
         return this.MapServiceResult(result);
     }
 
     [HttpGet("contest/config/{key}")]
     public async Task<IActionResult> GetContestStartTime(string key) {
-        var result = await _adminService.GetContestStartTimeAsync(key);
+        var result = await _adminService.GetContestConfigByKeyAsync(key);
+        return this.MapServiceResult(result);
+    }
+
+    [HttpGet("contest/config")]
+    public async Task<IActionResult> GetAllContestConfigs() {
+        var result = await _adminService.GetAllContestConfigsAsync();
         return this.MapServiceResult(result);
     }
 }

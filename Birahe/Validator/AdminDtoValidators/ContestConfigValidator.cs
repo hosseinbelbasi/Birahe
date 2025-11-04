@@ -7,10 +7,16 @@ namespace Birahe.EndPoint.Validator.AdminDtoValidators;
 public class ContestConfigValidator : AbstractValidator<SetContestConfigDto> {
     public ContestConfigValidator() {
         RuleFor(cc => cc)
-            .Must(cc => cc.Key == "Contest" && cc.Key == "FinalContest" && cc.Key == "Signup");
+            .Must(cc => AllowedConfigs.Any(ac=> String.Equals(ac, cc.Key)));
 
         RuleFor(cc => cc)
             .Must(cc => DateTime.Compare(cc.StartTime, cc.EndTime) < 0)
             .WithMessage("تاریخ شروع باید قبل از تاریخ پایان باشد");
     }
+
+    private List<String> AllowedConfigs => new List<string>() {
+        "Contest",
+        "FinalContest",
+        "Signup"
+    };
 }

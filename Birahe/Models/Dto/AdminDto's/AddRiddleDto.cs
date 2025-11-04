@@ -11,5 +11,5 @@ public class AddRiddleDto {
     public int HintCost { get; set; }
     public int Reward { get; set; }
 
-    public string Asnswer { get; set; }
+    public string Answer { get; set; }
 }

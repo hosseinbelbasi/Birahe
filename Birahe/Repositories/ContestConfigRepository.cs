@@ -22,4 +22,8 @@ public class ContestConfigRepository {
     public void UpdateContestConfig(ContestConfig contestConfig) {
         _context.ContestConfigs.Update(contestConfig);
     }
+
+    public async Task<List<ContestConfig>> GetAllConfigs() {
+        return await _context.ContestConfigs.ToListAsync();
+    }
 }

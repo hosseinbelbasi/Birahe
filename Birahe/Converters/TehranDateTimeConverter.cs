@@ -2,9 +2,9 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Birahe.EndPoint.JsonConverters;
+namespace Birahe.EndPoint.Converters;
 
-public class TehranDateTimeConverter : JsonConverters<DateTime>{
+public class TehranDateTimeConverter : JsonConverter<DateTime> {
     private static readonly TimeZoneInfo TehranTimeZone =
         TimeZoneInfo.FindSystemTimeZoneById("Asia/Tehran");
 

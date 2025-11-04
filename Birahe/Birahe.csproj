@@ -16,6 +16,17 @@
         <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml"/>
         <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml"/>
         <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml"/>
+        <_ContentIncludedByDefault Remove="wwwroot\assets\fa-solid-900-f4MajOib.ttf" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\index-DnbETm8I.css" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\index-DokLIYTY.js" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\IRAN Rounded-D2Kyv3j2.ttf" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\IRANSans-CVci-d31.woff" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\IRANSans_Bold-GlQYWplM.woff" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\Titr Zebr-CChnj0mS.ttf" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\W tahoma-CKi-rIv6.ttf" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\FavIcon-7E1fkBzW.svg" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\index-BupHEnAX.css" />
+        <_ContentIncludedByDefault Remove="wwwroot\assets\index-D13X3zAm.js" />
     </ItemGroup>
 
     <ItemGroup>
@@ -38,11 +49,6 @@
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.4"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.4"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Helpers\"/>
-        <Folder Include="wwwroot\images\"/>
     </ItemGroup>
 
     <ItemGroup>

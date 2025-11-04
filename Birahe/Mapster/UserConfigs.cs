@@ -16,6 +16,7 @@ public class UserConfigs {
             .Map(dest => dest.Passwordhashed, src => src.Password.Hash());
         TypeAdapterConfig<User, UserDto>
             .NewConfig()
-            .Map(dest => dest.Students, src => src.Students);
+            .Map(dest => dest.Students, src => src.Students)
+            .Map(dest => dest.Role, src => $"{src.Role}");
     }
 }

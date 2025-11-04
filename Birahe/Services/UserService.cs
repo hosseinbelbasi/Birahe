@@ -81,7 +81,7 @@ public class UserService {
             return ServiceResult<LoginResultDto>.Fail("نام کاربری یا رمز عبور اشتباه است!", ErrorType.Validation);
         }
 
-        if (!(user.Role == Role.PaymentPending)) {
+        if (user.Role == Role.PaymentPending) {
             return ServiceResult<LoginResultDto>.Fail("ابتدا هزینه ثبت نام را پرداخت کنید !", ErrorType.Forbidden);
         }
 
@@ -159,5 +159,14 @@ public class UserService {
         var result = config.StartTime.ToString("yyyy-MM-ddTHH:mm:ssK");
 
         return ServiceResult<string>.Ok(result);
+    }
+
+    public async Task<ServiceResult<UserDto>> GetUserById(int userId) {
+        var user = await _userRepository.FindUser(userId);
+        if (user == null) {
+            return ServiceResult<UserDto>.Fail("کاربر یافت نشد!", ErrorType.NotFound);
+        }
+        var userDto = _mapper.Map<UserDto>(user);
+        return ServiceResult<UserDto>.Ok(userDto);
     }
 }

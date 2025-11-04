@@ -30,7 +30,7 @@ public class AddRiddleDtoValidator : AbstractValidator<AddRiddleDto> {
             .WithMessage("محتوای معما فقط می‌تواند شامل حروف، اعداد یا _ باشد.");
 
 
-        RuleFor(x => x.Asnswer)
+        RuleFor(x => x.Answer)
             .NotEmpty().WithMessage("جواب معما نمیتواند خالی باشد.")
             .MinimumLength(4).WithMessage("جواب معما باید حداقل ۴ کاراکتر باشد.")
             .MaximumLength(2000).WithMessage("جواب معما میتواند حداکثر 1000 کاراکتر باشد.");

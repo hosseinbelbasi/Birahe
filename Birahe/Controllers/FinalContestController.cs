@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
-[Authorize]
+[Authorize("finaluser")]
 [ContestTimeAuthorize("FinalContest")]
 [Route("api/[controller]")]
 public class FinalContestController : ControllerBase {

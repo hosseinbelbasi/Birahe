@@ -174,13 +174,13 @@ public class UserRepository {
         if (user == null)
             return;
 
-        user.Username += "(Removed)";
-        user.TeamName += "(Removed)";
+        user.Username += $"(Removed {user.Id})";
+        user.TeamName += $"(Removed {user.Id})";
 
         var students = user.Students;
         if (user.Students != null) {
             foreach (var s in user.Students) {
-                s.StudentNo += "(Removed)";
+                s.StudentNo += $"(Removed {s.Id})";
                 s.RemoveTime = DateTime.UtcNow;
             }
         }

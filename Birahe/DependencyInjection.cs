@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Birahe.EndPoint.BackgroundJobs;
 using Birahe.EndPoint.Caching;
 using Birahe.EndPoint.Initializers;
 using Birahe.EndPoint.Mapster;
@@ -27,7 +28,9 @@ public static class DependencyInjection {
             .AddModelStateResponse()
             .AddCaching()
             .AddInitializers()
-            .AddPayment();
+            .AddPayment()
+            .AddDiHostedServices();
+
 
         return services;
     }
@@ -50,8 +53,7 @@ public static class DependencyInjection {
             .AddScoped<UserService>()
             .AddScoped<AdminService>()
             .AddScoped<ContestService>()
-            .AddScoped<PaymentService>()
-            .AddScoped<PendingPaymentCleanupService>();
+            .AddScoped<PaymentService>();
         return services;
     }
 
@@ -143,12 +145,12 @@ public static class DependencyInjection {
         services
             .Configure<ApiBehaviorOptions>(options => {
                 options.InvalidModelStateResponseFactory = context => {
-                    var errors = context.ModelState.Values
+                    var message = context.ModelState.Values
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage)
                         .ToArray();
 
-                    return new BadRequestObjectResult(new { errors });
+                    return new BadRequestObjectResult(new { message });
                 };
             });
         return services;
@@ -169,6 +171,14 @@ public static class DependencyInjection {
 
     public static IServiceCollection AddPayment(this IServiceCollection services) {
         services.AddHttpClient<PaymentService>();
+
+        return services;
+    }
+
+
+    public static IServiceCollection AddDiHostedServices(this IServiceCollection services) {
+        services.AddHostedService<PendingPaymentCleanupService>()
+            .AddHostedService<PendingPaymentRetryService>();
 
         return services;
     }

@@ -25,7 +25,7 @@ public class SignUpDtoValidator : AbstractValidator<SignUpDto> {
             .NotEmpty().WithMessage("رمز عبور الزامی است.")
             .MinimumLength(8).WithMessage("رمز عبور باید حداقل 8 کاراکتر باشد.")
             .MaximumLength(70).WithMessage("رمز عبور میتواند حداکثر 70 کاراکتر باشد.")
-            .Matches(@"^[a-zA-Z0-9_@!-]+$").WithMessage("رمز عبور فقط می‌تواند شامل حروف، اعداد یا _ ,@ ,! ,- ,باشد.");
+            .Matches(@"^[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]+$").WithMessage("رمز عبور نمی‌تواند شامل حروف فارسی باشد.");
 
         RuleFor(x => x.Students)
             .NotNull().WithMessage("دانشجویان الزامی است.")

@@ -17,7 +17,7 @@ public class Riddle : BaseEntity {
     public int HintCost { get; set; }
     public int Reward { get; set; }
     public string RiddleUId { get; set; }
-    public string Asnwer { get; set; }
+    public string Answer { get; set; }
 
     public List<ContestItem>? ContestItems { get; set; }
 }

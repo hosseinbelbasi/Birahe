@@ -306,32 +306,44 @@ public class AdminService {
 
     // ====================Contest Config =======================//
 
-    public async Task<ServiceResult<DateTime>> SetContestStartTimeAsync(SetContestConfigDto setContestConfigDto) {
-        var config = await _configRepository.CheckExistence(setContestConfigDto.Key);
-        if (config == null) {
-            config = _mapper.Map<ContestConfig>(setContestConfigDto);
+    public async Task<ServiceResult> SetContestConfigAsync(SetContestConfigDto setContestConfigDto) {
+        var exists = await _configRepository.CheckExistence(setContestConfigDto.Key);
+        if (exists == null) {
+            var config = _mapper.Map<ContestConfig>(setContestConfigDto);
             await _configRepository.AddContestConfig(config);
         }
         else {
-            config.StartTime = setContestConfigDto.StartTime;
-            _configRepository.UpdateContestConfig(config);
+            exists.StartTime = setContestConfigDto.StartTime;
+            exists.EndTime = setContestConfigDto.EndTime;
+            _configRepository.UpdateContestConfig(exists);
         }
 
         var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
-            return ServiceResult<DateTime>.Fail("خطا در ثبت عملیات", ErrorType.ServerError);
+            return ServiceResult.Fail("خطا در ثبت عملیات", ErrorType.ServerError);
         }
 
-        return ServiceResult<DateTime>.Ok(setContestConfigDto.StartTime,
-            $"{setContestConfigDto.Key} start time updated.");
+        return ServiceResult.Ok($"{setContestConfigDto.Key} با موفقیت ثبت شد.");
     }
 
-    public async Task<ServiceResult<DateTime>> GetContestStartTimeAsync(string key) {
+    public async Task<ServiceResult<ContestConfigDto>> GetContestConfigByKeyAsync(string key) {
         var cc = await _configRepository.CheckExistence(key);
         if (cc == null) {
-            return ServiceResult<DateTime>.Fail("کانفیگ مورد نظر یافت نشد!", ErrorType.NotFound);
+            return ServiceResult<ContestConfigDto>.Fail("کانفیگ مورد نظر یافت نشد!", ErrorType.NotFound);
         }
 
-        return ServiceResult<DateTime>.Ok(cc.StartTime);
+        return ServiceResult<ContestConfigDto>.Ok(_mapper.Map<ContestConfigDto>(cc));
+    }
+
+
+    public async Task<ServiceResult<List<ContestConfigDto>>> GetAllContestConfigsAsync() {
+        var configs = await _configRepository.GetAllConfigs();
+        if (configs.Count ==0) {
+            return ServiceResult<List<ContestConfigDto>>.NoContent();
+        }
+
+        var configsDto = _mapper.Map<List<ContestConfigDto>>(configs);
+
+        return ServiceResult<List<ContestConfigDto>>.Ok(configsDto);
     }
 }

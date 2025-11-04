@@ -1,4 +1,5 @@
 using Birahe.EndPoint.DataBase;
+using Birahe.EndPoint.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -24,8 +25,8 @@ public class ContestTimeAuthorizeAttribute : ActionFilterAttribute {
 
         var db = (ApplicationContext)context.HttpContext.RequestServices.GetService(typeof(ApplicationContext))!;
 
-
         var config = db.ContestConfigs.FirstOrDefault(c => c.Key == _configKey);
+
         if (config == null) {
             context.Result = new JsonResult(new { message = "خطا در بازیابی اطلاعات : کنترل دسترسی یافت نشد" })
                 { StatusCode = 404 };
@@ -33,13 +34,13 @@ public class ContestTimeAuthorizeAttribute : ActionFilterAttribute {
         }
 
         if (DateTime.UtcNow < config.StartTime) {
-            context.Result = new JsonResult(new { message = "مسابقه هنوز شروع نشده است !" })
+            context.Result = new JsonResult(new { message = $"{config.message}  هنوز شروع نشده است !" })
                 { StatusCode = 403 };
             return;
         }
 
         if (DateTime.UtcNow > config.EndTime) {
-            context.Result = new JsonResult(new { message = "مسابقه تمام شده است !" })
+            context.Result = new JsonResult(new { message = $"{config.message} تمام شده است !" })
                 { StatusCode = 403 };
             return;
         }

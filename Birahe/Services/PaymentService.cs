@@ -19,9 +19,10 @@ public class PaymentService {
     private readonly ApplicationContext _context;
     private readonly UserRepository _userRepository;
     private readonly IMapper _mapper;
+    private  ILogger<PaymentService> _logger;
 
-    private string MerchantId => _config["Zarinpal:MerchantId"]!;
-    private string CallbackUrl => _config["Zarinpal:CallbackUrl"]!;
+    private string MerchantId => _config["ZarinPal:MerchantId"]!;
+    private string CallbackUrl => _config["ZarinPal:CallbackUrl"]!;
     private string ZarinPalUrl => _config["ZarinPal:ZarinPalUrl"]!;
     private string RedirectToZarinPalUrl => _config["ZarinPal:RedirectToZarinPal"]!;
     private string VerifyPaymentUrl => _config["ZarinPal:VerifyPaymentUrl"]!;
@@ -29,13 +30,14 @@ public class PaymentService {
 
 
     public PaymentService(HttpClient httpClient, IConfiguration config, PaymentRepository paymentRepository,
-        ApplicationContext context, UserRepository userRepository, IMapper mapper) {
+        ApplicationContext context, UserRepository userRepository, IMapper mapper, ILogger<PaymentService> logger) {
         _httpClient = httpClient;
         _config = config;
         _paymentRepository = paymentRepository;
         _context = context;
         _userRepository = userRepository;
         _mapper = mapper;
+        _logger = logger;
     }
 
 
@@ -52,7 +54,7 @@ public class PaymentService {
         }
 
         var discount = await _context.Discounts.FirstOrDefaultAsync(d => d.Key == dto.Discount);
-        var amount = await GetFinalAmount(discount);
+        var amount = GetFinalAmount(discount);
         var description = "هزینه ثبت نام در مسابقه بیراهه";
 
         var payment = new Payment {
@@ -114,6 +116,8 @@ public class PaymentService {
         await _context.SaveChangesAsync();
 
         var redirectUrl = $"{RedirectToZarinPalUrl}{result.data.authority}";
+        // Console.WriteLine(redirectUrl);
+        _logger.LogError(redirectUrl);
         return ServiceResult<string>.Ok(redirectUrl);
     }
 
@@ -143,7 +147,9 @@ public class PaymentService {
             payment.Status = PaymentStatus.Failed;
             await _userRepository.LogicalDelete(userId);
             await _context.SaveChangesAsync();
-            return ServiceResult<PaymentVerifiedDto>.Fail("پرداخت توسط کاربر لغو شد!");
+
+
+            return ServiceResult<PaymentVerifiedDto>.Fail("پرداخت توسط کاربر لغو شد !");
         }
 
         var request = new {
@@ -157,7 +163,7 @@ public class PaymentService {
             response = await _httpClient.PostAsJsonAsync(VerifyPaymentUrl, request);
         }
         catch (Exception e) {
-            Console.WriteLine(e);
+            _logger.LogError(e, "Failed to deserialize ZarinPal verify response");
             return ServiceResult<PaymentVerifiedDto>.Fail("خطای درگاه پرداخت!", ErrorType.ServerError);
         }
 
@@ -168,21 +174,24 @@ public class PaymentService {
         if (!response.IsSuccessStatusCode)
             return ServiceResult<PaymentVerifiedDto>.Fail("خطا در اتصال به درگاه پرداخت!");
 
+        // var raw = await response.Content.ReadAsStringAsync();
+        // var result = JsonSerializer.Deserialize<ZarinpalVerifyResponse>(raw, new JsonSerializerOptions(){PropertyNameCaseInsensitive = true});
+       var result = await response.Content.ReadFromJsonAsync<ZarinpalVerifyResponse>();
 
-        var result = await response.Content.ReadFromJsonAsync<ZarinpalVerifyResponse>();
-
-
+       if (result?.data?.code == -51) {
+           payment.Status = PaymentStatus.Failed;
+           return ServiceResult<PaymentVerifiedDto>.Fail("پرداخت ناموفق!");
+       }
 
         if (result?.data?.code == 101) {
-            return ServiceResult<PaymentVerifiedDto>.Ok(null, "این پرداخت قبلا تایید شده است");
+            return ServiceResult<PaymentVerifiedDto>.Fail("این پرداخت قبلا تایید شده است");
         }
 
         if (result?.data?.code != 100) {
             payment.Status = PaymentStatus.Failed;
             payment.ModificationDateTime = DateTime.UtcNow;
-            payment.RefId = result?.data?.ref_id;
-            Console.WriteLine("payment" + payment.RefId);
-            Console.WriteLine("result" + payment.RefId);
+            payment.RefId = $"{result?.data?.ref_id}";
+
 
             await _userRepository.LogicalDelete(userId);
             await _context.SaveChangesAsync();
@@ -191,27 +200,37 @@ public class PaymentService {
             return ServiceResult<PaymentVerifiedDto>.Ok(paymentDto, $"تأیید پرداخت ناموفق بود: {result?.errors}");
         }
 
+        string message = "";
         payment.Status = PaymentStatus.Success;
-        payment.RefId = result.data.ref_id;
+        payment.ModificationDateTime = DateTime.UtcNow;
+        try {
+            payment.RefId = $"{result?.data?.ref_id}";
+        }
+        catch (Exception e) {
+            _logger.LogError(e, "Failed to assign RefId for payment {PaymentId}", payment.Id);
+            message = e.ToString();
+        }
+
 
         var activated = await _userRepository.ActivateUser(userId);
         if (!activated) {
-            payment.Status = PaymentStatus.Success;
             await _context.SaveChangesAsync();
 
             return ServiceResult<PaymentVerifiedDto>.Fail(
                 "پرداخت موفق بود اما فعال‌سازی حساب کاربر انجام نشد. لطفا با پشتیبانی تماس بگیرید");
         }
+    
+        var rows = await _context.SaveChangesAsync();
+        if (rows == 0) {
+            message = "db error";
+        }
 
-        await _context.SaveChangesAsync();
-        payment.RefId = result.data?.ref_id;
-        Console.WriteLine("=====================" + (payment.RefId) + "=====================");
         var paymentDto2 = _mapper.Map<PaymentVerifiedDto>(payment);
-        return ServiceResult<PaymentVerifiedDto>.Ok(paymentDto2);
+        return ServiceResult<PaymentVerifiedDto>.Ok(paymentDto2, message);
     }
 
     public async Task<ServiceResult<int>> CalculateAmount(string key) {
-        var amount = await GetFinalAmount();
+        var amount = GetFinalAmount();
         if (string.IsNullOrEmpty(key)) {
             return ServiceResult<int>.Ok(amount);
         }
@@ -221,31 +240,18 @@ public class PaymentService {
             return ServiceResult<int>.Ok(amount, "این کد تخفیف معتبر نیست!", success: false);
         }
 
-        amount = await GetFinalAmount(discount);
+        amount = GetFinalAmount(discount);
         return ServiceResult<int>.Ok(amount);
     }
 
-    private async Task<int> GetFinalAmount(Discount? discount = null) {
-        var earlyAmount = 1800000;
-        var normalAmount = 2400000;
-        int amount;
-        var signupStartConfig = await _context.ContestConfigs.FirstOrDefaultAsync(cc => cc.Key == "Contest");
-        var startTime = signupStartConfig.StartTime;
+    private int GetFinalAmount(Discount? discount = null) {
+        var amount = int.Parse(PaymentAmount);
 
-        var flag = DateTime.UtcNow < startTime.AddDays(3);
+        if (discount != null && discount.ExpiresAt > DateTime.UtcNow) {
 
-        if (flag) {
-            amount = earlyAmount;
-        }
-        else {
-            amount = normalAmount;
+            amount = (amount) * (100 - discount.Percent) / 100;
         }
 
-        var finalAmount = amount;
-        if (discount != null) {
-            finalAmount = (amount) * (100 - discount.Percent) / 100;
-        }
-
-        return finalAmount;
+        return amount;
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Birahe.EndPoint.DataBase;
 using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Enums;
@@ -18,44 +20,58 @@ public class DataBaseInitializer {
 
         if (!_context.Users.IgnoreQueryFilters().Any(u => u.Role == Role.Admin)) {
             _context.Users.Add(new User() {
-                Username = "admin",
-                Passwordhashed = "12345678".Hash(),
+                Username = "ceo_nima",
+                Passwordhashed = "GRgsDiWR9dc3QE6".Hash(),
                 Role = Role.Admin,
                 TeamName = "Admin Team",
+
             });
         }
 
         if (!_context.ContestConfigs.IgnoreQueryFilters().Any(cc => cc.Key == "Signup")) {
             _context.ContestConfigs.Add(new ContestConfig() {
                 Key = "Signup",
-                context = "sign up start time",
                 StartTime = DateTime.UtcNow,
-                EndTime = DateTime.UtcNow.AddDays(15)
+                EndTime = DateTime.UtcNow.AddDays(5),
+                message = " ثبت نام "
+
             });
         }
+
 
         if (!_context.ContestConfigs.IgnoreQueryFilters().Any(cc => cc.Key == "Contest")) {
             _context.ContestConfigs.Add(new ContestConfig() {
                 Key = "Contest",
-                context = "contest start time",
-                StartTime = DateTime.UtcNow.AddDays(10),
-                EndTime = DateTime.UtcNow.AddDays(20)
+                StartTime = DateTime.UtcNow.AddDays(7),
+                EndTime = DateTime.UtcNow.AddDays(20),
+                message = " مسابقه "
             });
         }
 
         if (!_context.ContestConfigs.IgnoreQueryFilters().Any(cc => cc.Key == "FinalContest")) {
             _context.ContestConfigs.Add(new ContestConfig() {
                 Key = "FinalContest",
-                context = "final contest start time",
                 StartTime = DateTime.UtcNow.AddDays(20),
-                EndTime = DateTime.UtcNow.AddDays(21)
+                EndTime = DateTime.UtcNow.AddDays(21),
+                message = " مسابقه نهایی "
             });
         }
 
-        if (!_context.Discounts.IgnoreQueryFilters().Any()) {
+        if (!_context.Discounts.IgnoreQueryFilters().Any(d=> d.Key =="Faz2025")) {
             _context.Discounts.Add(new Discount() {
                 Key = "Faz2025",
-                Percent = 5
+                Percent = 5,
+                ExpiresAt = DateTime.UtcNow.AddDays(30)
+            });
+        }
+
+        if (!_context.Discounts.IgnoreQueryFilters().Any(d=> d.Key =="BiraheOpening")) {
+            _context.Discounts.Add(new Discount() {
+                Key = "BiraheOpening",
+                Percent = 25,
+                ExpiresAt = DateTime.UtcNow.AddDays(30)
+
+                // ExpiresAt = new DateTime(2025, 11, 4, 8, 30, 0, DateTimeKind.Utc)
             });
         }
 

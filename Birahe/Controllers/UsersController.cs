@@ -24,7 +24,7 @@ public class UsersController : ControllerBase {
         _userService = userService;
     }
 
-    // [ContestTimeAuthorize("`")]
+    [ContestTimeAuthorize("Signup")]
     [HttpPost("signup")]
     [AllowAnonymous]
     public async Task<IActionResult> Signup([FromBody] SignUpDto signUpDto) {
@@ -68,6 +68,18 @@ public class UsersController : ControllerBase {
     [HttpGet("contest/start")]
     public async Task<IActionResult> GetContestStartTime() {
         var result = await _userService.GetContestStartTimeAsync();
+        return this.MapServiceResult(result);
+    }
+
+    [Authorize(Roles = "user,admin")]
+    [HttpGet("me")]
+    public async Task<IActionResult> GetUserAsync() {
+        var userId = User.GetUserId();
+        if (userId == -1) {
+            return BadRequest();
+        }
+
+        var result = await _userService.GetUserById(userId);
         return this.MapServiceResult(result);
     }
 }

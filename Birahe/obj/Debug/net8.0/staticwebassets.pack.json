@@ -1,387 +1,555 @@
 {
   "Files": [
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\IRAN Rounded-D2Kyv3j2.ttf",
-      "PackagePath": "staticwebassets\\assets\\IRAN Rounded-D2Kyv3j2.ttf"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/FavIcon-7E1fkBzW.svg",
+      "PackagePath": "staticwebassets/assets/FavIcon-7E1fkBzW.svg"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\IRANSans-CVci-d31.woff",
-      "PackagePath": "staticwebassets\\assets\\IRANSans-CVci-d31.woff"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/IRAN Rounded-D2Kyv3j2.ttf",
+      "PackagePath": "staticwebassets/assets/IRAN Rounded-D2Kyv3j2.ttf"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\IRANSans_Bold-GlQYWplM.woff",
-      "PackagePath": "staticwebassets\\assets\\IRANSans_Bold-GlQYWplM.woff"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/IRANSans-CVci-d31.woff",
+      "PackagePath": "staticwebassets/assets/IRANSans-CVci-d31.woff"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\Titr Zebr-CChnj0mS.ttf",
-      "PackagePath": "staticwebassets\\assets\\Titr Zebr-CChnj0mS.ttf"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/IRANSans_Bold-GlQYWplM.woff",
+      "PackagePath": "staticwebassets/assets/IRANSans_Bold-GlQYWplM.woff"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\W tahoma-CKi-rIv6.ttf",
-      "PackagePath": "staticwebassets\\assets\\W tahoma-CKi-rIv6.ttf"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/Titr Zebr-CChnj0mS.ttf",
+      "PackagePath": "staticwebassets/assets/Titr Zebr-CChnj0mS.ttf"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\fa-solid-900-f4MajOib.ttf",
-      "PackagePath": "staticwebassets\\assets\\fa-solid-900-f4MajOib.ttf"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/W tahoma-CKi-rIv6.ttf",
+      "PackagePath": "staticwebassets/assets/W tahoma-CKi-rIv6.ttf"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\index-DnbETm8I.css",
-      "PackagePath": "staticwebassets\\assets\\index-DnbETm8I.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/fa-solid-900-f4MajOib.ttf",
+      "PackagePath": "staticwebassets/assets/fa-solid-900-f4MajOib.ttf"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\assets\\index-DokLIYTY.js",
-      "PackagePath": "staticwebassets\\assets\\index-DokLIYTY.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/index-BpwEblwf.css",
+      "PackagePath": "staticwebassets/assets/index-BpwEblwf.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\bg.webm",
-      "PackagePath": "staticwebassets\\bg.webm"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/index-CesqDnvI.js",
+      "PackagePath": "staticwebassets/assets/index-CesqDnvI.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\birahe.html",
-      "PackagePath": "staticwebassets\\birahe.html"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/bg.webm",
+      "PackagePath": "staticwebassets/bg.webm"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\cpg.png",
-      "PackagePath": "staticwebassets\\cpg.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/birahe.html",
+      "PackagePath": "staticwebassets/birahe.html"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\index.html",
-      "PackagePath": "staticwebassets\\index.html"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\LICENSE",
-      "PackagePath": "staticwebassets\\lib\\bootstrap"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\10.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\10.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\11.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\11.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\12.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\12.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\14.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\14.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\15.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\15.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\16.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\16.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\17.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\17.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\18.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\18.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\19.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\19.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\20.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\20.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\8.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\8.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\9.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\9.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\IMG_6379.PNG",
-      "PackagePath": "staticwebassets\\static\\fonts\\IMG_6379.PNG"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\IRANRounded.woff",
-      "PackagePath": "staticwebassets\\static\\fonts\\IRANRounded.woff"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\IRANRounded.woff2",
-      "PackagePath": "staticwebassets\\static\\fonts\\IRANRounded.woff2"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\TitrZebr.woff",
-      "PackagePath": "staticwebassets\\static\\fonts\\TitrZebr.woff"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\TitrZebr.woff2",
-      "PackagePath": "staticwebassets\\static\\fonts\\TitrZebr.woff2"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\fonts\\logo.png",
-      "PackagePath": "staticwebassets\\static\\fonts\\logo.png"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\static\\teaser.mp4",
-      "PackagePath": "staticwebassets\\static\\teaser.mp4"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\c#\\Birahe\\Birahe\\Birahe\\wwwroot\\vite.svg",
-      "PackagePath": "staticwebassets\\vite.svg"
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Birahe.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.css"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.js",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.js"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/10.png",
+      "PackagePath": "staticwebassets/static/fonts/10.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/11.png",
+      "PackagePath": "staticwebassets/static/fonts/11.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/12.png",
+      "PackagePath": "staticwebassets/static/fonts/12.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/14.png",
+      "PackagePath": "staticwebassets/static/fonts/14.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/15.png",
+      "PackagePath": "staticwebassets/static/fonts/15.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/16.png",
+      "PackagePath": "staticwebassets/static/fonts/16.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/17.png",
+      "PackagePath": "staticwebassets/static/fonts/17.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/18.png",
+      "PackagePath": "staticwebassets/static/fonts/18.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/19.png",
+      "PackagePath": "staticwebassets/static/fonts/19.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/20.png",
+      "PackagePath": "staticwebassets/static/fonts/20.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/8.png",
+      "PackagePath": "staticwebassets/static/fonts/8.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/9.png",
+      "PackagePath": "staticwebassets/static/fonts/9.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/IRANRounded.woff",
+      "PackagePath": "staticwebassets/static/fonts/IRANRounded.woff"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/IRANRounded.woff2",
+      "PackagePath": "staticwebassets/static/fonts/IRANRounded.woff2"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/TitrZebr.woff",
+      "PackagePath": "staticwebassets/static/fonts/TitrZebr.woff"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/TitrZebr.woff2",
+      "PackagePath": "staticwebassets/static/fonts/TitrZebr.woff2"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/logo.png",
+      "PackagePath": "staticwebassets/static/fonts/logo.png"
+    },
+    {
+      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/teaser.mp4",
+      "PackagePath": "staticwebassets/static/teaser.mp4"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Birahe.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Birahe.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.Birahe.props",
       "PackagePath": "build\\Birahe.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Birahe.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Birahe.props",
       "PackagePath": "buildMultiTargeting\\Birahe.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Birahe.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Birahe.props",
       "PackagePath": "buildTransitive\\Birahe.props"
     }
   ],
