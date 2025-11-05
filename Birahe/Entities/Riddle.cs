@@ -19,5 +19,7 @@ public class Riddle : BaseEntity {
     public string RiddleUId { get; set; }
     public string Answer { get; set; }
 
+    public string Format { get; set; }
+
     public List<ContestItem>? ContestItems { get; set; }
 }

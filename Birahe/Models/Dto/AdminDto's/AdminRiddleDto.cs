@@ -22,5 +22,8 @@ public class AdminRiddleDto {
 
     public int Reward { get; set; }
 
+    public string Format { get; set; }
+
+
     public string Answer { get; set; }
 }

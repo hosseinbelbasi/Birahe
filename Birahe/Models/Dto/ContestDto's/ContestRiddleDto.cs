@@ -9,4 +9,7 @@ public class ContestRiddleDto {
     public int OpeningCost { get; set; }
     public int HintCost { get; set; }
     public int Reward { get; set; }
+
+    public string Format { get; set; }
+
 }
