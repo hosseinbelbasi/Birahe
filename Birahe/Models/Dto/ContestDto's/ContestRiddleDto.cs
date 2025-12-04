@@ -11,5 +11,9 @@ public class ContestRiddleDto {
     public int Reward { get; set; }
 
     public string Format { get; set; }
+    public string InterfaceString { get; set; }
+
+    public string Options { get; set; }
+
 
 }

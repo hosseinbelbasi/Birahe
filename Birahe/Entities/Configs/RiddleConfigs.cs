@@ -16,6 +16,8 @@ public class RiddleConfigs : IEntityTypeConfiguration<Riddle> {
         builder.Property(x => x.HintMediaType).HasMaxLength(10);
         builder.Property(x => x.RewardMediaType).HasMaxLength(10);
         builder.Property(x => x.Format).HasMaxLength(200);
+        builder.Property(x => x.InterfaceString).HasMaxLength(2000);
+        builder.Property(x => x.Options).HasMaxLength(2000);
 
         builder
             .Property(r => r.RiddleUId)

@@ -20,4 +20,6 @@ public class ContestItem : BaseEntity {
 
     public bool HasOpenedHint { get; set; } = false;
     public DateTime? OpeningHintDateTime { get; set; }
+
+    public int Level { get; set; }
 }

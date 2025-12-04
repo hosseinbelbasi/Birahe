@@ -1,539 +1,575 @@
 {
   "Files": [
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/FavIcon-7E1fkBzW.svg",
+      "Id": "/app/wwwroot/assets/FavIcon-7E1fkBzW.svg",
       "PackagePath": "staticwebassets/assets/FavIcon-7E1fkBzW.svg"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/IRAN Rounded-D2Kyv3j2.ttf",
+      "Id": "/app/wwwroot/assets/IRAN Rounded-D2Kyv3j2.ttf",
       "PackagePath": "staticwebassets/assets/IRAN Rounded-D2Kyv3j2.ttf"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/IRANSans-CVci-d31.woff",
+      "Id": "/app/wwwroot/assets/IRANSans-CVci-d31.woff",
       "PackagePath": "staticwebassets/assets/IRANSans-CVci-d31.woff"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/IRANSans_Bold-GlQYWplM.woff",
+      "Id": "/app/wwwroot/assets/IRANSans_Bold-GlQYWplM.woff",
       "PackagePath": "staticwebassets/assets/IRANSans_Bold-GlQYWplM.woff"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/Titr Zebr-CChnj0mS.ttf",
+      "Id": "/app/wwwroot/assets/Titr Zebr-CChnj0mS.ttf",
       "PackagePath": "staticwebassets/assets/Titr Zebr-CChnj0mS.ttf"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/W tahoma-CKi-rIv6.ttf",
+      "Id": "/app/wwwroot/assets/W tahoma-CKi-rIv6.ttf",
       "PackagePath": "staticwebassets/assets/W tahoma-CKi-rIv6.ttf"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/fa-solid-900-f4MajOib.ttf",
+      "Id": "/app/wwwroot/assets/fa-solid-900-f4MajOib.ttf",
       "PackagePath": "staticwebassets/assets/fa-solid-900-f4MajOib.ttf"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/index-BpwEblwf.css",
-      "PackagePath": "staticwebassets/assets/index-BpwEblwf.css"
+      "Id": "/app/wwwroot/assets/index-BKoXia_E.css",
+      "PackagePath": "staticwebassets/assets/index-BKoXia_E.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/assets/index-CesqDnvI.js",
-      "PackagePath": "staticwebassets/assets/index-CesqDnvI.js"
+      "Id": "/app/wwwroot/assets/index-DMlZfSOr.css",
+      "PackagePath": "staticwebassets/assets/index-DMlZfSOr.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/bg.webm",
+      "Id": "/app/wwwroot/assets/index-DXtqEn20.js",
+      "PackagePath": "staticwebassets/assets/index-DXtqEn20.js"
+    },
+    {
+      "Id": "/app/wwwroot/assets/index-DjdrKQfp.js",
+      "PackagePath": "staticwebassets/assets/index-DjdrKQfp.js"
+    },
+    {
+      "Id": "/app/wwwroot/assets/index-QD-JTvC8.js",
+      "PackagePath": "staticwebassets/assets/index-QD-JTvC8.js"
+    },
+    {
+      "Id": "/app/wwwroot/assets/index-ZXrBoJ2S.js",
+      "PackagePath": "staticwebassets/assets/index-ZXrBoJ2S.js"
+    },
+    {
+      "Id": "/app/wwwroot/assets/index-nWx_sIUN.css",
+      "PackagePath": "staticwebassets/assets/index-nWx_sIUN.css"
+    },
+    {
+      "Id": "/app/wwwroot/bg.webm",
       "PackagePath": "staticwebassets/bg.webm"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/birahe.html",
+      "Id": "/app/wwwroot/birahe.html",
       "PackagePath": "staticwebassets/birahe.html"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/css/site.css",
+      "Id": "/app/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/favicon.ico",
+      "Id": "/app/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/index.html",
+      "Id": "/app/wwwroot/index.html",
       "PackagePath": "staticwebassets/index.html"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/js/site.js",
+      "Id": "/app/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/LICENSE",
+      "Id": "/app/wwwroot/lib/bootstrap/LICENSE",
       "PackagePath": "staticwebassets/lib/bootstrap"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Id": "/app/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Id": "/app/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Id": "/app/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Id": "/app/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/LICENSE.md",
+      "Id": "/app/wwwroot/lib/jquery-validation/LICENSE.md",
       "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "Id": "/app/wwwroot/lib/jquery-validation/dist/additional-methods.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "Id": "/app/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "Id": "/app/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Id": "/app/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/LICENSE.txt",
+      "Id": "/app/wwwroot/lib/jquery/LICENSE.txt",
       "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/dist/jquery.js",
+      "Id": "/app/wwwroot/lib/jquery/dist/jquery.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Id": "/app/wwwroot/lib/jquery/dist/jquery.min.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Id": "/app/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.css",
+      "Id": "/app/wwwroot/src/assets/AchievementBorder.svg",
+      "PackagePath": "staticwebassets/src/assets/AchievementBorder.svg"
+    },
+    {
+      "Id": "/app/wwwroot/src/assets/DollarCoin.svg",
+      "PackagePath": "staticwebassets/src/assets/DollarCoin.svg"
+    },
+    {
+      "Id": "/app/wwwroot/src/assets/FavIcon.svg",
+      "PackagePath": "staticwebassets/src/assets/FavIcon.svg"
+    },
+    {
+      "Id": "/app/wwwroot/src/assets/UniMap.svg",
+      "PackagePath": "staticwebassets/src/assets/UniMap.svg"
+    },
+    {
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.rtl.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.min.css",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.min.css"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/css/bootstrap.rtl.min.css.map",
+      "Id": "/app/wwwroot/static/bootstrap/css/bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets/static/bootstrap/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.js",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.bundle.js",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.js.map",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.min.js",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.bundle.min.js.map",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.js",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.esm.js",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.js.map",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.esm.js.map",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.min.js",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.esm.min.js",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.esm.min.js.map",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.esm.min.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.js",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.js",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.js.map",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.js.map",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.min.js",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.min.js",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.min.js"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/bootstrap/js/bootstrap.min.js.map",
+      "Id": "/app/wwwroot/static/bootstrap/js/bootstrap.min.js.map",
       "PackagePath": "staticwebassets/static/bootstrap/js/bootstrap.min.js.map"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/10.png",
+      "Id": "/app/wwwroot/static/fonts/10.png",
       "PackagePath": "staticwebassets/static/fonts/10.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/11.png",
+      "Id": "/app/wwwroot/static/fonts/11.png",
       "PackagePath": "staticwebassets/static/fonts/11.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/12.png",
+      "Id": "/app/wwwroot/static/fonts/12.png",
       "PackagePath": "staticwebassets/static/fonts/12.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/14.png",
+      "Id": "/app/wwwroot/static/fonts/14.png",
       "PackagePath": "staticwebassets/static/fonts/14.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/15.png",
+      "Id": "/app/wwwroot/static/fonts/15.png",
       "PackagePath": "staticwebassets/static/fonts/15.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/16.png",
+      "Id": "/app/wwwroot/static/fonts/16.png",
       "PackagePath": "staticwebassets/static/fonts/16.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/17.png",
+      "Id": "/app/wwwroot/static/fonts/17.png",
       "PackagePath": "staticwebassets/static/fonts/17.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/18.png",
+      "Id": "/app/wwwroot/static/fonts/18.png",
       "PackagePath": "staticwebassets/static/fonts/18.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/19.png",
+      "Id": "/app/wwwroot/static/fonts/19.png",
       "PackagePath": "staticwebassets/static/fonts/19.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/20.png",
+      "Id": "/app/wwwroot/static/fonts/20.png",
       "PackagePath": "staticwebassets/static/fonts/20.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/8.png",
+      "Id": "/app/wwwroot/static/fonts/8.png",
       "PackagePath": "staticwebassets/static/fonts/8.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/9.png",
+      "Id": "/app/wwwroot/static/fonts/9.png",
       "PackagePath": "staticwebassets/static/fonts/9.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/IRANRounded.woff",
+      "Id": "/app/wwwroot/static/fonts/IRANRounded.woff",
       "PackagePath": "staticwebassets/static/fonts/IRANRounded.woff"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/IRANRounded.woff2",
+      "Id": "/app/wwwroot/static/fonts/IRANRounded.woff2",
       "PackagePath": "staticwebassets/static/fonts/IRANRounded.woff2"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/TitrZebr.woff",
+      "Id": "/app/wwwroot/static/fonts/TitrZebr.woff",
       "PackagePath": "staticwebassets/static/fonts/TitrZebr.woff"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/TitrZebr.woff2",
+      "Id": "/app/wwwroot/static/fonts/TitrZebr.woff2",
       "PackagePath": "staticwebassets/static/fonts/TitrZebr.woff2"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/fonts/logo.png",
+      "Id": "/app/wwwroot/static/fonts/logo.png",
       "PackagePath": "staticwebassets/static/fonts/logo.png"
     },
     {
-      "Id": "/home/hossein/Desktop/Birahe/Birahe/Birahe/wwwroot/static/teaser.mp4",
+      "Id": "/app/wwwroot/static/teaser.mp4",
       "PackagePath": "staticwebassets/static/teaser.mp4"
     },
     {

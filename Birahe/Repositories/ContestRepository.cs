@@ -29,6 +29,7 @@ public class ContestRepository {
             User = user,
             Riddle = riddle,
             OpeningDateTime = DateTime.UtcNow,
+            Level = riddle.Level
         };
 
         await _context.ContestItems.AddAsync(ci);
@@ -56,7 +57,13 @@ public class ContestRepository {
                 IsSolved = j != null && j.IsSolved,
                 HasOpenedHint = j != null && j.HasOpenedHint,
                 OpeningCost = r.OpeningCost,
-                HintCost = r.HintCost
+                HintCost = r.HintCost,
+                Reward = r.Reward,
+                Format = r.Format,
+                HintType = $"{r.HintMediaType}".ToLower(),
+                RewardType = $"{r.RewardMediaType}".ToLower(),
+                InterfaceString = r.InterfaceString,
+                Options = r.Options
             };
 
         return await query.ToListAsync();
@@ -80,7 +87,13 @@ public class ContestRepository {
                 IsSolved = j != null && j.IsSolved,
                 HasOpenedHint = j != null && j.HasOpenedHint,
                 OpeningCost = r.OpeningCost,
-                HintCost = r.HintCost
+                HintCost = r.HintCost,
+                Reward = r.Reward,
+                Format = r.Format,
+                HintType = $"{r.HintMediaType}".ToLower(),
+                RewardType = $"{r.RewardMediaType}".ToLower(),
+                InterfaceString = r.InterfaceString,
+                Options = r.Options
             };
 
         return await query.FirstOrDefaultAsync();
@@ -92,19 +105,27 @@ public class ContestRepository {
         ci.LastAnswer = answer;
         ci.LastTryDateTime = DateTime.UtcNow;
         ci.SolvingDateTime = success ? DateTime.UtcNow : null;
-
-        ci.User.SolvedRiddles++;
+        if (success) {
+            ci.User.SolvedRiddles++;
+        }
     }
+
 
     public async Task<List<LeaderBoardUserDto>?> GetLeaderBoardAsync() {
         var leaderBoard = await _context.Users
-            .Where(u => u.Role != Role.Admin)
+            .Where(u => u.Role == Role.User)
             .Select(u => new LeaderBoardUserDto() {
                 TeamName = u.TeamName,
                 Coin = u.Coin,
-                SolvedRiddles = u.SolvedRiddles
+                SolvedRiddles = u.SolvedRiddles,
+                UsedHintCount = u.ContestItems!.Count(ci=> ci.HasOpenedHint && ci.IsSolved) ,
+                HardSolvedCount = u.ContestItems!.Count(ci=> ci.IsSolved && ci.Level == 3),
+                RegularSolvedCount =u.ContestItems!.Count(ci=> ci.IsSolved && ci.Level == 2),
             }).OrderByDescending(u => u.Coin)
             .ThenByDescending(u => u.SolvedRiddles)
+            .ThenBy(u=> u.UsedHintCount)
+            .ThenByDescending(u=>u.HardSolvedCount).
+            ThenByDescending(u=>u.RegularSolvedCount)
             .ToListAsync();
 
 

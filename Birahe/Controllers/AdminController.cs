@@ -31,8 +31,8 @@ public class AdminController : Controller {
     }
 
     [HttpPut("riddles/{riddleId:int}")]
-    public async Task<IActionResult> EditRiddle(int riddleId, [FromBody] AdminRiddleDto adminRiddleDto) {
-        var result = await _adminService.EditRiddleAsync(riddleId, adminRiddleDto);
+    public async Task<IActionResult> EditRiddle(int riddleId, [FromBody] AddRiddleDto addRiddleDto) {
+        var result = await _adminService.EditRiddleAsync(riddleId, addRiddleDto);
         return this.MapServiceResult(result);
     }
 
@@ -44,8 +44,8 @@ public class AdminController : Controller {
     }
 
     [HttpGet("riddles/{riddleId:int}")]
-    public async Task<IActionResult> GetRiddleById(int id) {
-        var result = await _adminService.GetRiddleByIdAsync(id);
+    public async Task<IActionResult> GetRiddleById(int riddleId) {
+        var result = await _adminService.GetRiddleByIdAsync(riddleId);
         return this.MapServiceResult(result);
     }
 
@@ -99,6 +99,12 @@ public class AdminController : Controller {
     [HttpGet("users/{userId:int}/status")]
     public async Task<IActionResult> GetUserStatusById(int userId) {
         var result = await _adminService.GetUserStatusAsync(userId);
+        return this.MapServiceResult(result);
+    }
+
+    [HttpGet("users/leaderboard")]
+    public async Task<IActionResult> GetLeaderBoard() {
+        var result = await _adminService.GetLeaderBoardAsync();
         return this.MapServiceResult(result);
     }
 

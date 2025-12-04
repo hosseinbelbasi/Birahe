@@ -16,7 +16,7 @@ namespace Birahe.EndPoint.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "user")]
+[Authorize(Roles = "user, admin")]
 [ContestTimeAuthorize("Contest")]
 public class ContestController : Controller {
     private readonly ContestService _contestService;
@@ -29,6 +29,7 @@ public class ContestController : Controller {
 
     [HttpGet("riddles")]
     public async Task<IActionResult> GetAllRiddles() {
+
         var userId = User.GetUserId();
         if (userId == -1) {
             return BadRequest();

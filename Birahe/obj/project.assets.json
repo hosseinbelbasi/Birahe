@@ -9647,19 +9647,19 @@
     ]
   },
   "packageFolders": {
-    "/home/hossein/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/hossein/Desktop/Birahe/Birahe/Birahe/Birahe.csproj",
+      "projectUniqueName": "/app/Birahe.csproj",
       "projectName": "Birahe",
-      "projectPath": "/home/hossein/Desktop/Birahe/Birahe/Birahe/Birahe.csproj",
-      "packagesPath": "/home/hossein/.nuget/packages/",
-      "outputPath": "/home/hossein/Desktop/Birahe/Birahe/Birahe/obj/",
+      "projectPath": "/app/Birahe.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/hossein/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -9677,6 +9677,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -9769,7 +9774,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

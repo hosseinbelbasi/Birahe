@@ -41,14 +41,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddFluentValidationRulesToSwagger();
 
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowFrontend", policy => {
-        policy.WithOrigins("http://localhost:5173") // your frontend URL
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-    });
-});
+// builder.Services.AddCors(options => {
+//     options.AddPolicy("AllowFrontend", policy => {
+//         policy.WithOrigins("http://localhost:5173") // your frontend URL
+//             .AllowAnyHeader()
+//             .AllowAnyMethod()
+//             .AllowCredentials();
+//     });
+// });
 
 
 // ✅ Enables console logging (stdout → Docker logs)
@@ -71,15 +71,15 @@ if (app.Environment.IsDevelopment()) {
 }
 
 
-// 85dd982d993885dd982d9938app.UseHttpsRedirection();
-app.UseDefaultFiles();
+// app.UseHttpsRedirection();
+// app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("AllowFrontend");
+// app.UseCors("AllowFrontend");
 
 app.MapControllers();
 

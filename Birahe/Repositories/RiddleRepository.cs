@@ -34,6 +34,9 @@ public class RiddleRepository {
 
     public void RemoveRiddle(Riddle riddle) {
         riddle!.RemoveTime = DateTime.UtcNow;
+        riddle!.RiddleUId += $"(removed{riddle.Id} )";
+        // riddle!.No += 1000 + riddle.Id;
+        riddle.Department += $"(removed{riddle.Id} )";
     }
 
     public async Task<List<Riddle>> GetRiddles() {

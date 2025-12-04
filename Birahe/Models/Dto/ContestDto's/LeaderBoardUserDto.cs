@@ -4,6 +4,11 @@ public class LeaderBoardUserDto {
     public string TeamName { get; set; }
     public int Coin { get; set; }
     public int SolvedRiddles { get; set; }
-
     public int Position { get; set; }
+
+    public int UsedHintCount { get; set; }
+
+    public int HardSolvedCount { get; set; }
+
+    public int RegularSolvedCount { get; set; }
 }

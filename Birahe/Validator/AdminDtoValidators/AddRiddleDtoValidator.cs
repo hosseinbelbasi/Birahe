@@ -1,8 +1,7 @@
-using Birahe.EndPoint.Models.Dto;
 using Birahe.EndPoint.Models.Dto.AdminDto_s;
 using FluentValidation;
 
-namespace Birahe.EndPoint.Validator;
+namespace Birahe.EndPoint.Validator.AdminDtoValidators;
 
 public class AddRiddleDtoValidator : AbstractValidator<AddRiddleDto> {
     public AddRiddleDtoValidator() {
@@ -15,7 +14,7 @@ public class AddRiddleDtoValidator : AbstractValidator<AddRiddleDto> {
 
         RuleFor(x => x.Level)
             .NotEmpty().WithMessage("سطح معما نمیتواند خالی باشد.")
-            .Must(l => l > 0 && l < 3).WithMessage("سطح معما باید بزرگتر از 0 و کوچکتر از 3 باشد.");
+            .Must(l => l > 0 && l <= 3).WithMessage("سطح معما باید بزرگتر از 0 و کوچکتر از 3 باشد.");
 
         RuleFor(x => x.No)
             .NotEmpty().WithMessage("شماره معما نمیتواند خالی باشد.")

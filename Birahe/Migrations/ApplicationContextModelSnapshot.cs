@@ -85,6 +85,9 @@ namespace Birahe.EndPoint.Migrations
                     b.Property<DateTime?>("LastTryDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ModificationDateTime")
                         .HasColumnType("datetime2");
 
@@ -245,6 +248,11 @@ namespace Birahe.EndPoint.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("int");
 
+                    b.Property<string>("InterfaceString")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
@@ -256,6 +264,11 @@ namespace Birahe.EndPoint.Migrations
 
                     b.Property<int>("OpeningCost")
                         .HasColumnType("int");
+
+                    b.Property<string>("Options")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("datetime2");

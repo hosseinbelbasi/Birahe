@@ -14,15 +14,20 @@ public class AdminRiddleDto {
     public int HintCost { get; set; }
 
     public bool HintFile { get; set; }
-    public MediaType HintMediaType { get; set; }
+    public string HintMediaType { get; set; }
 
     public bool RewardFile { get; set; }
 
-    public MediaType RewardMediaType { get; set; }
+    public string RewardMediaType { get; set; }
 
     public int Reward { get; set; }
 
     public string Format { get; set; }
+
+    public string InterfaceString { get; set; }
+
+    public string Options { get; set; }
+
 
 
     public string Answer { get; set; }

@@ -89,6 +89,7 @@ public class ContestService {
             return ServiceResult<ContestRiddleDto>.Ok(null, "موجودی شما برای باز کردن معما کافی نیست!");
         }
 
+        _userRepository.DecreaseBalance(user, riddle.OpeningCost);
         await _contestRepository.OpenRiddleAsync(user, riddle);
         var riddleDto = _mapper.Map<ContestRiddleDto>(riddle);
         var rows = await _context.SaveChangesAsync();
@@ -117,6 +118,14 @@ public class ContestService {
             return ServiceResult<OpenHintDto>.Fail("این معما را هنوز باز نکرده اید.");
         }
 
+        if (ciExists.HasOpenedHint) {
+            return ServiceResult<OpenHintDto>.Fail("قبلا راهنما را باز کرده اید.");
+        }
+
+        if (ciExists.IsSolved) {
+            return ServiceResult<OpenHintDto>.Fail("قبلا معما را حل کرده اید!");
+        }
+
         if (user.Coin < riddle.HintCost) {
             return ServiceResult<OpenHintDto>.Ok(data: null, "موجودی شما برای باز کردن راهنمایی معما کافی نیست!");
         }
@@ -134,52 +143,53 @@ public class ContestService {
         return ServiceResult<OpenHintDto>.Ok(riddleDto, "راهنمایی معما با موفقیت باز شد!");
     }
 
-    public async Task<ServiceResult> SubmitAnswerAsync(int userId, int riddleId, SubmitAnswerDto submitAnswerDto) {
+    public async Task<ServiceResult<bool>> SubmitAnswerAsync(int userId, int riddleId, SubmitAnswerDto submitAnswerDto) {
         var user = await _userRepository.FindUser(userId);
         var riddle = await _riddleRepository.FindRiddleAsync(riddleId);
 
         if (riddle == null) {
-            return ServiceResult.Fail("این معما وجود ندارد!");
+            return ServiceResult<bool>.Fail("این معما وجود ندارد!");
         }
 
         var ciExists = await _contestRepository.CheckExistence(user!.Id, riddle.Id);
         if (ciExists == null) {
-            return ServiceResult.Fail("این معما را هنوز باز نکرده اید.");
+            return ServiceResult<bool>.Fail("این معما را هنوز باز نکرده اید.");
         }
 
-        if (ciExists.IsSolved) return ServiceResult.Fail("شما قبلا این معما را حل کرده اید!");
+        if (ciExists.IsSolved) return ServiceResult<bool>.Fail("شما قبلا این معما را حل کرده اید!");
 
         // rate limiting for submitting answers
 
         var minInterval = TimeSpan.FromMinutes(5);
         if (ciExists.LastTryDateTime.HasValue && DateTime.UtcNow - ciExists.LastTryDateTime.Value < minInterval) {
-            return ServiceResult.Fail(
-                $"لطفا قبل از ارسال جواب بعدی {minInterval.TotalSeconds} دقیقه صبر کنید."
+            return ServiceResult<bool>.Fail(
+                $"لطفا قبل از ارسال جواب بعدی {minInterval.TotalMinutes} دقیقه صبر کنید."
             );
         }
 
-        ciExists.LastTryDateTime = DateTime.UtcNow;
-        ciExists.Tries += 1;
-        ciExists.LastAnswer = submitAnswerDto.Answer;
+        // ciExists.LastTryDateTime = DateTime.UtcNow;
+        // ciExists.Tries += 1;
+        // ciExists.LastAnswer = submitAnswerDto.Answer;
 
         // end of rate limit
 
         var success = riddle.Answer == submitAnswerDto.Answer;
         _contestRepository.SubmitAnswer(ciExists, submitAnswerDto.Answer, success);
+        await _context.SaveChangesAsync();
 
         if (!success) {
-            return ServiceResult.Fail("متاسفانه جواب نا درست بود !");
+            return ServiceResult<bool>.Ok(false,"متاسفانه جواب نا درست بود !" );
         }
 
 
         _userRepository.IncreaseBalance(user, riddle.Reward);
         var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
-            return ServiceResult.Fail("خطا در ثبت جواب معما!", ErrorType.ServerError);
+            return ServiceResult<bool>.Fail("خطا در ثبت جواب معما!", ErrorType.ServerError);
         }
 
         _cacheService.Remove(CacheKeys.Leaderboard);
-        return ServiceResult.Ok("معما با موفقیت حل شد!");
+        return ServiceResult<bool>.Ok(true,"معما با موفقیت حل شد!");
     }
 
     public async Task<ServiceResult<List<LeaderBoardUserDto>>> GetLeaderBoardAsync() {

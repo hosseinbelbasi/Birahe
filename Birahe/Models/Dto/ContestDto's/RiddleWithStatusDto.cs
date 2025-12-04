@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc.Formatters;
+using Birahe.EndPoint.Constants.Enums;
 
 namespace Birahe.EndPoint.Models.Dto.ContestDto_s;
 
@@ -6,10 +6,10 @@ public class RiddleWithStatusDto {
     public bool IsOpened { get; set; }
     public bool HasOpenedHint { get; set; }
 
-    public MediaType HintType { get; set; }
+    public string HintType { get; set; }
     public bool IsSolved { get; set; }
 
-    public MediaType RewardType { get; set; }
+    public string RewardType { get; set; }
     public int Id { get; set; }
     public string Department { get; set; }
     public int Level { get; set; }
@@ -21,5 +21,9 @@ public class RiddleWithStatusDto {
     public int Reward { get; set; }
 
     public string Format { get; set; }
+
+    public string InterfaceString { get; set; }
+
+    public string Options { get; set; }
 
 }

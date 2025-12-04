@@ -23,6 +23,9 @@ public class RiddleConfigs {
         TypeAdapterConfig<Riddle, AdminRiddleDto>
             .NewConfig()
             .Map(dest => dest.HintFile, src => !String.IsNullOrEmpty(src.HintFileName))
-            .Map(dest => dest.RewardFile, src => !String.IsNullOrEmpty(src.RewardFileName));
+            .Map(dest => dest.RewardFile, src => !String.IsNullOrEmpty(src.RewardFileName))
+            .Map(dest=> dest.HintMediaType, src=> $"{src.HintMediaType}")
+            .Map(dest=> dest.RewardMediaType, src=> $"{src.RewardMediaType}")
+            ;
     }
 }

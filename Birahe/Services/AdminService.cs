@@ -5,6 +5,7 @@ using Birahe.EndPoint.Entities;
 using Birahe.EndPoint.Enums;
 using Birahe.EndPoint.Models.Dto;
 using Birahe.EndPoint.Models.Dto.AdminDto_s;
+using Birahe.EndPoint.Models.Dto.ContestDto_s;
 using Birahe.EndPoint.Models.ResultModels;
 using Birahe.EndPoint.Repositories;
 using Birahe.EndPoint.Services.Utilities;
@@ -23,13 +24,14 @@ public class AdminService {
     private readonly MediaService _mediaService;
     private readonly ContestConfigRepository _configRepository;
     private readonly MemoryCacheService _cacheService;
+    private readonly ContestRepository _contestRepository;
 
     public AdminService(
         RiddleRepository riddleRepository,
         IMapper mapper,
         ApplicationContext context,
         UserRepository userRepository,
-        MediaService mediaService, ContestConfigRepository configRepository, MemoryCacheService cacheService) {
+        MediaService mediaService, ContestConfigRepository configRepository, MemoryCacheService cacheService, ContestRepository contestRepository) {
         _riddleRepository = riddleRepository;
         _mapper = mapper;
         _context = context;
@@ -37,6 +39,7 @@ public class AdminService {
         _mediaService = mediaService;
         _configRepository = configRepository;
         _cacheService = cacheService;
+        _contestRepository = contestRepository;
     }
 
 
@@ -59,26 +62,26 @@ public class AdminService {
         return ServiceResult.Ok("معما با موفقیت ثبت شد!");
     }
 
-    public async Task<ServiceResult<AdminRiddleDto>> EditRiddleAsync(int riddleId, AdminRiddleDto adminRiddleDto) {
+    public async Task<ServiceResult<AddRiddleDto>> EditRiddleAsync(int riddleId, AddRiddleDto addRiddleDto) {
         var exists = await _riddleRepository.FindRiddleAsync(riddleId);
         if (exists == null) {
-            return ServiceResult<AdminRiddleDto>.Fail("این معما قبلا ثبت نشده است.");
+            return ServiceResult<AddRiddleDto>.Fail("این معما قبلا ثبت نشده است.");
         }
 
 
-        var oldRiddle = _mapper.Map<Riddle>(adminRiddleDto);
+        var oldRiddle = _mapper.Map<Riddle>(addRiddleDto);
 
         _riddleRepository.EditRiddle(exists, oldRiddle);
 
 
         var rows = await _context.SaveChangesAsync();
         if (rows == 0) {
-            return ServiceResult<AdminRiddleDto>.Fail("ویرایش معما با خطا رو به رو شد!", ErrorType.ServerError);
+            return ServiceResult<AddRiddleDto>.Fail("ویرایش معما با خطا رو به رو شد!", ErrorType.ServerError);
         }
 
         _cacheService.Remove(CacheKeys.AdminAllRiddles);
 
-        return ServiceResult<AdminRiddleDto>.Ok(adminRiddleDto, message: "معما با موفقیت ویرایش شد.");
+        return ServiceResult<AddRiddleDto>.Ok(addRiddleDto, message: "معما با موفقیت ویرایش شد.");
     }
 
     public async Task<ServiceResult<List<AdminRiddleDto>>> GetAllRiddlesAsync() {
@@ -277,7 +280,6 @@ public class AdminService {
             return ServiceResult.Fail("این کاربر قبلا ثبت نشده است.");
         }
 
-
         _userRepository.AdminChangePassword(user, userPasswordDto.NewPassword);
 
         var rows = await _context.SaveChangesAsync();
@@ -303,6 +305,23 @@ public class AdminService {
 
         return ServiceResult<List<AdminContestItemDto>?>.Ok(listDto);
     }
+
+
+    public async Task<ServiceResult<List<LeaderBoardUserDto>>> GetLeaderBoardAsync() {
+            var leaderBoard = await _cacheService.GetOrSetAsync(
+                CacheKeys.Leaderboard,
+                async () => await _contestRepository.GetLeaderBoardAsync(),
+                TimeSpan.FromMinutes(5)
+            );
+
+
+            if (leaderBoard == null || leaderBoard.Count == 0) {
+                return ServiceResult<List<LeaderBoardUserDto>>.NoContent();
+            }
+
+            return ServiceResult<List<LeaderBoardUserDto>>.Ok(leaderBoard);
+        }
+
 
     // ====================Contest Config =======================//
 

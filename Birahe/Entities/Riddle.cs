@@ -21,5 +21,9 @@ public class Riddle : BaseEntity {
 
     public string Format { get; set; }
 
+    public string InterfaceString { get; set; }
+
+    public string Options { get; set; }
+
     public List<ContestItem>? ContestItems { get; set; }
 }

@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Server=db;Database=Birahe;User Id=sa;Password=@6eGM92c5nec:p9.;Encrypt=False;TrustServerCertificate=True;"
+    volumes:
+      - ./:/app          # Mount source for hot reload
+      - ./SecureFiles:/app/SecureFiles
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    command: >
+      bash -c "chown -R mssql /var/opt/mssql &&
+               chmod -R 770 /var/opt/mssql &&
+               /opt/mssql/bin/sqlservr"
+    environment:
+      SA_PASSWORD: "@6eGM92c5nec:p9."
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql/data
+      - ./backups:/var/opt/mssql/backup
+
+volumes:
+  mssql_data:
