@@ -45,7 +45,7 @@ Getting Started
 
 Prerequisites:
 - .NET 8 SDK
-- SQL Server / PostgreSQL / or any EF Core-supported database
+- SQL Server 
 - Optional: Postman or Swagger for API testing
 
 Setup:
