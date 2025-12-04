@@ -57,7 +57,7 @@ Setup:
    dotnet ef database update
 4. Run the project:
    dotnet run
-5. Open Swagger at https://localhost:{port}/api to explore APIs
+5. Open Swagger at https://localhost:{port}/api/index.html to explore APIs
 
 Contributing
 
