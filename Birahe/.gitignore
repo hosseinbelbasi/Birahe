@@ -1,7 +1,7 @@
 # .gitignore
-bin/
-bin/Debug/net8.0
-obj/
+./bin/
+./bin/Debug/net8.0
+./obj/
 SecureFiles/
 mssql/
 backups/
